@@ -100,35 +100,41 @@
 
 
       .chess-piece:nth-child(1) {
-        top: 12%;
-        left: 8%;
-        animation-delay: 0s;
-      }
-      .chess-piece:nth-child(2) {
-        top: 20%;
-        right: 8%;
-        animation-delay: 1s;
-      }
-      .chess-piece:nth-child(3) {
-        bottom: 18%;
-        left: 15%;
-        animation-delay: 2s;
-      }
-      .chess-piece:nth-child(4) {
-        bottom: 22%;
-        right: 10%;
-        animation-delay: 3s;
-      }
-      .chess-piece:nth-child(5) {
-        top: 65%;
-        left: 20%;
-        animation-delay: 4s;
-      }
-      .chess-piece:nth-child(6) {
-        top: 45%;
-        right: 18%;
-        animation-delay: 5s;
-      }
+  top: 10%;
+  left: 12%;
+  animation-delay: 0s; /* ♛ Queen */
+}
+
+.chess-piece:nth-child(2) {
+  top: 25%;
+  right: 15%;
+  animation-delay: 1s; /* ♜ Rook */
+}
+
+.chess-piece:nth-child(3) {
+  bottom: 50%;
+  left: 5%;
+  animation-delay: 2s; /* ♝ Bishop — moved away from ♟ */
+}
+
+.chess-piece:nth-child(4) {
+  top: 70%;
+  right: 8%;
+  animation-delay: 3s; /* ♞ Knight */
+}
+
+.chess-piece:nth-child(5) {
+  bottom: 10%;
+  left: 35%;
+  animation-delay: 4s; /* ♟ Pawn */
+}
+
+.chess-piece:nth-child(6) {
+  top: 50%;
+  right: 30%;
+  animation-delay: 5s; /* ♚ King */
+}
+
 
       @keyframes float {
         0%,
