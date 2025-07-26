@@ -85,56 +85,53 @@
       }
 
       .chess-piece {
-  position: absolute;
-  font-size: 5rem; 
-  color: #000;
-  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.4); 
-  animation: float 6s ease-in-out infinite;
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3)); 
-  transition: transform 0.3s ease;
-}
-.chess-piece:hover {
-  transform: scale(1.2) rotate(10deg);
-}
-
-
+        position: absolute;
+        font-size: 5rem;
+        color: #000;
+        text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.4);
+        animation: float 6s ease-in-out infinite;
+        filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
+        transition: transform 0.3s ease;
+      }
+      .chess-piece:hover {
+        transform: scale(1.2) rotate(10deg);
+      }
 
       .chess-piece:nth-child(1) {
-  top: 10%;
-  left: 22%;
-  animation-delay: 0s; /* ♛ Queen */
-}
+        top: 10%;
+        left: 22%;
+        animation-delay: 0s;
+      }
 
-.chess-piece:nth-child(2) {
-  top: 20%;
-  right: 20%;
-  animation-delay: 1s; /* ♜ Rook */
-}
+      .chess-piece:nth-child(2) {
+        top: 20%;
+        right: 20%;
+        animation-delay: 1s;
+      }
 
-.chess-piece:nth-child(3) {
-  bottom: 35%;
-  left: 18%;
-  animation-delay: 2s; /* ♝ Bishop — moved away from ♟ */
-}
+      .chess-piece:nth-child(3) {
+        bottom: 35%;
+        left: 18%;
+        animation-delay: 2s;
+      }
 
-.chess-piece:nth-child(4) {
-  top: 50%;
-  right: 18%;
-  animation-delay: 3s; /* ♞ Knight */
-}
+      .chess-piece:nth-child(4) {
+        top: 50%;
+        right: 18%;
+        animation-delay: 3s;
+      }
 
-.chess-piece:nth-child(5) {
-  bottom: 10%;
-  left: 35%;
-  animation-delay: 4s; /* ♟ Pawn */
-}
+      .chess-piece:nth-child(5) {
+        bottom: 10%;
+        left: 35%;
+        animation-delay: 4s;
+      }
 
-.chess-piece:nth-child(6) {
-  top: 82%;
-  right: 30%;
-  animation-delay: 5s; /* ♚ King */
-}
-
+      .chess-piece:nth-child(6) {
+        top: 82%;
+        right: 30%;
+        animation-delay: 5s;
+      }
 
       @keyframes float {
         0%,
@@ -150,19 +147,24 @@
         text-align: center;
         z-index: 10;
         position: relative;
-        max-width: 1200px;
+        max-width: 1000px;
         padding: 0 2rem;
         color: #fff;
         animation: heroFloat 10s ease-in-out infinite;
-        }
-@keyframes heroFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
 
+      @keyframes heroFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
       }
 
       .college-header {
@@ -320,27 +322,104 @@
           opacity: 0.1;
         }
       }
-      .top-heading {
-  position: absolute;
-  top: 2rem;
-  width: 100%;
-  text-align: center;
-  z-index: 10;
-}
-.about-section {
-  color: #0d020a; /* Solid bright white text */
-  font-family: 'Brilliant', sans-serif;
-  font-size: 1.15rem;
-  line-height: 1.8;
-  padding: 1.8rem 2rem;
-  max-width: 800px; /* Balanced width */
-  margin: 2rem auto 0 auto;
+      .about-us-content {
+  background-color: #f9f9f9;
+  padding: 5rem 2rem;
   text-align: justify;
-  background-color: rgba(255, 255, 255, 0.08); /* Reduced transparency for better visibility */
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Soft glow for emphasis */
 }
 
+.about-text {
+  max-width: 900px;
+  margin: auto;
+  font-size: 1.1rem;
+  color: #000000; /* Black text */
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  line-height: 1.8;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.about-text.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.about-us-extended {
+  position: relative;
+  background: linear-gradient(to bottom, rgba(30, 30, 30, 0.85), rgba(0, 0, 0, 0.7)), url('your-hero-background.jpg'); /* Optional match bg image */
+  background-size: cover;
+  background-position: center;
+  padding: 6rem 2rem;
+  overflow: hidden;
+}
+
+.about-text-content {
+  max-width: 900px;
+  margin: auto;
+  font-size: 1.15rem;
+  color: #ffffff; /* Crisp white font */
+  font-family: 'Segoe UI', 'Poppins', sans-serif;
+  line-height: 1.8;
+  text-align: justify;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+  z-index: 5;
+  position: relative;
+}
+
+/* Animation on scroll */
+.about-text-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Floating chess pieces */
+.floating-pieces-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.floating-pieces-content .chess-piece {
+  position: absolute;
+  font-size: 2.5rem;
+  color: rgba(255, 255, 255, 0.1);
+  animation: floatPieces 12s infinite ease-in-out;
+}
+
+.floating-pieces-content .chess-piece:nth-child(1) {
+  top: 20%;
+  left: 10%;
+}
+.floating-pieces-content .chess-piece:nth-child(2) {
+  top: 40%;
+  right: 15%;
+}
+.floating-pieces-content .chess-piece:nth-child(3) {
+  bottom: 30%;
+  left: 20%;
+}
+.floating-pieces-content .chess-piece:nth-child(4) {
+  bottom: 10%;
+  right: 10%;
+}
+
+@keyframes floatPieces {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
 
 
     </style>
@@ -362,37 +441,75 @@
 
       <div class="strategic-quotes">
         <div class="subtitle">"OUR VISION"</div>
-        "Building a comprehensive academic<br /> and research ecosystem for<br />transforming young minds into<br />qualified innovative engineers<br /> with human values."     </div>
+        "Building a comprehensive academic<br /> and research ecosystem for<br />transforming young minds into<br />qualified innovative engineers<br /> with human values."
+      </div>
 
       <div class="strategic-quotes-right">
         <div class="subtitle">"OUR MISSION"</div>
         "Impart quality education through<br />state of the art facilities<br />and effective teaching-learning process<br />and collaborate with educational<br />institutions, industries and professional socieities<br /> and to promomote the culture of<br /> ethical research for developing<br /> self-sustainable engineers competent<br /> for entreprenuership and higher studies."
       </div>
 
-      <!-- Moved ABOUT US to top -->
-<div class="top-heading">
-  <div class="college-header">Fr. Conceicao Rodrigues College of Engineering</div>
-  <h1 class="main-title">ABOUT US</h1>
-</div>
-
-<div class="hero-content">
-  <div class="subtitle"></div>
-</div>
-<div class="about-section">
-  <p>
-    "Fr. Conceicao Rodrigues College of Engineering (FR. CRCE) is a top private Autonomous engineering institution in the heart of Mumbai. The college emphasizes on innovation and comprehensive education, focusing on the latest technological trends while fostering a holistic learning environment.
-<br />
-    With the implementation of NEP 2020, FR. CRCE has created its own curriculum from the past year. It has earned an "A" grade from the National Assessment and Accreditation Council (NAAC). Its Computer Engineering department is also accredited by the National Board of Accreditation (NBA).
-  <br />
-    FR. CRCE students excel in hackathons and engineering competitions, reflecting the college's emphasis on practical learning and hands-on experience. With its location in Mumbai and strong industry connections, FR. CRCE offers students a unique blend of academic rigor and industry exposure, preparing them for success in the evolving field of engineering."
-  </p>
-</div>
-
-
+      
+      <div class="hero-content">
+        <div class="college-header">Fr. Conceicao Rodrigues College of Engineering</div>
+        <h1 class="main-title">ABOUT US</h1>
+      </div>
     </section>
-    <section class="about-content">
+    <!-- PLACE THIS RIGHT AFTER </section> -->
 
-    </section>
+<section class="about-us-extension">
+  <div class="chessboard-bg"></div>
+  <div class="floating-pieces-content">
+    <div class="chess-piece">♛</div>
+    <div class="chess-piece">♜</div>
+    <div class="chess-piece">♝</div>
+    <div class="chess-piece">♞</div>
+  </div>
+  <div class="about-text-content" id="aboutScrollContent">
+    <p>
+      Fr. Conceicao Rodrigues College of Engineering (FR. CRCE) is a top private Autonomous engineering
+      institution in the heart of Mumbai. The college emphasizes on innovation and comprehensive
+      education, focusing on the latest technological trends while fostering a holistic learning
+      environment.
+    </p>
+    <br />
+    <p>
+      With the implementation of NEP 2020, FR. CRCE has created its own curriculum from the past year.
+      It has earned an "A" grade from the National Assessment and Accreditation Council (NAAC). Its
+      Computer Engineering department is also accredited by the National Board of Accreditation (NBA).
+    </p>
+    <br />
+    <p>
+      FR. CRCE students excel in hackathons and engineering competitions, reflecting the college's
+      emphasis on practical learning and hands-on experience. With its location in Mumbai and strong
+      industry connections, FR. CRCE offers students a unique blend of academic rigor and industry
+      exposure, preparing them for success in the evolving field of engineering.
+    </p>
+  </div>
+</section>
+
+<!-- ADD THIS SCRIPT JUST BEFORE </body> -->
+<script>
+  // Scroll animation trigger for About Us content
+  const aboutText = document.getElementById("aboutScrollContent");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          aboutText.classList.add("visible");
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  observer.observe(aboutText);
+</script>
+
+
+
+
+
   </body>
 </html>
-
