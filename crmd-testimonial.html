@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CRMD - Animated Chess Landing</title>
-  <script src="https://cdn.jsdelivr.net/npm/animejs/lib/anime.iife.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 </head>
 
 <style>
@@ -21,6 +21,7 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
+    background-color: goldenrod;
     font-family: 'Arial', sans-serif;
   }
 
@@ -55,11 +56,13 @@
     /* Scale to cover entire screen */
     object-position: center;
     /* Center the image */
-    pointer-events: auto;
-    /* Enable interactions */
+    pointer-events: none;
+    /* Disable interactions during animation */
     z-index: 10;
     opacity: 1;
     /* Make visible for debugging */
+    transform: translateY(-100vh);
+    /* Start above the screen */
   }
 
   /* Desktop/Mobile visibility controls */
@@ -148,8 +151,14 @@
 </body>
 
 <script>
-  // Wait for page to load
+  // Wait for page to load AND anime.js to be available
   document.addEventListener('DOMContentLoaded', function () {
+
+    // Check if anime.js is loaded
+    if (typeof anime === 'undefined') {
+      console.error('Anime.js not loaded! Check the script tag.');
+      return;
+    }
 
     console.log('Page loaded, starting animations...'); // Debug log
 
@@ -167,44 +176,40 @@
     if (currentKing) {
       console.log(`King element found:`, currentKing);
 
-      // Set initial state for animation
-      anime.set(kingSelector, {
-        translateY: -300,
-        opacity: 0,
-        rotate: -15
-      });
-
-      // 1. King Drop Animation - Main focal point
+      // 1. King Drop Animation - Falls with full momentum, no slowdown
       anime({
         targets: kingSelector,
-        translateY: 0,
-        rotate: 0,
-        opacity: 1,
-        duration: 1500,
-        easing: 'easeOutBounce',
-        delay: 800,
+        translateY: ['-100vh', '0vh'], // Falls from top to final position
+        opacity: [0, 1], // Fades in as it falls
+        duration: 1200, // Faster fall with constant speed
+        easing: 'linear', // Constant speed, no deceleration
+        delay: 500, // Small delay before starting
         complete: function () {
-          console.log('King drop animation completed!');
+          console.log('King landed with full impact! Starting background vibration...');
+
+          // Enable mouse interactions after landing
+          currentKing.style.pointerEvents = 'auto';
+
+          // 2. Background Vibration Effect immediately when king touches position
+          anime({
+            targets: '.chessboard-img',
+            translateX: [0, -10, 10, -6, 6, -3, 3, -1, 1, 0], // Even stronger vibration for impact
+            translateY: [0, -4, 4, -2, 2, -1, 1, 0], // More vertical shake
+            duration: 500, // Slightly longer vibration for the impact
+            easing: 'easeOutQuad',
+            complete: function () {
+              console.log('Background vibration completed! King is now still and interactive.');
+              // No breathing effect - king stays completely still
+            }
+          });
         }
       });
 
-      // 2. Subtle Pulse After Drop - Keeps attention on the king
-      setTimeout(() => {
-        anime({
-          targets: kingSelector,
-          scale: [1, 1.1, 1],
-          duration: 2500,
-          easing: 'easeInOutSine',
-          loop: true
-        });
-      }, 2500);
-
-      // 3. Hover interaction for the king
+      // 4. Hover interaction for the king
       currentKing.addEventListener('mouseenter', function () {
         anime({
           targets: kingSelector,
-          scale: 1.2,
-          rotate: '5deg',
+          scale: 1.05, // Subtle hover effect
           duration: 300,
           easing: 'easeOutQuad'
         });
@@ -213,42 +218,39 @@
       currentKing.addEventListener('mouseleave', function () {
         anime({
           targets: kingSelector,
-          scale: 1.1,
-          rotate: '0deg',
+          scale: 1, // Return to normal size (no breathing effect)
           duration: 300,
           easing: 'easeOutQuad'
         });
       });
 
-      // 4. Click interaction
-      currentKing.addEventListener('click', function () {
-        anime({
-          targets: kingSelector,
-          rotate: '+=360deg',
-          duration: 800,
-          easing: 'easeInOutQuad'
-        });
-      });
+      // Click interaction removed - king stays completely static
 
     } else {
       console.error('King image not found! Desktop:', kingDesktop, 'Mobile:', kingMobile);
     }
 
-    // 5. Staggered Intro for Text Elements
+    // 6. Staggered Intro for Text Elements (delayed until after king lands and vibration)
     anime({
       targets: '.chess-piece',
       translateY: [30, 0],
       opacity: [0, 1],
       duration: 1000,
-      delay: anime.stagger(400, { start: 1200 }),
+      delay: anime.stagger(300, { start: 2500 }), // Start after king lands (1.7s) and vibration starts
       easing: 'easeOutQuad'
     });
 
     // Debug: Log which images are being loaded
     const chessboardImg = document.querySelector('.chessboard-img');
-    chessboardImg.addEventListener('load', function () {
-      console.log('Background image loaded:', this.src);
-    });
+    if (chessboardImg) {
+      chessboardImg.addEventListener('load', function () {
+        console.log('Background image loaded:', this.src);
+      });
+
+      chessboardImg.addEventListener('error', function () {
+        console.error('Background image failed to load:', this.src);
+      });
+    }
 
     if (currentKing) {
       currentKing.addEventListener('load', function () {
