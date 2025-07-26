@@ -142,6 +142,12 @@
     <img src="Assests/king_desktop.png" class="king-img desktop-only" alt="King" id="kingDesktop">
     <img src="Assests/king_mobile.png" class="king-img mobile-only" alt="King" id="kingMobile">
 
+    <!-- Colored king images (initially hidden) -->
+    <img src="Assests/king_desktop_fade.png" class="king-img desktop-only" alt="Colored King" id="kingColoredDesktop"
+      style="opacity: 0; transform: translateY(0vh);">
+    <img src="Assests/king_mobile_fade.png" class="king-img mobile-only" alt="Colored King" id="kingColoredMobile"
+      style="opacity: 0; transform: translateY(0vh);">
+
     <!-- Content overlay -->
     <div class="content-overlay">
       <h1 class="title chess-piece" id="title">CRMD Chess</h1>
@@ -165,11 +171,15 @@
     // Get the appropriate king element based on screen size
     const kingDesktop = document.getElementById('kingDesktop');
     const kingMobile = document.getElementById('kingMobile');
+    const kingColoredDesktop = document.getElementById('kingColoredDesktop');
+    const kingColoredMobile = document.getElementById('kingColoredMobile');
 
     // Determine which king is currently visible
     const isDesktop = window.innerWidth > 768;
     const currentKing = isDesktop ? kingDesktop : kingMobile;
+    const currentColoredKing = isDesktop ? kingColoredDesktop : kingColoredMobile;
     const kingSelector = isDesktop ? '#kingDesktop' : '#kingMobile';
+    const coloredKingSelector = isDesktop ? '#kingColoredDesktop' : '#kingColoredMobile';
 
     console.log(`Screen width: ${window.innerWidth}px, using ${isDesktop ? 'desktop' : 'mobile'} king`);
 
@@ -200,12 +210,38 @@
             complete: function () {
               console.log('Background vibration completed! King is now still and interactive.');
               // No breathing effect - king stays completely still
+
+              // Wait for text animations to complete, then transition to colored king
+              setTimeout(() => {
+                console.log('Starting transition to colored king...');
+
+                // 3. Fade out black king and fade in colored king simultaneously
+                anime({
+                  targets: kingSelector,
+                  opacity: 0,
+                  duration: 1000,
+                  easing: 'easeInOutQuad'
+                });
+
+                anime({
+                  targets: coloredKingSelector,
+                  opacity: 1,
+                  duration: 1000,
+                  easing: 'easeInOutQuad',
+                  complete: function () {
+                    console.log('Colored king transition completed!');
+                    // Transfer interactions to colored king
+                    currentColoredKing.style.pointerEvents = 'auto';
+                    currentKing.style.pointerEvents = 'none';
+                  }
+                });
+              }, 1500); // Wait 1.5s after vibration for text to appear
             }
           });
         }
       });
 
-      // 4. Hover interaction for the king
+      // 4. Hover interaction for both kings (black and colored)
       currentKing.addEventListener('mouseenter', function () {
         anime({
           targets: kingSelector,
@@ -219,6 +255,25 @@
         anime({
           targets: kingSelector,
           scale: 1, // Return to normal size (no breathing effect)
+          duration: 300,
+          easing: 'easeOutQuad'
+        });
+      });
+
+      // Hover interactions for colored king (same effects)
+      currentColoredKing.addEventListener('mouseenter', function () {
+        anime({
+          targets: coloredKingSelector,
+          scale: 1.05,
+          duration: 300,
+          easing: 'easeOutQuad'
+        });
+      });
+
+      currentColoredKing.addEventListener('mouseleave', function () {
+        anime({
+          targets: coloredKingSelector,
+          scale: 1,
           duration: 300,
           easing: 'easeOutQuad'
         });
