@@ -26,7 +26,17 @@
         }
 
         /* Background image using picture element for responsiveness */
-        .background-img {
+        picture {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        picture>img.background-img {
             position: absolute;
             top: 0;
             left: 0;
@@ -34,7 +44,6 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
-            z-index: 0;
         }
 
         .checkerboard-overlay {
@@ -69,8 +78,8 @@
         .hand-figure img {
             width: 100%;
             height: 100%;
-            /* object-fit: contain; */
-            /* Keep aspect ratio and fit within bounds */
+            object-fit: cover;
+            /* Changed back to cover for proper full-screen effect */
             object-position: center;
         }
 
