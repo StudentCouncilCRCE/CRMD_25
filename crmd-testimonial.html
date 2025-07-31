@@ -101,28 +101,32 @@
     z-index: 20;
   }
 
-  .title {
-    font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
+  /* Main title picture and image styling */
+  .main-title-picture {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 25;
     opacity: 0;
   }
 
-  .subtitle {
-    font-size: 1.5rem;
-    opacity: 0;
+  .main-title-img {
+    width: 108vw;
+    max-width: 500px;
+    height: auto;
+    display: block;
+  }
+
+  /* Hide main title on desktop */
+  @media (min-width: 769px) {
+    .main-title-picture {
+      display: none;
+    }
   }
 
   /* Mobile responsiveness */
   @media (max-width: 768px) {
-    .title {
-      font-size: 2rem;
-    }
-
-    .subtitle {
-      font-size: 1.2rem;
-    }
-
     .content-overlay {
       top: 10px;
       left: 10px;
@@ -148,11 +152,13 @@
     <img src="Assests/king_mobile_fade.png" class="king-img mobile-only" alt="Colored King" id="kingColoredMobile"
       style="opacity: 0; transform: translateY(0vh);">
 
-    <!-- Content overlay -->
-    <div class="content-overlay">
-      <h1 class="title chess-piece" id="title">CRMD Chess</h1>
-      <p class="subtitle chess-piece" id="subtitle">Strategic Excellence</p>
-    </div>
+    <!-- Content overlay - replaced with responsive title image -->
+    <picture class="main-title-picture">
+      <source media="(max-width: 768px)" srcset="Assests/crmd_landing_mobile_title.png">
+      <!-- For desktop, we can use a different title image or hide it -->
+      <img src="Assests/crmd_landing_mobile_title.png" class="main-title-img" alt="CRMD - The Grand Chessboard"
+        id="mainTitle">
+    </picture>
   </div>
 </body>
 
@@ -210,6 +216,16 @@
             complete: function () {
               console.log('Background vibration completed! King is now still and interactive.');
               // No breathing effect - king stays completely still
+
+              // Animate title image after king lands and vibration completes
+              anime({
+                targets: '.main-title-picture',
+                transform: ['translate(-50%, calc(-50% + 50px))', 'translate(-50%, -50%)'],
+                opacity: [0, 1],
+                duration: 800,
+                delay: 200, // Small delay after vibration
+                easing: 'easeOutQuad'
+              });
 
               // Wait for text animations to complete, then transition to colored king
               setTimeout(() => {
@@ -284,16 +300,6 @@
     } else {
       console.error('King image not found! Desktop:', kingDesktop, 'Mobile:', kingMobile);
     }
-
-    // 6. Staggered Intro for Text Elements (delayed until after king lands and vibration)
-    anime({
-      targets: '.chess-piece',
-      translateY: [30, 0],
-      opacity: [0, 1],
-      duration: 1000,
-      delay: anime.stagger(300, { start: 2500 }), // Start after king lands (1.7s) and vibration starts
-      easing: 'easeOutQuad'
-    });
 
     // Debug: Log which images are being loaded
     const chessboardImg = document.querySelector('.chessboard-img');
