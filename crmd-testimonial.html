@@ -118,9 +118,54 @@
     display: block;
   }
 
-  /* Hide main title on desktop */
+  /* Desktop title and hand styling */
+  .desktop-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+    z-index: 25;
+    opacity: 0;
+  }
+
+  .desktop-hand {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+    z-index: 24;
+    opacity: 0;
+    transform: translateX(100%) translateY(-100%);
+  }
+
+  /* Hide main title on desktop, show desktop elements */
   @media (min-width: 769px) {
     .main-title-picture {
+      display: none;
+    }
+
+    .desktop-title {
+      display: block;
+    }
+
+    .desktop-hand {
+      display: block;
+    }
+  }
+
+  /* Hide desktop elements on mobile */
+  @media (max-width: 768px) {
+    .desktop-title {
+      display: none;
+    }
+
+    .desktop-hand {
       display: none;
     }
   }
@@ -159,6 +204,10 @@
       <img src="Assests/crmd_landing_mobile_title.png" class="main-title-img" alt="CRMD - The Grand Chessboard"
         id="mainTitle">
     </picture>
+
+    <!-- Desktop elements -->
+    <img src="Assests/crmd_landing_desktop_title.png" class="desktop-title" alt="CRMD Desktop Title" id="desktopTitle">
+    <img src="Assests/crmd_landing_desktop_hand.png" class="desktop-hand" alt="Desktop Hand" id="desktopHand">
   </div>
 </body>
 
@@ -217,15 +266,37 @@
               console.log('Background vibration completed! King is now still and interactive.');
               // No breathing effect - king stays completely still
 
-              // Animate title image after king lands and vibration completes
-              anime({
-                targets: '.main-title-picture',
-                transform: ['translate(-50%, calc(-50% + 50px))', 'translate(-50%, -50%)'],
-                opacity: [0, 1],
-                duration: 800,
-                delay: 200, // Small delay after vibration
-                easing: 'easeOutQuad'
-              });
+              // Different animations for desktop vs mobile
+              if (isDesktop) {
+                // Desktop: Animate title and hand simultaneously
+                anime({
+                  targets: '#desktopTitle',
+                  opacity: [0, 1],
+                  duration: 800,
+                  delay: 200,
+                  easing: 'easeOutQuad'
+                });
+
+                anime({
+                  targets: '#desktopHand',
+                  translateX: ['100%', '0%'],
+                  translateY: ['-100%', '0%'],
+                  opacity: [0, 1],
+                  duration: 1200,
+                  delay: 200,
+                  easing: 'easeOutQuad'
+                });
+              } else {
+                // Mobile: Animate title image as before
+                anime({
+                  targets: '.main-title-picture',
+                  transform: ['translate(-50%, calc(-50% + 50px))', 'translate(-50%, -50%)'],
+                  opacity: [0, 1],
+                  duration: 800,
+                  delay: 200,
+                  easing: 'easeOutQuad'
+                });
+              }
 
               // Wait for text animations to complete, then transition to colored king
               setTimeout(() => {
