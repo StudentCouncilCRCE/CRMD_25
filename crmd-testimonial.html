@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CRMD - Animated Chess Landing</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <style>
@@ -170,6 +172,126 @@
     }
   }
 
+  /* Navigation Bar Styles */
+  .navbar {
+    position: fixed;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    padding: 15px;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  /* Desktop navbar - vertical on top-left */
+  .navbar.desktop {
+    top: 15vh;
+    left: 1vw;
+    flex-direction: column;
+    width: 80px;
+    height: auto;
+    display: flex;
+    
+  }
+
+  /* Mobile navbar - horizontal on top */
+  .navbar.mobile {
+    top: 2vh;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: row;
+    width: auto;
+    height: 45px;
+    display: flex;
+    padding: 1%;
+  }
+
+  .navbar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: white;
+    position: relative;
+    min-width: 50px;
+    min-height: 50px;
+  }
+
+  .navbar.mobile .navbar-item {
+    margin: 0 4px;
+    flex-direction: row;
+    padding: 8px;
+    min-width: 35px;
+    min-height: 35px;
+  }
+
+  .navbar-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+  }
+
+  .navbar-item i {
+    font-size: 24px;
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  /* Smaller icons for mobile */
+  .navbar.mobile .navbar-item i {
+    font-size: 18px;
+  }
+
+  .navbar-item .chess-icon {
+    display: block;
+  }
+
+  .navbar-item .hover-icon {
+    display: none;
+  }
+
+  .navbar-item:hover .chess-icon {
+    display: none;
+  }
+
+  .navbar-item:hover .hover-icon {
+    display: block;
+  }
+
+  .navbar-item .label {
+    font-size: 10px;
+    margin-top: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .navbar.mobile .navbar-item .label {
+    margin-top: 0;
+    margin-left: 4px;
+    font-size: 10px;
+    opacity: 1;
+  }
+
+  .navbar-item:hover .label {
+    opacity: 1;
+  }
+
+  /* Show navbar after animations */
+  .navbar.show {
+    opacity: 1;
+  }
+
+  .navbar.mobile.show {
+    opacity: 1;
+  }
+
   /* Mobile responsiveness */
   @media (max-width: 768px) {
     .content-overlay {
@@ -208,6 +330,73 @@
     <!-- Desktop elements -->
     <img src="Assests/crmd_landing_desktop_title.png" class="desktop-title" alt="CRMD Desktop Title" id="desktopTitle">
     <img src="Assests/crmd_landing_desktop_hand.png" class="desktop-hand" alt="Desktop Hand" id="desktopHand">
+
+    <!-- Navigation Bar -->
+    <nav class="navbar desktop desktop-only" id="navbarDesktop">
+      <a href="index.html" class="navbar-item" data-page="home">
+        <i class="fas fa-chess-king chess-icon"></i>
+        <i class="fas fa-home hover-icon"></i>
+        <span class="label">Home</span>
+      </a>
+      <a href="crmd-about.html" class="navbar-item" data-page="about">
+        <i class="fas fa-chess-queen chess-icon"></i>
+        <i class="fas fa-users hover-icon"></i>
+        <span class="label">About</span>
+      </a>
+      <a href="crmd-testimonial.html" class="navbar-item" data-page="testimonials">
+        <i class="fas fa-chess-rook chess-icon"></i>
+        <i class="fas fa-star hover-icon"></i>
+        <span class="label">Reviews</span>
+      </a>
+      <a href="#rules" class="navbar-item" data-page="rules">
+        <i class="fas fa-chess-knight chess-icon"></i>
+        <i class="fas fa-scroll hover-icon"></i>
+        <span class="label">Rules</span>
+      </a>
+      <a href="#contact" class="navbar-item" data-page="contact">
+        <i class="fas fa-chess-pawn chess-icon"></i>
+        <i class="fas fa-envelope hover-icon"></i>
+        <span class="label">Contact</span>
+      </a>
+      <a href="#sponsors" class="navbar-item" data-page="sponsors">
+        <i class="fas fa-chess-bishop chess-icon"></i>
+        <i class="fas fa-handshake hover-icon"></i>
+        <span class="label">Sponsors</span>
+      </a>
+    </nav>
+
+    <nav class="navbar mobile mobile-only" id="navbarMobile">
+      <a href="index.html" class="navbar-item" data-page="home">
+        <i class="fas fa-chess-king chess-icon"></i>
+        <i class="fas fa-home hover-icon"></i>
+        <span class="label">Home</span>
+      </a>
+      <a href="crmd-about.html" class="navbar-item" data-page="about">
+        <i class="fas fa-chess-queen chess-icon"></i>
+        <i class="fas fa-users hover-icon"></i>
+        <span class="label">About</span>
+      </a>
+      <a href="crmd-testimonial.html" class="navbar-item" data-page="testimonials">
+        <i class="fas fa-chess-rook chess-icon"></i>
+        <i class="fas fa-star hover-icon"></i>
+        <span class="label">Reviews</span>
+      </a>
+      <a href="#rules" class="navbar-item" data-page="rules">
+        <i class="fas fa-chess-knight chess-icon"></i>
+        <i class="fas fa-scroll hover-icon"></i>
+        <span class="label">Rules</span>
+      </a>
+      <a href="#contact" class="navbar-item" data-page="contact">
+        <i class="fas fa-chess-pawn chess-icon"></i>
+        <i class="fas fa-envelope hover-icon"></i>
+        <span class="label">Contact</span>
+      </a>
+      <a href="#sponsors" class="navbar-item" data-page="sponsors">
+        <i class="fas fa-chess-bishop chess-icon"></i>
+        <i class="fas fa-handshake hover-icon"></i>
+        <span class="label">Sponsors</span>
+      </a>
+    </nav>
   </div>
 </body>
 
@@ -268,7 +457,7 @@
 
               // Different animations for desktop vs mobile
               if (isDesktop) {
-                // Desktop: Animate title and hand simultaneously
+                // Desktop: Animate title, hand, and navbar simultaneously
                 anime({
                   targets: '#desktopTitle',
                   opacity: [0, 1],
@@ -286,8 +475,13 @@
                   delay: 200,
                   easing: 'easeOutQuad'
                 });
+
+                // Show navbar with title and hand
+                setTimeout(() => {
+                  showNavbar();
+                }, 400);
               } else {
-                // Mobile: Animate title image as before
+                // Mobile: Animate title image and navbar
                 anime({
                   targets: '.main-title-picture',
                   transform: ['translate(-50%, calc(-50% + 50px))', 'translate(-50%, -50%)'],
@@ -296,6 +490,11 @@
                   delay: 200,
                   easing: 'easeOutQuad'
                 });
+
+                // Show navbar with title
+                setTimeout(() => {
+                  showNavbar();
+                }, 400);
               }
 
               // Wait for text animations to complete, then transition to colored king
@@ -370,6 +569,34 @@
 
     } else {
       console.error('King image not found! Desktop:', kingDesktop, 'Mobile:', kingMobile);
+    }
+
+    // Navbar animation function
+    function showNavbar() {
+      const navbar = isDesktop ? document.getElementById('navbarDesktop') : document.getElementById('navbarMobile');
+      
+      // Simple opacity fade in without scale transform
+      anime({
+        targets: navbar,
+        opacity: [0, 1],
+        duration: 600,
+        easing: 'easeOutQuad',
+        complete: function() {
+          navbar.classList.add('show');
+          
+          // Stagger animate navbar items
+          anime({
+            targets: navbar.querySelectorAll('.navbar-item'),
+            scale: [0.8, 1],
+            opacity: [0, 1],
+            translateY: isDesktop ? [20, 0] : [0, 0],
+            translateX: isDesktop ? [0, 0] : [20, 0],
+            duration: 400,
+            delay: anime.stagger(100),
+            easing: 'easeOutQuad'
+          });
+        }
+      });
     }
 
     // Debug: Log which images are being loaded
