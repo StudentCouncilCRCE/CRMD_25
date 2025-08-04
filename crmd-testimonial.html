@@ -1,144 +1,627 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Perspective Chessboard</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background-color: #111;
-      color: white;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-    }
-
-    .title {
-      margin-top: 40px;
-      font-size: 3rem;
-      z-index: 2;
-    }
-
-    .subtitle {
-      margin-top: 10px;
-      font-size: 1.2rem;
-      z-index: 2;
-    }
-
-    /* Perspective wrapper */
-    .perspective-wrapper {
-      position: absolute;
-      bottom: 0;
-      top: 75vh;
-      width: 100%;
-      height: 50vh;
-      perspective: 1000px;
-      display: flex;
-      justify-content: center;
-      align-items: end;
-    }
-
-    .chessboard {
-      width: 100%;
-      max-width: 100vw;
-      height: 100%;
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      grid-template-rows: repeat(10, 1fr); /* More rows for depth illusion */
-      transform: rotateX(60deg);
-      transform-origin: top;
-    }
-
-    .square {
-      width: 100%;
-      height: 100%;
-    }
-
-    .white {
-      background-color: #f0f0f0;
-    }
-
-    .black {
-      background-color: #1a1a1a;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRMD - Animated Chess Landing</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
+<style>
+  /* Reset and base styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: goldenrod;
+    font-family: 'Arial', sans-serif;
+  }
+
+  /* Chessboard container */
+  .chessboard-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Background image styling */
+  .chessboard-img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    z-index: 1;
+  }
+
+  /* King image styling - positioned absolutely for animation */
+  .king-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    /* Full screen width like background */
+    height: 100vh;
+    /* Full screen height like background */
+    object-fit: cover;
+    /* Scale to cover entire screen */
+    object-position: center;
+    /* Center the image */
+    pointer-events: none;
+    /* Disable interactions during animation */
+    z-index: 10;
+    opacity: 1;
+    /* Make visible for debugging */
+    transform: translateY(-100vh);
+    /* Start above the screen */
+  }
+
+  /* Desktop/Mobile visibility controls */
+  .desktop-only {
+    display: block;
+  }
+
+  .mobile-only {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .desktop-only {
+      display: none;
+    }
+
+    .mobile-only {
+      display: block;
+    }
+  }
+
+  /* Additional chess pieces for staggered animation */
+  .chess-piece {
+    position: absolute;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  /* Content overlay for text or additional elements */
+  .content-overlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    z-index: 20;
+  }
+
+  /* Main title picture and image styling */
+  .main-title-picture {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 25;
+    opacity: 0;
+  }
+
+  .main-title-img {
+    width: 108vw;
+    max-width: 500px;
+    height: auto;
+    display: block;
+  }
+
+  /* Desktop title and hand styling */
+  .desktop-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+    z-index: 25;
+    opacity: 0;
+  }
+
+  .desktop-hand {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+    z-index: 24;
+    opacity: 0;
+    transform: translateX(100%) translateY(-100%);
+  }
+
+  /* Hide main title on desktop, show desktop elements */
+  @media (min-width: 769px) {
+    .main-title-picture {
+      display: none;
+    }
+
+    .desktop-title {
+      display: block;
+    }
+
+    .desktop-hand {
+      display: block;
+    }
+  }
+
+  /* Hide desktop elements on mobile */
+  @media (max-width: 768px) {
+    .desktop-title {
+      display: none;
+    }
+
+    .desktop-hand {
+      display: none;
+    }
+  }
+
+  /* Navigation Bar Styles */
+  .navbar {
+    position: fixed;
+    z-index: 100;
+    background: black;
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    padding: 15px;
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  /* Desktop navbar - vertical on top-left */
+  .navbar.desktop {
+    top: 15vh;
+    left: 1vw;
+    flex-direction: column;
+    width: 80px;
+    height: auto;
+    display: flex;
+    
+  }
+
+  /* Mobile navbar - horizontal on top */
+  .navbar.mobile {
+    top: 2vh;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: row;
+    width: auto;
+    height: 45px;
+    display: flex;
+    padding: 1%;
+  }
+
+  .navbar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: white;
+    position: relative;
+    min-width: 50px;
+    min-height: 50px;
+  }
+
+  .navbar.mobile .navbar-item {
+    margin: 0 4px;
+    flex-direction: row;
+    padding: 8px;
+    min-width: 35px;
+    min-height: 35px;
+  }
+
+  .navbar-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+  }
+
+  .navbar-item i {
+    font-size: 24px;
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  /* Smaller icons for mobile */
+  .navbar.mobile .navbar-item i {
+    font-size: 18px;
+  }
+
+  .navbar-item .chess-icon {
+    display: block;
+  }
+
+  .navbar-item .hover-icon {
+    display: none;
+  }
+
+  .navbar-item:hover .chess-icon {
+    display: none;
+  }
+
+  .navbar-item:hover .hover-icon {
+    display: block;
+  }
+
+  .navbar-item .label {
+    font-size: 10px;
+    margin-top: 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .navbar.mobile .navbar-item .label {
+    margin-top: 0;
+    margin-left: 4px;
+    font-size: 10px;
+    opacity: 1;
+  }
+
+  .navbar-item:hover .label {
+    opacity: 1;
+  }
+
+  /* Show navbar after animations */
+  .navbar.show {
+    opacity: 1;
+  }
+
+  .navbar.mobile.show {
+    opacity: 1;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .content-overlay {
+      top: 10px;
+      left: 10px;
+    }
+  }
+</style>
+
 <body>
+  <div class="chessboard-container">
+    <!-- Responsive background image -->
+    <picture>
+      <source media="(max-width: 768px)" srcset="Assests/chess_bg_mobile.png">
+      <img src="Assests/chess_bg_desktop.png" alt="Chessboard" class="chessboard-img">
+    </picture>
 
-  <div class="title">Life is a game.</div>
-  <div class="subtitle">We can't undo a move<br>but we can make</div>
+    <!-- King images that scale perfectly with background -->
+    <img src="Assests/king_desktop.png" class="king-img desktop-only" alt="King" id="kingDesktop">
+    <img src="Assests/king_mobile.png" class="king-img mobile-only" alt="King" id="kingMobile">
 
-  <div class="perspective-wrapper">
-    <div class="chessboard">
-      <!-- 6x10 board for deeper feel -->
-      <!-- Generate alternating pattern -->
-      <!-- We'll use JS for that below OR you can manually fill this -->
+    <!-- Colored king images (initially hidden) -->
+    <img src="Assests/king_desktop_fade.png" class="king-img desktop-only" alt="Colored King" id="kingColoredDesktop"
+      style="opacity: 0; transform: translateY(0vh);">
+    <img src="Assests/king_mobile_fade.png" class="king-img mobile-only" alt="Colored King" id="kingColoredMobile"
+      style="opacity: 0; transform: translateY(0vh);">
 
-      <!-- This can be generated dynamically but let's do 60 cells -->
-      <!-- Alternating colors: white/black per row -->
-      <!-- Start from white -->
-      <!-- Loop manually or generate (for now, show 60 squares manually) -->
+    <!-- Content overlay - replaced with responsive title image -->
+    <picture class="main-title-picture">
+      <source media="(max-width: 768px)" srcset="Assests/crmd_landing_mobile_title.png">
+      <!-- For desktop, we can use a different title image or hide it -->
+      <img src="Assests/crmd_landing_mobile_title.png" class="main-title-img" alt="CRMD - The Grand Chessboard"
+        id="mainTitle">
+    </picture>
 
-      <!-- Row 1 -->
-      <div class="square white"></div><div class="square black"></div>
-      <div class="square white"></div><div class="square black"></div>
-      <div class="square white"></div><div class="square black"></div>
+    <!-- Desktop elements -->
+    <img src="Assests/crmd_landing_desktop_title.png" class="desktop-title" alt="CRMD Desktop Title" id="desktopTitle">
+    <img src="Assests/crmd_landing_desktop_hand.png" class="desktop-hand" alt="Desktop Hand" id="desktopHand">
 
-      <!-- Row 2 -->
-      <div class="square black"></div><div class="square white"></div>
-      <div class="square black"></div><div class="square white"></div>
-      <div class="square black"></div><div class="square white"></div>
+    <!-- Navigation Bar -->
+    <nav class="navbar desktop desktop-only" id="navbarDesktop">
+      <a href="index.html" class="navbar-item" data-page="home">
+        <i class="fas fa-chess-king chess-icon"></i>
+        <i class="fas fa-home hover-icon"></i>
+        <span class="label">Home</span>
+      </a>
+      <a href="crmd-about.html" class="navbar-item" data-page="about">
+        <i class="fas fa-chess-queen chess-icon"></i>
+        <i class="fas fa-users hover-icon"></i>
+        <span class="label">About</span>
+      </a>
+      <a href="crmd-testimonial.html" class="navbar-item" data-page="testimonials">
+        <i class="fas fa-chess-rook chess-icon"></i>
+        <i class="fas fa-star hover-icon"></i>
+        <span class="label">Reviews</span>
+      </a>
+      <a href="#rules" class="navbar-item" data-page="rules">
+        <i class="fas fa-chess-knight chess-icon"></i>
+        <i class="fas fa-scroll hover-icon"></i>
+        <span class="label">Rules</span>
+      </a>
+      <a href="#contact" class="navbar-item" data-page="contact">
+        <i class="fas fa-chess-pawn chess-icon"></i>
+        <i class="fas fa-envelope hover-icon"></i>
+        <span class="label">Contact</span>
+      </a>
+      <a href="#sponsors" class="navbar-item" data-page="sponsors">
+        <i class="fas fa-chess-bishop chess-icon"></i>
+        <i class="fas fa-handshake hover-icon"></i>
+        <span class="label">Sponsors</span>
+      </a>
+    </nav>
 
-      <!-- Row 3 -->
-      <div class="square white"></div><div class="square black"></div>
-      <div class="square white"></div><div class="square black"></div>
-      <div class="square white"></div><div class="square black"></div>
-
-      <!-- Row 4 -->
-      <div class="square black"></div><div class="square white"></div>
-      <div class="square black"></div><div class="square white"></div>
-      <div class="square black"></div><div class="square white"></div>
-
-      <!-- Row 5 -->
-      <div class="square white"></div><div class="square black"></div>
-      <div class="square white"></div><div class="square black"></div>
-      <div class="square white"></div><div class="square black"></div>
-
-      <!-- Row 6 -->
-      <div class="square black"></div><div class="square white"></div>
-      <div class="square black"></div><div class="square white"></div>
-      <div class="square black"></div><div class="square white"></div>
-
-      <!-- Row 7 -->
-      <div class="square white"></div><div class="square black"></div>
-      <div class="square white"></div><div class="square black"></div>
-      <div class="square white"></div><div class="square black"></div>
-
-      <!-- Row 8 -->
-      <div class="square black"></div><div class="square white"></div>
-      <div class="square black"></div><div class="square white"></div>
-      <div class="square black"></div><div class="square white"></div>
-
-      <!-- Row 9 -->
-      <div class="square white"></div><div class="square black"></div>
-      <div class="square white"></div><div class="square black"></div>
-      <div class="square white"></div><div class="square black"></div>
-
-      <!-- Row 10 -->
-      <div class="square black"></div><div class="square white"></div>
-      <div class="square black"></div><div class="square white"></div>
-      <div class="square black"></div><div class="square white"></div>
-    </div>
+    <nav class="navbar mobile mobile-only" id="navbarMobile">
+      <a href="index.html" class="navbar-item" data-page="home">
+        <i class="fas fa-chess-king chess-icon"></i>
+        <i class="fas fa-home hover-icon"></i>
+        <span class="label">Home</span>
+      </a>
+      <a href="crmd-about.html" class="navbar-item" data-page="about">
+        <i class="fas fa-chess-queen chess-icon"></i>
+        <i class="fas fa-users hover-icon"></i>
+        <span class="label">About</span>
+      </a>
+      <a href="crmd-testimonial.html" class="navbar-item" data-page="testimonials">
+        <i class="fas fa-chess-rook chess-icon"></i>
+        <i class="fas fa-star hover-icon"></i>
+        <span class="label">Reviews</span>
+      </a>
+      <a href="#rules" class="navbar-item" data-page="rules">
+        <i class="fas fa-chess-knight chess-icon"></i>
+        <i class="fas fa-scroll hover-icon"></i>
+        <span class="label">Rules</span>
+      </a>
+      <a href="#contact" class="navbar-item" data-page="contact">
+        <i class="fas fa-chess-pawn chess-icon"></i>
+        <i class="fas fa-envelope hover-icon"></i>
+        <span class="label">Contact</span>
+      </a>
+      <a href="#sponsors" class="navbar-item" data-page="sponsors">
+        <i class="fas fa-chess-bishop chess-icon"></i>
+        <i class="fas fa-handshake hover-icon"></i>
+        <span class="label">Sponsors</span>
+      </a>
+    </nav>
   </div>
-
 </body>
+
+<script>
+  // Wait for page to load AND anime.js to be available
+  document.addEventListener('DOMContentLoaded', function () {
+
+    // Check if anime.js is loaded
+    if (typeof anime === 'undefined') {
+      console.error('Anime.js not loaded! Check the script tag.');
+      return;
+    }
+
+    console.log('Page loaded, starting animations...'); // Debug log
+
+    // Get the appropriate king element based on screen size
+    const kingDesktop = document.getElementById('kingDesktop');
+    const kingMobile = document.getElementById('kingMobile');
+    const kingColoredDesktop = document.getElementById('kingColoredDesktop');
+    const kingColoredMobile = document.getElementById('kingColoredMobile');
+
+    // Determine which king is currently visible
+    const isDesktop = window.innerWidth > 768;
+    const currentKing = isDesktop ? kingDesktop : kingMobile;
+    const currentColoredKing = isDesktop ? kingColoredDesktop : kingColoredMobile;
+    const kingSelector = isDesktop ? '#kingDesktop' : '#kingMobile';
+    const coloredKingSelector = isDesktop ? '#kingColoredDesktop' : '#kingColoredMobile';
+
+    console.log(`Screen width: ${window.innerWidth}px, using ${isDesktop ? 'desktop' : 'mobile'} king`);
+
+    if (currentKing) {
+      console.log(`King element found:`, currentKing);
+
+      // 1. King Drop Animation - Falls with full momentum, no slowdown
+      anime({
+        targets: kingSelector,
+        translateY: ['-100vh', '0vh'], // Falls from top to final position
+        opacity: [0, 1], // Fades in as it falls
+        duration: 1200, // Faster fall with constant speed
+        easing: 'linear', // Constant speed, no deceleration
+        delay: 500, // Small delay before starting
+        complete: function () {
+          console.log('King landed with full impact! Starting background vibration...');
+
+          // Enable mouse interactions after landing
+          currentKing.style.pointerEvents = 'auto';
+
+          // 2. Background Vibration Effect immediately when king touches position
+          anime({
+            targets: '.chessboard-img',
+            translateX: [0, -10, 10, -6, 6, -3, 3, -1, 1, 0], // Even stronger vibration for impact
+            translateY: [0, -4, 4, -2, 2, -1, 1, 0], // More vertical shake
+            duration: 500, // Slightly longer vibration for the impact
+            easing: 'easeOutQuad',
+            complete: function () {
+              console.log('Background vibration completed! King is now still and interactive.');
+              // No breathing effect - king stays completely still
+
+              // Different animations for desktop vs mobile
+              if (isDesktop) {
+                // Desktop: Animate title, hand, and navbar simultaneously
+                anime({
+                  targets: '#desktopTitle',
+                  opacity: [0, 1],
+                  duration: 800,
+                  delay: 200,
+                  easing: 'easeOutQuad'
+                });
+
+                anime({
+                  targets: '#desktopHand',
+                  translateX: ['100%', '0%'],
+                  translateY: ['-100%', '0%'],
+                  opacity: [0, 1],
+                  duration: 1200,
+                  delay: 200,
+                  easing: 'easeOutQuad'
+                });
+
+                // Show navbar with title and hand
+                setTimeout(() => {
+                  showNavbar();
+                }, 400);
+              } else {
+                // Mobile: Animate title image and navbar
+                anime({
+                  targets: '.main-title-picture',
+                  transform: ['translate(-50%, calc(-50% + 50px))', 'translate(-50%, -50%)'],
+                  opacity: [0, 1],
+                  duration: 800,
+                  delay: 200,
+                  easing: 'easeOutQuad'
+                });
+
+                // Show navbar with title
+                setTimeout(() => {
+                  showNavbar();
+                }, 400);
+              }
+
+              // Wait for text animations to complete, then transition to colored king
+              setTimeout(() => {
+                console.log('Starting transition to colored king...');
+
+                // 3. Fade out black king and fade in colored king simultaneously
+                anime({
+                  targets: kingSelector,
+                  opacity: 0,
+                  duration: 1000,
+                  easing: 'easeInOutQuad'
+                });
+
+                anime({
+                  targets: coloredKingSelector,
+                  opacity: 1,
+                  duration: 1000,
+                  easing: 'easeInOutQuad',
+                  complete: function () {
+                    console.log('Colored king transition completed!');
+                    // Transfer interactions to colored king
+                    currentColoredKing.style.pointerEvents = 'auto';
+                    currentKing.style.pointerEvents = 'none';
+                  }
+                });
+              }, 1500); // Wait 1.5s after vibration for text to appear
+            }
+          });
+        }
+      });
+
+      // 4. Hover interaction for both kings (black and colored)
+      currentKing.addEventListener('mouseenter', function () {
+        anime({
+          targets: kingSelector,
+          scale: 1.05, // Subtle hover effect
+          duration: 300,
+          easing: 'easeOutQuad'
+        });
+      });
+
+      currentKing.addEventListener('mouseleave', function () {
+        anime({
+          targets: kingSelector,
+          scale: 1, // Return to normal size (no breathing effect)
+          duration: 300,
+          easing: 'easeOutQuad'
+        });
+      });
+
+      // Hover interactions for colored king (same effects)
+      currentColoredKing.addEventListener('mouseenter', function () {
+        anime({
+          targets: coloredKingSelector,
+          scale: 1.05,
+          duration: 300,
+          easing: 'easeOutQuad'
+        });
+      });
+
+      currentColoredKing.addEventListener('mouseleave', function () {
+        anime({
+          targets: coloredKingSelector,
+          scale: 1,
+          duration: 300,
+          easing: 'easeOutQuad'
+        });
+      });
+
+      // Click interaction removed - king stays completely static
+
+    } else {
+      console.error('King image not found! Desktop:', kingDesktop, 'Mobile:', kingMobile);
+    }
+
+    // Navbar animation function
+    function showNavbar() {
+      const navbar = isDesktop ? document.getElementById('navbarDesktop') : document.getElementById('navbarMobile');
+      
+      // Simple opacity fade in without scale transform
+      anime({
+        targets: navbar,
+        opacity: [0, 1],
+        duration: 600,
+        easing: 'easeOutQuad',
+        complete: function() {
+          navbar.classList.add('show');
+          
+          // Stagger animate navbar items
+          anime({
+            targets: navbar.querySelectorAll('.navbar-item'),
+            scale: [0.8, 1],
+            opacity: [0, 1],
+            translateY: isDesktop ? [20, 0] : [0, 0],
+            translateX: isDesktop ? [0, 0] : [20, 0],
+            duration: 400,
+            delay: anime.stagger(100),
+            easing: 'easeOutQuad'
+          });
+        }
+      });
+    }
+
+    // Debug: Log which images are being loaded
+    const chessboardImg = document.querySelector('.chessboard-img');
+    if (chessboardImg) {
+      chessboardImg.addEventListener('load', function () {
+        console.log('Background image loaded:', this.src);
+      });
+
+      chessboardImg.addEventListener('error', function () {
+        console.error('Background image failed to load:', this.src);
+      });
+    }
+
+    if (currentKing) {
+      currentKing.addEventListener('load', function () {
+        console.log('King image loaded:', this.src);
+      });
+
+      currentKing.addEventListener('error', function () {
+        console.error('King image failed to load:', this.src);
+      });
+    }
+
+  });
+</script>
+
 </html>
