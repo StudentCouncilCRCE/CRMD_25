@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CRMD - Animated Chess Landing</title>
+  <link rel="icon" type="image/x-icon" href="Assests/favicon.ico">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -78,11 +79,11 @@
 
   @media (max-width: 768px) {
     .desktop-only {
-      display: none;
+      display: none !important;
     }
 
     .mobile-only {
-      display: block;
+      display: block !important;
     }
   }
 
@@ -176,35 +177,148 @@
   .navbar {
     position: fixed;
     z-index: 100;
-    background: black;
+    background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
-    border-radius: 25px;
-    padding: 15px;
-    opacity: 0;
-    transition: all 0.3s ease;
-  }
-
-  /* Desktop navbar - vertical on top-left */
-  .navbar.desktop {
-    top: 15vh;
-    left: 1vw;
-    flex-direction: column;
-    width: 80px;
-    height: auto;
+    border-radius: 50%;
+    opacity: 1;
+    transition: all 0.8s ease;
     display: flex;
-    
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  /* Mobile navbar - horizontal on top */
+  /* Desktop navbar - vertical at left center */
+  .navbar.desktop {
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+  }
+
+  /* Mobile navbar - horizontal at top center */
   .navbar.mobile {
-    top: 2vh;
+    top: 1vh;
     left: 50%;
     transform: translateX(-50%);
-    flex-direction: row;
-    width: auto;
+    width: 45px;
     height: 45px;
+    padding: 6px;
+  }
+
+  /* STUCO Logo - Black circular centerpiece */
+  .navbar-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background: black;
+    border-radius: 50%;
     display: flex;
-    padding: 1%;
+    align-items: center;
+    justify-content: center;
+    z-index: 101;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .navbar-logo img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+
+  .navbar.mobile .navbar-logo {
+    width: 32px;
+    height: 32px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navbar.mobile .navbar-logo img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    margin: 0 auto;
+    padding: 0;
+    display: block;
+    position: relative;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Navigation items container */
+  .navbar-items {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .navbar-items.show {
+    opacity: 1;
+  }
+
+  /* Desktop: Vertical layout */
+  .navbar.desktop .navbar-items {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Mobile: Horizontal layout */
+  .navbar.mobile .navbar-items {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
+  }
+
+  .navbar-items-left,
+  .navbar-items-right {
+    display: flex;
+    gap: 8px;
+  }
+
+  /* Desktop: Vertical groups */
+  .navbar.desktop .navbar-items-left,
+  .navbar.desktop .navbar-items-right {
+    flex-direction: column;
+  }
+
+  /* Mobile: Horizontal groups */
+  .navbar.mobile .navbar-items-left,
+  .navbar.mobile .navbar-items-right {
+    flex-direction: row;
+    gap: 4px;
+  }
+
+  /* Expanded state - Desktop vertical */
+  .navbar.desktop.expanded {
+    width: 6vw;
+    height: 62vh;
+    border-radius: 3vw;
+    padding: 20px 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Expanded state - Mobile horizontal */
+  .navbar.mobile.expanded {
+    width: calc(100vw - 20px);
+    max-width: 420px;
+    height: 55px;
+    border-radius: 27px;
+    padding: 8px 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   }
 
   .navbar-item {
@@ -212,9 +326,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 8px 0;
-    padding: 12px;
-    border-radius: 15px;
+    margin: 0;
+    padding: 8px 6px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
@@ -222,30 +336,32 @@
     position: relative;
     min-width: 50px;
     min-height: 50px;
+    opacity: 0;
+    transform: scale(0.8);
   }
 
   .navbar.mobile .navbar-item {
-    margin: 0 4px;
-    flex-direction: row;
-    padding: 8px;
-    min-width: 35px;
-    min-height: 35px;
+    min-width: 36px;
+    min-height: 36px;
+    padding: 4px 3px;
+    margin: 0 1px;
   }
 
   .navbar-item:hover {
     background: rgba(255, 255, 255, 0.1);
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 
   .navbar-item i {
-    font-size: 24px;
+    font-size: 18px;
     color: white;
     transition: all 0.3s ease;
+    margin-bottom: 3px;
   }
 
-  /* Smaller icons for mobile */
   .navbar.mobile .navbar-item i {
-    font-size: 18px;
+    font-size: 14px;
+    margin-bottom: 1px;
   }
 
   .navbar-item .chess-icon {
@@ -265,18 +381,18 @@
   }
 
   .navbar-item .label {
-    font-size: 10px;
-    margin-top: 4px;
-    opacity: 0;
+    font-size: 9px;
+    margin-top: 1px;
+    opacity: 1;
     transition: opacity 0.3s ease;
     white-space: nowrap;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    text-align: center;
   }
 
   .navbar.mobile .navbar-item .label {
-    margin-top: 0;
-    margin-left: 4px;
-    font-size: 10px;
-    opacity: 1;
+    font-size: 7px;
   }
 
   .navbar-item:hover .label {
@@ -288,15 +404,48 @@
     opacity: 1;
   }
 
-  .navbar.mobile.show {
-    opacity: 1;
-  }
-
   /* Mobile responsiveness */
   @media (max-width: 768px) {
     .content-overlay {
       top: 10px;
       left: 10px;
+    }
+
+    /* Ensure desktop navbar is completely hidden on mobile */
+    .navbar.desktop {
+      display: none !important;
+    }
+  }
+
+  /* Ensure mobile navbar is completely hidden on desktop */
+  @media (min-width: 769px) {
+    .navbar.mobile {
+      display: none !important;
+    }
+  }
+
+  /* Extra small mobile screens */
+  @media (max-width: 360px) {
+    .navbar.mobile.expanded {
+      width: calc(100vw - 20px);
+      max-width: 340px;
+      height: 50px;
+      padding: 6px 10px;
+    }
+
+    .navbar.mobile .navbar-item {
+      min-width: 28px;
+      min-height: 28px;
+      padding: 2px 1px;
+      margin: 0;
+    }
+
+    .navbar.mobile .navbar-item i {
+      font-size: 11px;
+    }
+
+    .navbar.mobile .navbar-item .label {
+      font-size: 5px;
     }
   }
 </style>
@@ -331,71 +480,89 @@
     <img src="Assests/crmd_landing_desktop_title.png" class="desktop-title" alt="CRMD Desktop Title" id="desktopTitle">
     <img src="Assests/crmd_landing_desktop_hand.png" class="desktop-hand" alt="Desktop Hand" id="desktopHand">
 
-    <!-- Navigation Bar -->
+    <!-- Navigation Bar with STUCO Logo Centerpiece -->
     <nav class="navbar desktop desktop-only" id="navbarDesktop">
-      <a href="index.html" class="navbar-item" data-page="home">
-        <i class="fas fa-chess-king chess-icon"></i>
-        <i class="fas fa-home hover-icon"></i>
-        <span class="label">Home</span>
-      </a>
-      <a href="crmd-about.html" class="navbar-item" data-page="about">
-        <i class="fas fa-chess-queen chess-icon"></i>
-        <i class="fas fa-users hover-icon"></i>
-        <span class="label">About</span>
-      </a>
-      <a href="crmd-testimonial.html" class="navbar-item" data-page="testimonials">
-        <i class="fas fa-chess-rook chess-icon"></i>
-        <i class="fas fa-star hover-icon"></i>
-        <span class="label">Reviews</span>
-      </a>
-      <a href="#rules" class="navbar-item" data-page="rules">
-        <i class="fas fa-chess-knight chess-icon"></i>
-        <i class="fas fa-scroll hover-icon"></i>
-        <span class="label">Rules</span>
-      </a>
-      <a href="#contact" class="navbar-item" data-page="contact">
-        <i class="fas fa-chess-pawn chess-icon"></i>
-        <i class="fas fa-envelope hover-icon"></i>
-        <span class="label">Contact</span>
-      </a>
-      <a href="#sponsors" class="navbar-item" data-page="sponsors">
-        <i class="fas fa-chess-bishop chess-icon"></i>
-        <i class="fas fa-handshake hover-icon"></i>
-        <span class="label">Sponsors</span>
-      </a>
+      <div class="navbar-logo desktop-only">
+        <img src="Assests/favicon.ico" alt="STUCO Logo">
+      </div>
+      <div class="navbar-items" id="navbarItemsDesktop">
+        <div class="navbar-items-left">
+          <a href="index.html" class="navbar-item" data-page="home">
+            <i class="fas fa-chess-king chess-icon"></i>
+            <i class="fas fa-home hover-icon"></i>
+            <span class="label">Home</span>
+          </a>
+          <a href="crmd-about.html" class="navbar-item" data-page="about">
+            <i class="fas fa-chess-queen chess-icon"></i>
+            <i class="fas fa-users hover-icon"></i>
+            <span class="label">About</span>
+          </a>
+          <a href="crmd-testimonial.html" class="navbar-item" data-page="testimonials">
+            <i class="fas fa-chess-rook chess-icon"></i>
+            <i class="fas fa-star hover-icon"></i>
+            <span class="label">Reviews</span>
+          </a>
+        </div>
+        <div class="navbar-items-right">
+          <a href="#rules" class="navbar-item" data-page="rules">
+            <i class="fas fa-chess-knight chess-icon"></i>
+            <i class="fas fa-scroll hover-icon"></i>
+            <span class="label">Rules</span>
+          </a>
+          <a href="#contact" class="navbar-item" data-page="contact">
+            <i class="fas fa-chess-pawn chess-icon"></i>
+            <i class="fas fa-envelope hover-icon"></i>
+            <span class="label">Contact</span>
+          </a>
+          <a href="#sponsors" class="navbar-item" data-page="sponsors">
+            <i class="fas fa-chess-bishop chess-icon"></i>
+            <i class="fas fa-handshake hover-icon"></i>
+            <span class="label">Sponsors</span>
+          </a>
+        </div>
+      </div>
     </nav>
 
     <nav class="navbar mobile mobile-only" id="navbarMobile">
-      <a href="index.html" class="navbar-item" data-page="home">
-        <i class="fas fa-chess-king chess-icon"></i>
-        <i class="fas fa-home hover-icon"></i>
-        <span class="label">Home</span>
-      </a>
-      <a href="crmd-about.html" class="navbar-item" data-page="about">
-        <i class="fas fa-chess-queen chess-icon"></i>
-        <i class="fas fa-users hover-icon"></i>
-        <span class="label">About</span>
-      </a>
-      <a href="crmd-testimonial.html" class="navbar-item" data-page="testimonials">
-        <i class="fas fa-chess-rook chess-icon"></i>
-        <i class="fas fa-star hover-icon"></i>
-        <span class="label">Reviews</span>
-      </a>
-      <a href="#rules" class="navbar-item" data-page="rules">
-        <i class="fas fa-chess-knight chess-icon"></i>
-        <i class="fas fa-scroll hover-icon"></i>
-        <span class="label">Rules</span>
-      </a>
-      <a href="#contact" class="navbar-item" data-page="contact">
-        <i class="fas fa-chess-pawn chess-icon"></i>
-        <i class="fas fa-envelope hover-icon"></i>
-        <span class="label">Contact</span>
-      </a>
-      <a href="#sponsors" class="navbar-item" data-page="sponsors">
-        <i class="fas fa-chess-bishop chess-icon"></i>
-        <i class="fas fa-handshake hover-icon"></i>
-        <span class="label">Sponsors</span>
-      </a>
+      <div class="navbar-logo mobile-only">
+        <img src="Assests/favicon.ico" alt="STUCO Logo">
+      </div>
+      <div class="navbar-items" id="navbarItemsMobile">
+        <div class="navbar-items-left">
+          <a href="index.html" class="navbar-item" data-page="home">
+            <i class="fas fa-chess-king chess-icon"></i>
+            <i class="fas fa-home hover-icon"></i>
+            <span class="label">Home</span>
+          </a>
+          <a href="crmd-about.html" class="navbar-item" data-page="about">
+            <i class="fas fa-chess-queen chess-icon"></i>
+            <i class="fas fa-users hover-icon"></i>
+            <span class="label">About</span>
+          </a>
+          <a href="crmd-testimonial.html" class="navbar-item" data-page="testimonials">
+            <i class="fas fa-chess-rook chess-icon"></i>
+            <i class="fas fa-star hover-icon"></i>
+            <span class="label">Reviews</span>
+          </a>
+        </div>
+        <div class="navbar-items-right">
+          <a href="#rules" class="navbar-item" data-page="rules">
+            <i class="fas fa-chess-knight chess-icon"></i>
+            <i class="fas fa-scroll hover-icon"></i>
+            <span class="label">Rules</span>
+          </a>
+          <a href="#contact" class="navbar-item" data-page="contact">
+            <i class="fas fa-chess-pawn chess-icon"></i>
+            <i class="fas fa-envelope hover-icon"></i>
+            <span class="label">Contact</span>
+          </a>
+          <a href="#sponsors" class="navbar-item" data-page="sponsors">
+            <i class="fas fa-chess-bishop chess-icon"></i>
+            <i class="fas fa-handshake hover-icon"></i>
+            <span class="label">Sponsors</span>
+          </a>
+        </div>
+      </div>
     </nav>
   </div>
 </body>
@@ -457,13 +624,19 @@
 
               // Different animations for desktop vs mobile
               if (isDesktop) {
-                // Desktop: Animate title, hand, and navbar simultaneously
+                // Desktop: Animate title, hand
                 anime({
                   targets: '#desktopTitle',
                   opacity: [0, 1],
                   duration: 800,
                   delay: 200,
-                  easing: 'easeOutQuad'
+                  easing: 'easeOutQuad',
+                  complete: function () {
+                    // Start navbar animation after title appears
+                    setTimeout(() => {
+                      showNavbar();
+                    }, 300);
+                  }
                 });
 
                 anime({
@@ -475,29 +648,25 @@
                   delay: 200,
                   easing: 'easeOutQuad'
                 });
-
-                // Show navbar with title and hand
-                setTimeout(() => {
-                  showNavbar();
-                }, 400);
               } else {
-                // Mobile: Animate title image and navbar
+                // Mobile: Animate title image
                 anime({
                   targets: '.main-title-picture',
                   transform: ['translate(-50%, calc(-50% + 50px))', 'translate(-50%, -50%)'],
                   opacity: [0, 1],
                   duration: 800,
                   delay: 200,
-                  easing: 'easeOutQuad'
+                  easing: 'easeOutQuad',
+                  complete: function () {
+                    // Start navbar animation after title appears
+                    setTimeout(() => {
+                      showNavbar();
+                    }, 300);
+                  }
                 });
-
-                // Show navbar with title
-                setTimeout(() => {
-                  showNavbar();
-                }, 400);
               }
 
-              // Wait for text animations to complete, then transition to colored king
+              // Wait for navbar animations to complete, then transition to colored king
               setTimeout(() => {
                 console.log('Starting transition to colored king...');
 
@@ -521,7 +690,7 @@
                     currentKing.style.pointerEvents = 'none';
                   }
                 });
-              }, 1500); // Wait 1.5s after vibration for text to appear
+              }, 2800); // Wait for navbar animation to complete
             }
           });
         }
@@ -571,32 +740,94 @@
       console.error('King image not found! Desktop:', kingDesktop, 'Mobile:', kingMobile);
     }
 
-    // Navbar animation function
+    // Navbar expansion animation function
     function showNavbar() {
       const navbar = isDesktop ? document.getElementById('navbarDesktop') : document.getElementById('navbarMobile');
-      
-      // Simple opacity fade in without scale transform
-      anime({
-        targets: navbar,
-        opacity: [0, 1],
-        duration: 600,
-        easing: 'easeOutQuad',
-        complete: function() {
-          navbar.classList.add('show');
-          
-          // Stagger animate navbar items
+      const navbarItems = isDesktop ? document.getElementById('navbarItemsDesktop') : document.getElementById('navbarItemsMobile');
+
+      console.log('Starting STUCO logo centerpiece expansion animation...');
+
+      // The navbar is already visible, so we just need to expand it
+      // Phase 1: Expand the circle outward to rounded rectangle
+      setTimeout(() => {
+        navbar.classList.add('expanded');
+
+        // Desktop: Expand vertically
+        if (isDesktop) {
           anime({
-            targets: navbar.querySelectorAll('.navbar-item'),
-            scale: [0.8, 1],
-            opacity: [0, 1],
-            translateY: isDesktop ? [20, 0] : [0, 0],
-            translateX: isDesktop ? [0, 0] : [20, 0],
-            duration: 400,
-            delay: anime.stagger(100),
-            easing: 'easeOutQuad'
+            targets: navbar,
+            width: '6vw',
+            height: '62vh',
+            borderRadius: '3vw',
+            duration: 700,
+            easing: 'easeOutQuart',
+            complete: function () {
+              // Reset any transform properties that might interfere with positioning
+              navbar.style.transform = 'translateY(-50%)';
+              revealNavItems();
+            }
           });
         }
-      });
+        // Mobile: Expand horizontally
+        else {
+          const screenWidth = window.innerWidth;
+          const margin = screenWidth <= 360 ? 20 : 20;
+          const maxWidth = screenWidth <= 360 ? 340 : 420;
+          const mobileWidth = Math.min(screenWidth - margin, maxWidth);
+          const mobileHeight = screenWidth <= 360 ? '50px' : '55px';
+          const borderRadius = screenWidth <= 360 ? '25px' : '27px';
+
+          anime({
+            targets: navbar,
+            width: mobileWidth + 'px',
+            height: mobileHeight,
+            borderRadius: borderRadius,
+            duration: 700,
+            easing: 'easeOutQuart',
+            complete: function () {
+              // Reset any transform properties that might interfere with positioning
+              navbar.style.transform = 'translateX(-50%)';
+              revealNavItems();
+            }
+          });
+        }
+      }, 300);
+
+      // Phase 2: Reveal navigation items from both sides
+      function revealNavItems() {
+        console.log('Revealing navigation items...');
+        navbarItems.classList.add('show');
+
+        // Animate left side items (Home, About, Reviews)
+        anime({
+          targets: '.navbar-items-left .navbar-item',
+          opacity: [0, 1],
+          scale: [0.8, 1],
+          translateX: isDesktop ? [0, 0] : [-30, 0],
+          translateY: isDesktop ? [-30, 0] : [0, 0],
+          duration: 400,
+          delay: anime.stagger(100),
+          easing: 'easeOutQuad'
+        });
+
+        // Animate right side items (Rules, Contact, Sponsors) with slight delay
+        setTimeout(() => {
+          anime({
+            targets: '.navbar-items-right .navbar-item',
+            opacity: [0, 1],
+            scale: [0.8, 1],
+            translateX: isDesktop ? [0, 0] : [30, 0],
+            translateY: isDesktop ? [30, 0] : [0, 0],
+            duration: 400,
+            delay: anime.stagger(100),
+            easing: 'easeOutQuad',
+            complete: function () {
+              console.log('Navbar expansion animation completed!');
+              navbar.classList.add('show');
+            }
+          });
+        }, 200);
+      }
     }
 
     // Debug: Log which images are being loaded
