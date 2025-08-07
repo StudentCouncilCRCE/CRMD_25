@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Distinguished Guests & Judges</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 4rem;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .header h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        color: #1a1a1a;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .header p {
+        font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+        color: #333;
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .event-info {
+        background: rgba(0, 0, 0, 0.9);
+        border-radius: 20px;
+        padding: 2rem;
+        margin-bottom: 3rem;
+        text-align: center;
+        border: 2px solid #ffd700;
+      }
+
+      .event-info h2 {
+        color: #ffd700;
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .event-info p {
+        color: #ccc;
+        font-size: 1.1rem;
+      }
+
+      .testimonials-list {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+      }
+
+      .testimonial-item {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        opacity: 0;
+        transform: translateY(50px);
+        animation: slideInUp 0.8s ease-out forwards;
+        position: relative;
+      }
+
+      .testimonial-item:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .testimonial-item:nth-child(2) {
+        animation-delay: 0.3s;
+      }
+      .testimonial-item:nth-child(3) {
+        animation-delay: 0.5s;
+      }
+      .testimonial-item:nth-child(4) {
+        animation-delay: 0.7s;
+      }
+      .testimonial-item:nth-child(5) {
+        animation-delay: 0.9s;
+      }
+      .testimonial-item:nth-child(6) {
+        animation-delay: 1.1s;
+      }
+
+      .testimonial-item.reverse {
+        flex-direction: row-reverse;
+      }
+
+      .image-container {
+        position: relative;
+        flex-shrink: 0;
+      }
+
+      .guest-image {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 6px solid #ffd700;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        background: linear-gradient(45deg, #ffd700, #ffa500);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+        font-weight: bold;
+        color: #1a1a1a;
+      }
+
+      .guest-image:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      .badge {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background: #1a1a1a;
+        color: #ffd700;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        border: 2px solid #ffd700;
+        text-transform: uppercase;
+      }
+
+      .content-container {
+        flex: 1;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 2.5rem;
+        border-radius: 20px;
+        position: relative;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+      }
+
+      .content-container:hover {
+        border-color: #ffd700;
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      }
+
+      .content-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #ffd700, #ffa500);
+        border-radius: 20px 20px 0 0;
+      }
+
+      .guest-name {
+        color: #ffd700;
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .guest-title {
+        color: #ccc;
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        font-style: italic;
+      }
+
+      .guest-bio {
+        color: #f5f5f5;
+        font-size: 1rem;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+
+      .guest-achievements {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .achievement-tag {
+        background: rgba(255, 215, 0, 0.2);
+        color: #ffd700;
+        padding: 0.3rem 0.8rem;
+        border-radius: 15px;
+        font-size: 0.85rem;
+        border: 1px solid rgba(255, 215, 0, 0.3);
+      }
+
+      .quote-mark {
+        position: absolute;
+        font-size: 6rem;
+        color: rgba(255, 215, 0, 0.1);
+        top: 1rem;
+        right: 2rem;
+        font-family: serif;
+      }
+
+      .stats-section {
+        background: rgba(0, 0, 0, 0.9);
+        border-radius: 20px;
+        padding: 3rem 2rem;
+        margin-top: 4rem;
+        text-align: center;
+        border: 2px solid #ffd700;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+      }
+
+      .stat-item {
+        color: white;
+      }
+
+      .stat-number {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #ffd700;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      .stat-label {
+        font-size: 1.1rem;
+        color: #ccc;
+      }
+
+      .floating-shapes {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .shape {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        animation: float 8s ease-in-out infinite;
+      }
+
+      .shape:nth-child(1) {
+        width: 100px;
+        height: 100px;
+        top: 15%;
+        left: 5%;
+        animation-delay: 0s;
+      }
+
+      .shape:nth-child(2) {
+        width: 150px;
+        height: 150px;
+        top: 60%;
+        right: 5%;
+        animation-delay: 3s;
+      }
+
+      .shape:nth-child(3) {
+        width: 80px;
+        height: 80px;
+        top: 80%;
+        left: 15%;
+        animation-delay: 6s;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg) scale(1);
+        }
+        50% {
+          transform: translateY(-30px) rotate(180deg) scale(1.1);
+        }
+      }
+
+      /* Mobile Responsiveness */
+      @media (max-width: 768px) {
+        .container {
+          padding: 1rem;
+        }
+
+        .testimonials-list {
+          gap: 5rem; /* Increased gap to accommodate merge */
+        }
+
+        .testimonial-item,
+        .testimonial-item.reverse {
+          flex-direction: column;
+          text-align: center;
+          gap: 0; /* Remove gap to allow merge */
+        }
+
+        /* --- MODIFICATION START --- */
+        .image-container {
+          /* Pull the content card up by half the image height */
+          margin-bottom: -75px;
+          position: relative;
+          z-index: 2; /* Ensure image is above content card */
+        }
+        /* --- MODIFICATION END --- */
+
+        .guest-image {
+          width: 150px;
+          height: 150px;
+          font-size: 3rem;
+        }
+
+        .content-container {
+          /* Add padding top to push content below merged image */
+          padding: 6rem 1.5rem 2rem;
+        }
+
+        .guest-name {
+          font-size: 1.5rem;
+        }
+
+        .guest-title {
+          font-size: 1rem;
+        }
+
+        /* Badge position is handled by desktop styles, no changes needed */
+
+        .quote-mark {
+          font-size: 4rem;
+          top: 0.5rem;
+          right: 1rem;
+        }
+
+        .stats-section {
+          padding: 2rem 1.5rem;
+          margin-top: 3rem;
+        }
+
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1.5rem;
+        }
+
+        .stat-number {
+          font-size: 2.5rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .guest-image {
+          width: 120px;
+          height: 120px;
+          font-size: 2.5rem;
+        }
+
+        /* --- MODIFICATION START --- */
+        .image-container {
+          /* Adjust negative margin for smaller image size */
+          margin-bottom: -60px;
+        }
+
+        .content-container {
+          padding: 5rem 1.5rem 1.5rem; /* Adjust top padding for new merge */
+        }
+        /* --- MODIFICATION END --- */
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+
+        .achievement-tag {
+          font-size: 0.8rem;
+          padding: 0.25rem 0.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="floating-shapes">
+      <div class="shape"></div>
+      <div class="shape"></div>
+      <div class="shape"></div>
+    </div>
+
+    <div class="container">
+      <header class="header">
+        <h1>Distinguished Guests & Judges</h1>
+        <p>
+          Meet our esteemed panel of chief guests and judges who will grace our
+          event with their presence and expertise. Each brings a wealth of
+          experience and knowledge to make this event truly memorable.
+        </p>
+      </header>
+
+      <div class="event-info">
+        <h2>TechInnovate Summit 2025</h2>
+        <p>Annual Technology & Innovation Conference | March 15-17, 2025</p>
+      </div>
+
+      <div class="testimonials-list">
+        <div class="testimonial-item">
+          <div class="image-container">
+            <div class="guest-image">DR</div>
+            <div class="badge">Chief Guest</div>
+          </div>
+          <div class="content-container">
+            <div class="quote-mark">"</div>
+            <h3 class="guest-name">Dr. Rajesh Kumar</h3>
+            <p class="guest-title">
+              Former Director, IIT Delhi & Tech Innovation Expert
+            </p>
+            <p class="guest-bio">
+              A visionary leader in technology and education, Dr. Kumar has
+              pioneered numerous innovations in artificial intelligence and
+              machine learning. With over 25 years of experience, he has
+              mentored thousands of engineers and entrepreneurs, shaping the
+              future of technology in India.
+            </p>
+            <div class="guest-achievements">
+              <span class="achievement-tag">Padma Shri Awardee</span>
+              <span class="achievement-tag">50+ Patents</span>
+              <span class="achievement-tag">IEEE Fellow</span>
+              <span class="achievement-tag">Author of 8 Books</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-item reverse">
+          <div class="image-container">
+            <div class="guest-image">PS</div>
+            <div class="badge">Chief Judge</div>
+          </div>
+          <div class="content-container">
+            <div class="quote-mark">"</div>
+            <h3 class="guest-name">Priya Sharma</h3>
+            <p class="guest-title">CEO, InnovateNext & Startup Mentor</p>
+            <p class="guest-bio">
+              An accomplished entrepreneur and investor, Priya has built
+              multiple successful tech companies from the ground up. Her
+              expertise in startup ecosystems and innovation strategies has
+              helped hundreds of startups scale globally. She's a sought-after
+              speaker at international conferences.
+            </p>
+            <div class="guest-achievements">
+              <span class="achievement-tag">Forbes 40 Under 40</span>
+              <span class="achievement-tag">$500M+ Funding Raised</span>
+              <span class="achievement-tag">TEDx Speaker</span>
+              <span class="achievement-tag">Startup Advisor</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-item">
+          <div class="image-container">
+            <div class="guest-image">AM</div>
+            <div class="badge">Judge</div>
+          </div>
+          <div class="content-container">
+            <div class="quote-mark">"</div>
+            <h3 class="guest-name">Arjun Mehta</h3>
+            <p class="guest-title">
+              VP Engineering, TechGlobal & Open Source Advocate
+            </p>
+            <p class="guest-bio">
+              A passionate technologist with expertise in cloud computing and
+              distributed systems. Arjun has led engineering teams at some of
+              the world's largest tech companies and is a strong advocate for
+              open-source technologies and inclusive tech communities.
+            </p>
+            <div class="guest-achievements">
+              <span class="achievement-tag">Open Source Leader</span>
+              <span class="achievement-tag">Cloud Expert</span>
+              <span class="achievement-tag">Conference Speaker</span>
+              <span class="achievement-tag">Diversity Advocate</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-item reverse">
+          <div class="image-container">
+            <div class="guest-image">SK</div>
+            <div class="badge">Judge</div>
+          </div>
+          <div class="content-container">
+            <div class="quote-mark">"</div>
+            <h3 class="guest-name">Sneha Kapoor</h3>
+            <p class="guest-title">Head of AI Research, FutureTech Labs</p>
+            <p class="guest-bio">
+              Leading researcher in artificial intelligence and machine learning
+              with groundbreaking work in neural networks and deep learning. Her
+              research has been published in top-tier journals and has practical
+              applications in healthcare, finance, and autonomous systems.
+            </p>
+            <div class="guest-achievements">
+              <span class="achievement-tag">PhD AI/ML</span>
+              <span class="achievement-tag">100+ Research Papers</span>
+              <span class="achievement-tag">AI Ethics Board</span>
+              <span class="achievement-tag">Women in Tech Award</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-item">
+          <div class="image-container">
+            <div class="guest-image">VG</div>
+            <div class="badge">Special Guest</div>
+          </div>
+          <div class="content-container">
+            <div class="quote-mark">"</div>
+            <h3 class="guest-name">Vikram Gupta</h3>
+            <p class="guest-title">
+              Managing Partner, VentureCapital Fund & Serial Entrepreneur
+            </p>
+            <p class="guest-bio">
+              A seasoned entrepreneur turned investor, Vikram has founded three
+              successful startups and now leads one of India's premier venture
+              capital funds. His portfolio includes unicorn startups and he's
+              known for his keen eye for disruptive technologies and innovative
+              business models.
+            </p>
+            <div class="guest-achievements">
+              <span class="achievement-tag">3x Founder</span>
+              <span class="achievement-tag">$1B+ Portfolio</span>
+              <span class="achievement-tag">Mentor Network</span>
+              <span class="achievement-tag">Industry Pioneer</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-item reverse">
+          <div class="image-container">
+            <div class="guest-image">NT</div>
+            <div class="badge">Judge</div>
+          </div>
+          <div class="content-container">
+            <div class="quote-mark">"</div>
+            <h3 class="guest-name">Nisha Trivedi</h3>
+            <p class="guest-title">
+              Director of Innovation, Global Tech Solutions
+            </p>
+            <p class="guest-bio">
+              Innovation strategist with expertise in emerging technologies and
+              digital transformation. Nisha has helped Fortune 500 companies
+              navigate technological disruption and has been instrumental in
+              launching several breakthrough products that have redefined entire
+              industries.
+            </p>
+            <div class="guest-achievements">
+              <span class="achievement-tag">Innovation Leader</span>
+              <span class="achievement-tag">Digital Transformation</span>
+              <span class="achievement-tag">Product Strategy</span>
+              <span class="achievement-tag">Global Speaker</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-section">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number">150+</span>
+            <span class="stat-label">Years Combined Experience</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">25+</span>
+            <span class="stat-label">Awards & Honors</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">500+</span>
+            <span class="stat-label">Companies Mentored</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">$2B+</span>
+            <span class="stat-label">Value Created</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
