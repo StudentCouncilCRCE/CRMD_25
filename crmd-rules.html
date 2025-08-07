@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rules - CRMD Chess</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @font-face {
+            font-family: 'Kodex';
+            src: url('Fonts/kodex/Kodex-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            background: url('Assests/CRMD_Poster_bg.png') no-repeat center center fixed;
+            background-size: cover;
+            background-attachment: fixed;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+        }
+
+        /* Combined Rules Section */
+        .rules-section {
+            min-height: 100vh;
+            padding: 60px 20px 60px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+        }
+
+        .hero-title {
+            font-family: 'Kodex', sans-serif;
+            font-size: 12rem;
+            font-weight: 900;
+            color: #000;
+            text-shadow: 3px 3px 0px #FFD700, 6px 6px 10px rgba(0,0,0,0.3);
+            margin-bottom: 15px;
+            transform: translateY(-50px);
+            opacity: 0;
+            animation: slideInTitle 1.5s ease-out forwards;
+            letter-spacing: 6px;
+            text-align: center;
+        }
+
+        .hero-subtitle {
+            font-family: 'Kodex', sans-serif;
+            font-size: 3rem;
+            color: #2c2c2c;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+            transform: translateY(30px);
+            opacity: 0;
+            animation: slideInSubtitle 1.5s ease-out 0.5s forwards;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #000;
+            font-weight: 800;
+            margin-bottom: 60px;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
+            letter-spacing: 3px;
+        }
+
+        /* Rules Container */
+        .rules-container {
+            position: relative;
+            max-width: 1600px;
+            margin: 0 auto;
+            width: 100%;
+            height: 300vh;
+        }
+
+        /* Rule Boxes */
+        .rule-box {
+            position: absolute;
+            background: linear-gradient(145deg, #000000, #1a1a1a);
+            border-radius: 20px;
+            padding: 25px 20px;
+            border: 3px solid #FFD700;
+            box-shadow: 
+                0 15px 35px rgba(0,0,0,0.4),
+                inset 0 2px 0px rgba(255,215,0,0.3);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            max-width: 350px;
+            min-width: 280px;
+            transform: translateY(50px);
+            opacity: 0;
+            animation: slideUpRule 1s ease-out forwards;
+        }
+
+        .rule-box:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 
+                0 25px 50px rgba(0,0,0,0.5),
+                0 0 30px rgba(255,215,0,0.3),
+                inset 0 2px 0px rgba(255,215,0,0.5);
+            border-color: #FFA500;
+            z-index: 10;
+        }
+
+        .rule-number {
+            font-family: 'Kodex', sans-serif;
+            font-size: 2.5rem;
+            color: #FFD700;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .rule-title {
+            font-size: 1.3rem;
+            color: #FFA500;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .rule-text {
+            color: #fff;
+            font-size: 1rem;
+            line-height: 1.5;
+            text-align: justify;
+            font-weight: 500;
+        }
+
+        /* Chess piece decorations */
+        .rule-box::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+
+        /* Random positioning for boxes with better spacing */
+        .rule-box:nth-child(1) {
+    top: 3%;
+    left: 5%;
+    animation-delay: 0.2s;
+}
+
+.rule-box:nth-child(2) {
+    top: 5%;
+    right: 3%;
+    animation-delay: 0.4s;
+}
+
+.rule-box:nth-child(3) {
+    top: 18%;
+    left: 3%;
+    animation-delay: 0.6s;
+}
+
+.rule-box:nth-child(4) {
+    top: 18%;
+    left: 38%;
+    animation-delay: 0.8s;
+}
+
+.rule-box:nth-child(5) {
+    top: 20%;
+    right: 8%;
+    animation-delay: 1s;
+}
+
+.rule-box:nth-child(6) {
+    top: 32%;
+    left: 8%;
+    animation-delay: 1.2s;
+}
+
+.rule-box:nth-child(7) {
+    top: 38%;
+    right: 35%;
+    animation-delay: 1.4s;
+}
+
+.rule-box:nth-child(8) {
+    top: 36%;
+    right: 5%;
+    animation-delay: 1.6s;
+}
+
+.rule-box:nth-child(9) {
+    top: 48%;
+    left: 15%;
+    animation-delay: 1.8s;
+}
+
+.rule-box:nth-child(10) {
+    top: 50%;
+    right: 12%;
+    animation-delay: 2s;
+}
+
+
+        /* Animations */
+        @keyframes slideInTitle {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInSubtitle {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUpRule {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 5rem;
+                background: rgba(255,255,255,0.2);
+                padding: 10px 20px;
+                border-radius: 10px;
+                letter-spacing: 4px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .rules-container {
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .rule-box {
+                position: relative !important;
+                top: auto !important;
+                left: auto !important;
+                right: auto !important;
+                margin: 20px auto;
+                max-width: 90%;
+                display: block;
+            }
+
+            .rule-number {
+                font-size: 2rem;
+            }
+
+            .rule-title {
+                font-size: 1.1rem;
+            }
+
+            .rule-text {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+
+            .rules-section {
+                padding: 60px 20px;
+            }
+
+            .rule-box {
+                padding: 20px 15px;
+                min-width: 260px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Chess piece floating animation */
+        .floating-pieces {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-piece {
+            position: absolute;
+            color: rgba(255, 215, 0, 0.1);
+            font-size: 3rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.1;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 0.3;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Combined Rules Section -->
+        <section class="rules-section" id="rules-section">
+            <h1 class="hero-title">RULES</h1>
+            <p class="hero-subtitle">Master The Grand Chessboard</p>
+            <h2 class="section-title">Tournament Rules</h2>
+            
+            <!-- Floating chess pieces background -->
+            <div class="floating-pieces">
+                <i class="fas fa-chess-pawn floating-piece" style="top: 10%; left: 85%; animation-delay: 0s;"></i>
+                <i class="fas fa-chess-knight floating-piece" style="top: 60%; left: 5%; animation-delay: 2s;"></i>
+                <i class="fas fa-chess-bishop floating-piece" style="top: 30%; left: 90%; animation-delay: 4s;"></i>
+                <i class="fas fa-chess-rook floating-piece" style="top: 80%; left: 85%; animation-delay: 1s;"></i>
+                <i class="fas fa-chess-queen floating-piece" style="top: 20%; left: 2%; animation-delay: 3s;"></i>
+            </div>
+
+            <div class="rules-container">
+                <div class="rule-box">
+                    <div class="rule-number">01</div>
+                    <div class="rule-title">Speech Roles</div>
+                    <div class="rule-text">Each team designates one member to deliver the opening speech and the other, the closing speech.</div>
+                </div>
+
+                <div class="rule-box">
+                    <div class="rule-number">02</div>
+                    <div class="rule-title"> Debate Flow</div>
+                    <div class="rule-text">The proposition begins the debate with their opening speech which is followed by the opposition’s opening speech. The debate is concluded by the closing speech, first from the opposition and then the proposition.
+
+</div>
+                </div>
+
+                <div class="rule-box">
+                    <div class="rule-number">03</div>
+                    <div class="rule-title">Refutation Round</div>
+                    <div class="rule-text">The opposition raises the first point in the refutation round.
+
+The final 30 seconds of the refutation round are reserved for the concluding statement — a clear concise summary of the team’s arguments.</div>
+                </div>
+
+                <div class="rule-box">
+                    <div class="rule-number">04</div>
+                    <div class="rule-title">Closing Speech Restrictions</div>
+                    <div class="rule-text">No new points may be introduced in the closing speech.
+
+If a certain team does bring up a new point; the opposition may request the moderator an opportunity to point out the new points at the end of the closing speech which will lead to a negative marking.
+
+</div>
+                </div>
+
+                <div class="rule-box">
+                    <div class="rule-number">05</div>
+                    <div class="rule-title"> Code of Conduct</div>
+                    <div class="rule-text">Personal comments of any kind directed against the opposite team are strictly prohibited.
+
+Participants cannot comment on the opposite team’s stance or statements made in previous competition debates.</div>
+                </div>
+
+                <div class="rule-box">
+                    <div class="rule-number">06</div>
+                    <div class="rule-title">Materials Allowed</div>
+                    <div class="rule-text">Please note that only handwritten materials will be allowed during the debate. Printed material will not be permitted.
+
+All electronic devices are strictly prohibited during the debate.</div>
+                </div>
+
+                <div class="rule-box">
+                    <div class="rule-number">07</div>
+                    <div class="rule-title">Time Limit
+</div>
+                    <div class="rule-text">Negative marking for exceeding time limit.</div>
+                </div>
+
+                <div class="rule-box">
+                    <div class="rule-number">08</div>
+                    <div class="rule-title">Judgement Criteria</div>
+                    <div class="rule-text">Participants will be judged on the following criteria: Analysis, confidence, engagement with opposition, organization of points, argumentation level and rapport established with partner.</div>
+                </div>
+
+                <div class="rule-box">
+                    <div class="rule-number">09</div>
+                    <div class="rule-title">Moderator Authority</div>
+                    <div class="rule-text">Discrepancies of any sort during the debate will be resolved at the moderator’s discretion. The decision will be final and binding.
+
+</div>
+                </div>
+
+                <div class="rule-box">
+                    <div class="rule-number">10</div>
+                    <div class="rule-title">Topic Announcement</div>
+                    <div class="rule-text">Note: The topic for the first and second round of debate (League Round 1 and 2) will be given one week prior to the debate.
+
+In the next rounds (League Round 3), the topics will be given 30 minutes prior to the debate.
+
+For the quarters, semi-finals and the finals the topics will be given one hour prior.
+
+</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Remove the scroll function since everything is in one section
+        // Add scroll-triggered animations for rule boxes
+        window.addEventListener('scroll', function() {
+            const ruleBoxes = document.querySelectorAll('.rule-box');
+            const triggerHeight = window.innerHeight * 0.8;
+
+            ruleBoxes.forEach(box => {
+                const boxTop = box.getBoundingClientRect().top;
+                if (boxTop < triggerHeight && !box.classList.contains('animated')) {
+                    box.style.animationPlayState = 'running';
+                    box.classList.add('animated');
+                }
+            });
+        });
+
+        // Enhanced hover effects for rule boxes
+        document.querySelectorAll('.rule-box').forEach(box => {
+            box.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+                this.style.zIndex = '10';
+            });
+
+            box.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.zIndex = '1';
+            });
+        });
+
+        // Add parallax effect to floating pieces
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.floating-piece');
+            
+            parallaxElements.forEach(element => {
+                const speed = 0.2;
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+    </script>
+</body>
+
+</html>
