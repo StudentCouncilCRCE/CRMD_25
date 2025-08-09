@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sponsors - CRMD Chess</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         @font-face {
             font-family: 'Kodex';
@@ -40,157 +41,655 @@
             position: relative;
         }
 
+        /* Hero Section */
+        .hero-content {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
         .hero-title {
             font-family: 'Kodex', sans-serif;
             font-size: 12rem;
             font-weight: 900;
             color: #000;
             text-shadow: 3px 3px 0px #FFD700, 6px 6px 10px rgba(0, 0, 0, 0.3);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             letter-spacing: 6px;
-            text-align: center;
+            transform: translateY(-50px);
+            opacity: 0;
+            animation: slideInTitle 1.5s ease-out forwards;
         }
 
+        .hero-subtitle {
+            font-family: 'Kodex', sans-serif;
+            font-size: 2.5rem;
+            color: #2c2c2c;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+            transform: translateY(30px);
+            opacity: 0;
+            animation: slideInSubtitle 1.5s ease-out 0.5s forwards;
+            letter-spacing: 2px;
+        }
+
+        /* Sponsor Container */
         .sponsor-container {
             position: relative;
-            max-width: 1600px;
+            max-width: 1200px;
             margin: 0 auto;
             width: 100%;
-            height: 300vh;
         }
 
-        .sponsor-box {
-            position: absolute;
-            background: linear-gradient(145deg, #000000, #1a1a1a);
-            border-radius: 20px;
-            padding: 20px;
-            border: 3px solid #FFD700;
-            box-shadow:
-                0 15px 35px rgba(0, 0, 0, 0.4),
-                inset 0 2px 0px rgba(255, 215, 0, 0.3);
-            max-width: 320px;
-            min-width: 260px;
+        /* Sponsor Tier */
+        .sponsor-tier {
+            margin-bottom: 80px;
+            transform: translateY(50px);
+            opacity: 0;
+            animation: slideUpTier 1s ease-out 0.8s forwards;
+        }
+
+        .tier-header {
             text-align: center;
-            transition: transform 0.3s ease;
+            margin-bottom: 60px;
+        }
+
+        /* Enhanced 3D Title with Fire Colors */
+        .tier-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #FFD700, #FF8C00, #FF4500, #FFD700);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fireGradient 3s ease-in-out infinite;
+            text-shadow: 
+                0 1px 0 #FFA500,
+                0 2px 0 #FF8C00,
+                0 3px 0 #FF4500,
+                0 4px 0 #000,
+                0 5px 0 #000,
+                0 6px 1px rgba(0,0,0,.3),
+                0 0 5px rgba(0,0,0,.2),
+                0 1px 3px rgba(0,0,0,.4),
+                0 3px 5px rgba(0,0,0,.3),
+                0 5px 10px rgba(0,0,0,.3),
+                0 10px 10px rgba(0,0,0,.2),
+                0 20px 20px rgba(0,0,0,.15);
+            margin-bottom: 15px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            position: relative;
+            transform: perspective(500px) rotateX(15deg);
+        }
+
+        /* Dark Orange 2D Subtitle */
+        .tier-subtitle {
+            font-family: 'Kodex', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #CC5500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        /* Theme-based Card Design */
+        .sponsor-boxes {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+        }
+
+        /* Creative Hexagonal Card Design */
+        .sponsor-box {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            padding: 0;
+            border: none;
+            max-width: 380px;
+            width: 100%;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: visible;
+            transform: translateX(0);
+            opacity: 0;
+            animation: slideInBox 1s ease-out forwards;
+            clip-path: polygon(30px 0%, 100% 0%, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0% 100%, 0% 30px);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.8),
+                0 0 0 4px #FFD700,
+                0 0 0 8px #000000,
+                0 0 20px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Zig-zag pattern */
+        .sponsor-box:nth-child(odd) {
+            align-self: flex-start;
+            margin-left: 0;
+            animation-name: slideInLeft;
+        }
+
+        .sponsor-box:nth-child(even) {
+            align-self: flex-end;
+            margin-right: 0;
+            animation-name: slideInRight;
+        }
+
+        .sponsor-box::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #FFD700, #FF8C00, #FFD700);
+            background-size: 200% 200%;
+            animation: fireGradient 2s ease-in-out infinite;
+            clip-path: polygon(35px 0%, 100% 0%, 100% calc(100% - 35px), calc(100% - 35px) 100%, 0% 100%, 0% 35px);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .sponsor-box::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            background: #FFD700;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            z-index: 2;
+        }
+
+        .sponsor-box > div {
+            position: relative;
+            z-index: 1;
         }
 
         .sponsor-box:hover {
-            transform: scale(1.05);
-            border-color: #FFA500;
+            transform: translateY(-20px) scale(1.05) rotateZ(2deg);
             box-shadow:
-                0 25px 50px rgba(0, 0, 0, 0.5),
-                0 0 30px rgba(255, 215, 0, 0.3),
-                inset 0 2px 0px rgba(255, 215, 0, 0.5);
-            z-index: 10;
+                0 30px 60px rgba(0, 0, 0, 0.9),
+                0 0 0 4px #FF8C00,
+                0 0 0 8px #000000,
+                0 0 30px rgba(255, 140, 0, 0.5);
         }
 
-        .sponsor-title {
-            font-size: 1.2rem;
-            color: #FFA500;
-            font-weight: 700;
-            margin: 15px 0;
+        .sponsor-box:hover::before {
+            opacity: 1;
+        }
+
+        /* Creative Position Badge */
+        .sponsor-position {
+            background: linear-gradient(45deg, #FFD700, #FF8C00);
+            color: #000;
+            padding: 8px 18px;
+            font-weight: 800;
+            font-size: 0.8rem;
             letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(255, 140, 0, 0.4);
+            border: 2px solid #000;
+            margin-bottom: 20px;
+            display: inline-block;
+            clip-path: polygon(0% 0%, calc(100% - 12px) 0%, 100% 50%, calc(100% - 12px) 100%, 0% 100%, 12px 50%);
+            position: relative;
+        }
+
+        .sponsor-logo {
+            margin: 20px 0;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #FFD700;
+            border: 3px solid #FF8C00;
+            transition: all 0.4s ease;
+            position: relative;
+            border-radius: 15px;
+            box-shadow: 
+                0 8px 16px rgba(0,0,0,0.3),
+                inset 0 2px 0 rgba(255,255,255,0.2);
+        }
+
+        .sponsor-logo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .sponsor-box:hover .sponsor-logo::before {
+            left: 100%;
+        }
+
+        .sponsor-logo:hover {
+            background: #FF8C00;
+            transform: scale(1.08) rotateZ(-2deg);
+            border-color: #FFD700;
+            box-shadow: 
+                inset 0 0 20px rgba(0,0,0,0.2),
+                0 0 20px rgba(255, 140, 0, 0.5);
         }
 
         .sponsor-logo img {
-            max-width: 100%;
-            height: auto;
+            max-width: 90%;
+            max-height: 90px;
             object-fit: contain;
-            border-radius: 10px;
-            max-height: 150px;
         }
 
-        /* Random positioning */
-        .sponsor-box:nth-child(1) { top: 5%; left: 8%; }
-        .sponsor-box:nth-child(2) { top: 10%; right: 10%; }
-        .sponsor-box:nth-child(3) { top: 25%; left: 15%; }
-        .sponsor-box:nth-child(4) { top: 30%; right: 18%; }
-        .sponsor-box:nth-child(5) { top: 45%; left: 20%; }
-        .sponsor-box:nth-child(6) { top: 48%; right: 15%; }
-        .sponsor-box:nth-child(7) { top: 65%; left: 10%; }
-        .sponsor-box:nth-child(8) { top: 68%; right: 10%; }
+        .placeholder-text {
+            color: #000;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
 
-        /* Responsive */
+        /* Enhanced Text Styling */
+        .sponsor-name {
+            font-size: 1.4rem;
+            color: #fff;
+            font-weight: 700;
+            margin-top: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .sponsor-description {
+            color: #ccc;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            line-height: 1.4;
+            font-style: italic;
+        }
+
+        /* Fire Gradient Animation */
+        @keyframes fireGradient {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Existing Animations */
+        @keyframes slideInTitle {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInSubtitle {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUpTier {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInBox {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Mobile Responsive */
         @media (max-width: 768px) {
+            .sponsors-section {
+                padding: 40px 15px;
+            }
+
             .hero-title {
                 font-size: 5rem;
                 background: rgba(255,255,255,0.2);
-                padding: 10px 20px;
-                border-radius: 10px;
+                padding: 15px 25px;
+                border-radius: 15px;
                 letter-spacing: 4px;
+                margin-bottom: 20px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.8rem;
+                margin-bottom: 50px;
             }
 
             .sponsor-container {
-                height: auto;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 20px;
+                max-width: 100%;
             }
 
+            .sponsor-tier {
+                margin-bottom: 50px;
+            }
+
+            .tier-title {
+                font-size: 2.8rem;
+                margin-bottom: 10px;
+                transform: none;
+            }
+
+            .tier-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .sponsor-boxes {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            /* All sponsor boxes same size on mobile */
             .sponsor-box {
-                position: relative !important;
-                margin: 20px;
-                max-width: 90%;
+                max-width: 300px;
+                margin: 0 auto;
+                align-self: center !important;
+                border-radius: 15px;
+            }
+
+            .sponsor-box > div {
+                padding: 25px 20px;
+            }
+
+            /* Remove zig-zag on mobile */
+            .sponsor-box:nth-child(odd),
+            .sponsor-box:nth-child(even) {
+                animation-name: slideInBox;
+            }
+
+            .sponsor-logo {
+                height: 100px;
+                margin: 20px 0;
+            }
+
+            .sponsor-name {
+                font-size: 1.3rem;
+                margin-top: 15px;
+            }
+
+            .sponsor-description {
+                font-size: 0.9rem;
+                margin-top: 10px;
+            }
+
+            .sponsor-position {
+                font-size: 0.7rem;
+                padding: 6px 12px;
+                top: -10px;
+                right: 15px;
             }
         }
 
         @media (max-width: 480px) {
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 3rem;
                 letter-spacing: 2px;
+                padding: 10px 20px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.4rem;
+            }
+
+            .sponsors-section {
+                padding: 30px 10px;
+            }
+
+            .tier-title {
+                font-size: 2.2rem;
+            }
+
+            .tier-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .sponsor-box {
+                padding: 20px 15px;
+            }
+
+            .sponsor-logo {
+                height: 80px;
             }
         }
 
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Floating chess pieces */
+        .floating-pieces {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .floating-piece {
+            position: absolute;
+            color: rgba(255, 215, 0, 0.1);
+            font-size: 2.5rem;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.1;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 0.3;
+            }
+        }
     </style>
 </head>
 
 <body>
     <section class="sponsors-section" id="sponsors-section">
-        <h1 class="hero-title">SPONSORS</h1>
+        <!-- Floating chess pieces background -->
+        <div class="floating-pieces">
+            <i class="fas fa-chess-pawn floating-piece" style="top: 15%; left: 5%; animation-delay: 0s;"></i>
+            <i class="fas fa-chess-knight floating-piece" style="top: 70%; left: 90%; animation-delay: 2s;"></i>
+            <i class="fas fa-chess-bishop floating-piece" style="top: 40%; left: 3%; animation-delay: 4s;"></i>
+            <i class="fas fa-chess-rook floating-piece" style="top: 85%; left: 85%; animation-delay: 1s;"></i>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <h1 class="hero-title">SPONSORS</h1>
+            <p class="hero-subtitle">Powered by you, driven by the Grand Chessboard</p>
+        </div>
 
         <div class="sponsor-container">
-            <div class="sponsor-box">
-                <div class="sponsor-logo"><img src="logos/title_sponsor.png" alt="Title Sponsor"></div>
-                <div class="sponsor-title">Title Sponsor</div>
-            </div>
+            <!-- Our Partners Tier -->
+            <div class="sponsor-tier other-sponsors">
+                <div class="tier-header">
+                    <h2 class="tier-title">Our Partners</h2>
+                    <p class="tier-subtitle">Supporting The Grand Chessboard</p>
+                </div>
+                
+                <div class="sponsor-boxes">
+                    <div class="sponsor-box">
+                        <div style="padding: 30px 25px;">
+                            <div class="sponsor-position">Associate Sponsor</div>
+                            <div class="sponsor-logo">
+                                <!-- <img src="logos/associate_sponsor.png" alt="Associate Sponsor"> -->
+                                <div class="placeholder-text">ASSOCIATE SPONSOR</div>
+                            </div>
+                            <div class="sponsor-name">Associate Partner</div>
+                            <div class="sponsor-description">Building strategic alliances</div>
+                        </div>
+                    </div>
 
-            <div class="sponsor-box">
-                <div class="sponsor-logo"><img src="logos/associate_sponsor.png" alt="Associate Sponsor"></div>
-                <div class="sponsor-title">Associate Sponsor</div>
-            </div>
+                    <div class="sponsor-box">
+                        <div style="padding: 30px 25px;">
+                            <div class="sponsor-position">Food Partner</div>
+                            <div class="sponsor-logo">
+                                <!-- <img src="logos/food_partner.png" alt="Food Partner"> -->
+                                <div class="placeholder-text">FOOD PARTNER</div>
+                            </div>
+                            <div class="sponsor-name">Culinary Partner</div>
+                            <div class="sponsor-description">Fueling minds for victory</div>
+                        </div>
+                    </div>
 
-            <div class="sponsor-box">
-                <div class="sponsor-logo"><img src="logos/food_partner.png" alt="Food Partner"></div>
-                <div class="sponsor-title">Food Partner</div>
-            </div>
+                    <div class="sponsor-box">
+                        <div style="padding: 30px 25px;">
+                            <div class="sponsor-position">Beverage Partner</div>
+                            <div class="sponsor-logo">
+                                <!-- <img src="logos/drink_partner.png" alt="Beverage Partner"> -->
+                                <div class="placeholder-text">BEVERAGE PARTNER</div>
+                            </div>
+                            <div class="sponsor-name">Beverage Partner</div>
+                            <div class="sponsor-description">Refreshing every move</div>
+                        </div>
+                    </div>
 
-            <div class="sponsor-box">
-                <div class="sponsor-logo"><img src="logos/drink_partner.png" alt="Beverage Partner"></div>
-                <div class="sponsor-title">Beverage Partner</div>
-            </div>
+                    <div class="sponsor-box">
+                        <div style="padding: 30px 25px;">
+                            <div class="sponsor-position">Education Partner</div>
+                            <div class="sponsor-logo">
+                                <!-- <img src="logos/education_partner.png" alt="Education Partner"> -->
+                                <div class="placeholder-text">EDUCATION PARTNER</div>
+                            </div>
+                            <div class="sponsor-name">Education Partner</div>
+                            <div class="sponsor-description">Nurturing strategic thinking</div>
+                        </div>
+                    </div>
 
-            <div class="sponsor-box">
-                <div class="sponsor-logo"><img src="logos/education_partner.png" alt="Education Partner"></div>
-                <div class="sponsor-title">Education Partner</div>
-            </div>
+                    <div class="sponsor-box">
+                        <div style="padding: 30px 25px;">
+                            <div class="sponsor-position">Media Partner</div>
+                            <div class="sponsor-logo">
+                                <!-- <img src="logos/media_partner.png" alt="Media Partner"> -->
+                                <div class="placeholder-text">MEDIA PARTNER</div>
+                            </div>
+                            <div class="sponsor-name">Media Partner</div>
+                            <div class="sponsor-description">Broadcasting excellence</div>
+                        </div>
+                    </div>
 
-            <div class="sponsor-box">
-                <div class="sponsor-logo"><img src="logos/media_partner.png" alt="Media Partner"></div>
-                <div class="sponsor-title">Media Partner</div>
-            </div>
-
-            <div class="sponsor-box">
-                <div class="sponsor-logo"><img src="logos/tech_partner.png" alt="Tech Partner"></div>
-                <div class="sponsor-title">Tech Partner</div>
-            </div>
-
-            <div class="sponsor-box">
-                <div class="sponsor-logo"><img src="logos/print_partner.png" alt="Print Partner"></div>
-                <div class="sponsor-title">Print Partner</div>
+                    <div class="sponsor-box">
+                        <div style="padding: 30px 25px;">
+                            <div class="sponsor-position">Tech Partner</div>
+                            <div class="sponsor-logo">
+                                <!-- <img src="logos/tech_partner.png" alt="Tech Partner"> -->
+                                <div class="placeholder-text">TECH PARTNER</div>
+                            </div>
+                            <div class="sponsor-name">Technology Partner</div>
+                            <div class="sponsor-description">Powering digital innovation</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
+    <script>
+        // Staggered animation delays for sponsor boxes
+        document.addEventListener('DOMContentLoaded', function() {
+            const sponsorBoxes = document.querySelectorAll('.sponsor-box');
+            sponsorBoxes.forEach((box, index) => {
+                box.style.animationDelay = `${1.5 + (index * 0.2)}s`;
+            });
+        });
+
+        // Enhanced hover effects
+        document.querySelectorAll('.sponsor-box').forEach(box => {
+            box.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+                this.style.zIndex = '10';
+            });
+
+            box.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.zIndex = '1';
+            });
+        });
+
+        // Scroll-triggered animations
+        window.addEventListener('scroll', function() {
+            const tiers = document.querySelectorAll('.sponsor-tier');
+            const triggerHeight = window.innerHeight * 0.8;
+
+            tiers.forEach(tier => {
+                const tierTop = tier.getBoundingClientRect().top;
+                if (tierTop < triggerHeight && !tier.classList.contains('animated')) {
+                    tier.style.animationPlayState = 'running';
+                    tier.classList.add('animated');
+                }
+            });
+        });
+
+        // Parallax effect for floating pieces
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.floating-piece');
+            
+            parallaxElements.forEach(element => {
+                const speed = 0.3;
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+    </script>
 </body>
 
 </html>

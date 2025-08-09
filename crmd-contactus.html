@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - CRMD Chess</title>
+    <title>Our Team - CRMD Chess</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @font-face {
@@ -35,7 +35,7 @@
             z-index: 1;
         }
 
-        /* Upper Section - Contact Us Title */
+        /* Upper Section - Our Team Title */
         .hero-section {
             height: 100vh;
             display: flex;
@@ -89,12 +89,11 @@
 }
 
 
-        /* Contact Cards Section */
+        /* Contact Cards Section - Now with same background as body */
         .contact-section {
             min-height: 100vh;
             padding: 80px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
+            /* Removed the background override to use the same background as body */
             position: relative;
         }
 
@@ -377,10 +376,11 @@
                 display: none;
             }
 
-            /* Contact Section Mobile Adjustments */
+            /* Contact Section Mobile Adjustments - Background stays same as body */
             .contact-section {
                 min-height: 60vh;
                 padding: 40px 15px;
+                /* No background override - uses same as body */
             }
 
             .section-title {
@@ -458,6 +458,7 @@
 
             .contact-section {
                 padding: 30px 10px;
+                /* No background override - uses same as body */
             }
 
             .section-title {
