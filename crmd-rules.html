@@ -39,8 +39,7 @@
 
         /* Combined Rules Section */
         .rules-section {
-            min-height: 100vh;
-            padding: 60px 20px 60px;
+            padding: 60px 20px ;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             position: relative;
@@ -168,37 +167,37 @@
 
         /* Random positioning for boxes with better spacing */
         .rule-box:nth-child(1) {
-    top: 3%;
+    top: 1%;
     left: 5%;
     animation-delay: 0.2s;
 }
 
 .rule-box:nth-child(2) {
-    top: 5%;
+    top: 2.5%;
     right: 3%;
     animation-delay: 0.4s;
 }
 
 .rule-box:nth-child(3) {
-    top: 18%;
+    top: 23.5%;
     left: 3%;
     animation-delay: 0.6s;
 }
 
 .rule-box:nth-child(4) {
-    top: 18%;
+    top: 8%;
     left: 38%;
     animation-delay: 0.8s;
 }
 
 .rule-box:nth-child(5) {
-    top: 20%;
+    top: 25%;
     right: 8%;
     animation-delay: 1s;
 }
 
 .rule-box:nth-child(6) {
-    top: 32%;
+    top: 50%;
     left: 8%;
     animation-delay: 1.2s;
 }
@@ -210,22 +209,26 @@
 }
 
 .rule-box:nth-child(8) {
-    top: 36%;
+    top: 48%;
     right: 5%;
     animation-delay: 1.6s;
 }
 
 .rule-box:nth-child(9) {
-    top: 48%;
-    left: 15%;
+    top: 70%;
+    left: 12%;
     animation-delay: 1.8s;
 }
 
 .rule-box:nth-child(10) {
-    top: 50%;
+    top: 70%;
     right: 12%;
     animation-delay: 2s;
 }
+
+
+
+
 
 
         /* Animations */
@@ -278,7 +281,6 @@
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 5rem;
-                background: rgba(255,255,255,0.2);
                 padding: 10px 20px;
                 border-radius: 10px;
                 letter-spacing: 4px;
@@ -468,53 +470,60 @@ In the next rounds (League Round 3), the topics will be given 30 minutes prior t
 
 For the quarters, semi-finals and the finals the topics will be given one hour prior.
 
-</div>
+             
                 </div>
             </div>
+            </div>
+
         </section>
     </div>
 
     <script>
-        // Remove the scroll function since everything is in one section
-        // Add scroll-triggered animations for rule boxes
-        window.addEventListener('scroll', function() {
-            const ruleBoxes = document.querySelectorAll('.rule-box');
-            const triggerHeight = window.innerHeight * 0.8;
+    // === Animate rule boxes on scroll ===
+    document.addEventListener("DOMContentLoaded", () => {
+        const boxes = document.querySelectorAll('.rule-box');
 
-            ruleBoxes.forEach(box => {
+        function checkBoxes() {
+            const triggerBottom = window.innerHeight * 0.85;
+
+            boxes.forEach(box => {
                 const boxTop = box.getBoundingClientRect().top;
-                if (boxTop < triggerHeight && !box.classList.contains('animated')) {
-                    box.style.animationPlayState = 'running';
-                    box.classList.add('animated');
+                if (boxTop < triggerBottom) {
+                    box.classList.add('show');
+                } else {
+                    box.classList.remove('show');
                 }
             });
-        });
 
-        // Enhanced hover effects for rule boxes
-        document.querySelectorAll('.rule-box').forEach(box => {
-            box.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-                this.style.zIndex = '10';
-            });
+            adjustRulesHeight(); // ensure height adjusts dynamically
+        }
 
-            box.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-                this.style.zIndex = '1';
-            });
-        });
+        window.addEventListener('scroll', checkBoxes);
+        window.addEventListener('resize', checkBoxes);
+        checkBoxes();
+    });
 
-        // Add parallax effect to floating pieces
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.floating-piece');
-            
-            parallaxElements.forEach(element => {
-                const speed = 0.2;
-                const yPos = -(scrolled * speed);
-                element.style.transform = `translateY(${yPos}px)`;
+    // === Adjust container height based on last visible box ===
+    function adjustRulesHeight() {
+        const container = document.querySelector('.rules-container');
+        const boxes = document.querySelectorAll('.rule-box');
+
+        if (container && boxes.length > 0) {
+            let maxBottom = 0;
+            boxes.forEach(box => {
+                const offsetTop = box.offsetTop + box.offsetHeight;
+                if (offsetTop > maxBottom) {
+                    maxBottom = offsetTop;
+                }
             });
-        });
-    </script>
+            container.style.height = (maxBottom + 50) + 'px'; // add a little padding
+        }
+    }
+
+    window.addEventListener('load', adjustRulesHeight);
+</script>
+
+
 </body>
 
 </html>
