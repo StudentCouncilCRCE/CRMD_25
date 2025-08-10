@@ -1,1415 +1,1329 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sponsors - CRMD Chess</title>
-    <link rel="icon" type="image/x-icon" href="Assests/favicon.ico" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@400;600;800&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      @font-face {
-        font-family: "Kodex";
-        src: url("Fonts/kodex/Kodex-Regular.ttf") format("truetype");
-      }
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sponsors - CRMD Chess</title>
+  <link rel="icon" type="image/x-icon" href="Assests/favicon.ico" />
+  <!-- CRMD Shared Cache System -->
+  <script src="crmd-cache.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <link rel="stylesheet" href="crmd-transitions.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@400;600;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: "Kodex";
+      src: url("Fonts/kodex/Kodex-Regular.ttf") format("truetype");
+    }
 
-      body,
-      html {
-        height: 100%;
-        font-family: "Arial", sans-serif;
-        background: url("Assests/CRMD_Poster_bg.webp") no-repeat center center
-          fixed;
-        background-size: cover;
-        background-attachment: fixed;
-        overflow-x: hidden;
-        position: relative;
-      }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      .sponsors-section {
-        min-height: 100vh;
-        padding: 60px 20px;
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-      }
+    body,
+    html {
+      height: 100%;
+      font-family: "Arial", sans-serif;
+      background: url("Assests/CRMD_Poster_bg.webp") no-repeat center center fixed;
+      background-size: cover;
+      background-attachment: fixed;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-      /* Hero Section */
-      .hero-content {
-        text-align: center;
-        margin-bottom: 80px;
-      }
+    .sponsors-section {
+      min-height: 100vh;
+      padding: 60px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
 
-      .hero-title {
-        font-family: "Kodex", sans-serif;
-        font-size: 12rem;
-        font-weight: 900;
-        color: #000;
-        text-shadow: 3px 3px 0px #ffd700, 6px 6px 10px rgba(0, 0, 0, 0.3);
-        margin-bottom: 20px;
-        letter-spacing: 6px;
-        transform: translateY(-50px);
-        opacity: 0;
-        animation: slideInTitle 1.5s ease-out forwards;
-      }
+    /* Hero Section */
+    .hero-content {
+      text-align: center;
+      margin-bottom: 80px;
+    }
 
-      .hero-subtitle {
-        font-family: "Kodex", sans-serif;
-        font-size: 2.5rem;
-        color: #ff0000;
-        font-weight: 600;
-        text-shadow: 1px 1px 2px rgba(63, 4, 165, 0.8);
-        transform: translateY(30px);
-        opacity: 0;
-        animation: slideInSubtitle 1.5s ease-out 0.5s forwards;
-        letter-spacing: 2px;
-      }
+    .hero-title {
+      font-family: "Kodex", sans-serif;
+      font-size: 12rem;
+      font-weight: 900;
+      color: #000;
+      text-shadow: 3px 3px 0px #ffd700, 6px 6px 10px rgba(0, 0, 0, 0.3);
+      margin-bottom: 20px;
+      letter-spacing: 6px;
+      transform: translateY(-50px);
+      opacity: 0;
+      animation: slideInTitle 1.5s ease-out forwards;
+    }
 
-      /* Sponsor Container */
-      .sponsor-container {
-        position: relative;
-        max-width: 1200px;
-        margin: 0 auto;
-        width: 100%;
-      }
+    .hero-subtitle {
+      font-family: "Kodex", sans-serif;
+      font-size: 2.5rem;
+      color: #ff0000;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(63, 4, 165, 0.8);
+      transform: translateY(30px);
+      opacity: 0;
+      animation: slideInSubtitle 1.5s ease-out 0.5s forwards;
+      letter-spacing: 2px;
+    }
 
-      /* Sponsor Tier */
-      .sponsor-tier {
-        margin-bottom: 80px;
-        transform: translateY(50px);
-        opacity: 0;
-        animation: slideUpTier 1s ease-out 0.8s forwards;
-      }
+    /* Sponsor Container */
+    .sponsor-container {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
 
-      .tier-header {
-        text-align: center;
-        margin-bottom: 60px;
-      }
+    /* Sponsor Tier */
+    .sponsor-tier {
+      margin-bottom: 80px;
+      transform: translateY(50px);
+      opacity: 0;
+      animation: slideUpTier 1s ease-out 0.8s forwards;
+    }
 
-      /* Enhanced 3D Title with Black Outline - "OUR PARTNERS" FONT CSS */
-      .tier-title {
-        font-family: "Orbitron", sans-serif;
-        font-size: 4.2rem;
-        font-weight: 900;
-        background: linear-gradient(45deg, #ffd700, #ff8c00, #ff4500, #ffd700);
-        background-size: 300% 300%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        animation: fireGradient 3s ease-in-out infinite;
-        text-shadow: 0 1px 0 #ffa500, 0 2px 0 #ff8c00, 0 3px 0 #ff4500,
-          0 4px 0 #000, 0 5px 0 #000, 0 6px 1px rgba(0, 0, 0, 0.3),
-          0 0 5px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.4),
-          0 3px 5px rgba(0, 0, 0, 0.3), 0 5px 10px rgba(0, 0, 0, 0.3),
-          0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
-        margin-bottom: 15px;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        position: relative;
-        transform: perspective(500px) rotateX(15deg);
-        -webkit-text-stroke: 2px #000;
-      }
+    .tier-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
 
-      /* Enhanced Red-Orange Larger Subtitle with Better Readability - "SUPPORTING" LINE FONT CSS */
-      .tier-subtitle {
-        font-family: "Kodex", sans-serif;
-        font-size: 3.4rem;
-        font-weight: 500;
-        background: linear-gradient(45deg, #ffd700, #ff0000, #ff5500);
-        background-size: 200% 200%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        animation: fireGradient 2s ease-in-out infinite;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), -1px -1px 0 #000,
-          1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-        -webkit-text-stroke: 1px #000;
-        position: relative;
-      }
+    /* Enhanced 3D Title with Black Outline - "OUR PARTNERS" FONT CSS */
+    .tier-title {
+      font-family: "Orbitron", sans-serif;
+      font-size: 4.2rem;
+      font-weight: 900;
+      background: linear-gradient(45deg, #ffd700, #ff8c00, #ff4500, #ffd700);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fireGradient 3s ease-in-out infinite;
+      text-shadow: 0 1px 0 #ffa500, 0 2px 0 #ff8c00, 0 3px 0 #ff4500,
+        0 4px 0 #000, 0 5px 0 #000, 0 6px 1px rgba(0, 0, 0, 0.3),
+        0 0 5px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.4),
+        0 3px 5px rgba(0, 0, 0, 0.3), 0 5px 10px rgba(0, 0, 0, 0.3),
+        0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
+      margin-bottom: 15px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      position: relative;
+      transform: perspective(500px) rotateX(15deg);
+      -webkit-text-stroke: 2px #000;
+    }
 
-      /* Theme-based Card Design */
-      .sponsor-boxes {
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-        align-items: center;
-      }
+    /* Enhanced Red-Orange Larger Subtitle with Better Readability - "SUPPORTING" LINE FONT CSS */
+    .tier-subtitle {
+      font-family: "Kodex", sans-serif;
+      font-size: 3.4rem;
+      font-weight: 500;
+      background: linear-gradient(45deg, #ffd700, #ff0000, #ff5500);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fireGradient 2s ease-in-out infinite;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), -1px -1px 0 #000,
+        1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+      -webkit-text-stroke: 1px #000;
+      position: relative;
+    }
 
-      /* Creative Hexagonal Card Design - CARD SIZE CSS */
-      .sponsor-box {
-        background: linear-gradient(
-          135deg,
+    /* Theme-based Card Design */
+    .sponsor-boxes {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      align-items: center;
+    }
+
+    /* Creative Hexagonal Card Design - CARD SIZE CSS */
+    .sponsor-box {
+      background: linear-gradient(135deg,
           #000000 0%,
           #1a1a1a 50%,
-          #000000 100%
-        );
-        padding: 0;
-        border: none;
-        max-width: 500px;
-        width: 100%;
-        text-align: center;
-        transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-        position: relative;
-        overflow: visible;
-        transform: translateX(0);
-        opacity: 0;
-        animation: slideInBox 1s ease-out forwards;
-        clip-path: polygon(
-          30px 0%,
+          #000000 100%);
+      padding: 0;
+      border: none;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: visible;
+      transform: translateX(0);
+      opacity: 0;
+      animation: slideInBox 1s ease-out forwards;
+      clip-path: polygon(30px 0%,
           100% 0%,
           100% calc(100% - 30px),
           calc(100% - 30px) 100%,
           0% 100%,
-          0% 30px
-        );
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 0 4px #ffd700,
-          0 0 0 8px #000000, 0 0 20px rgba(255, 215, 0, 0.3);
-      }
+          0% 30px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 0 4px #ffd700,
+        0 0 0 8px #000000, 0 0 20px rgba(255, 215, 0, 0.3);
+    }
 
-      /* Zig-zag pattern */
-      .sponsor-box:nth-child(odd) {
-        align-self: flex-start;
-        margin-left: 0;
-        animation-name: slideInLeft;
-      }
+    /* Zig-zag pattern */
+    .sponsor-box:nth-child(odd) {
+      align-self: flex-start;
+      margin-left: 0;
+      animation-name: slideInLeft;
+    }
 
-      .sponsor-box:nth-child(even) {
-        align-self: flex-end;
-        margin-right: 0;
-        animation-name: slideInRight;
-      }
+    .sponsor-box:nth-child(even) {
+      align-self: flex-end;
+      margin-right: 0;
+      animation-name: slideInRight;
+    }
 
-      .sponsor-box::before {
-        content: "";
-        position: absolute;
-        top: -5px;
-        left: -5px;
-        right: -5px;
-        bottom: -5px;
-        background-size: 200% 200%;
-        animation: fireGradient 2s ease-in-out infinite;
-        clip-path: polygon(
-          35px 0%,
+    .sponsor-box::before {
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      background-size: 200% 200%;
+      animation: fireGradient 2s ease-in-out infinite;
+      clip-path: polygon(35px 0%,
           100% 0%,
           100% calc(100% - 35px),
           calc(100% - 35px) 100%,
           0% 100%,
-          0% 35px
-        );
-        z-index: -1;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
+          0% 35px);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
 
-      .sponsor-box::after {
-        content: "";
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        width: 20px;
-        height: 20px;
-        background: #ffd700;
-        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-        z-index: 2;
-      }
+    .sponsor-box::after {
+      content: "";
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 20px;
+      height: 20px;
+      background: #ffd700;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+      z-index: 2;
+    }
 
-      .sponsor-box > div {
-        position: relative;
-        z-index: 1;
-      }
+    .sponsor-box>div {
+      position: relative;
+      z-index: 1;
+    }
 
-      .sponsor-box:hover {
-        transform: translateY(-20px) scale(1.05) rotateZ(2deg);
-        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), 0 0 0 4px #ff8c00,
-          0 0 0 8px #000000, 0 0 30px rgba(255, 140, 0, 0.5);
-      }
+    .sponsor-box:hover {
+      transform: translateY(-20px) scale(1.05) rotateZ(2deg);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), 0 0 0 4px #ff8c00,
+        0 0 0 8px #000000, 0 0 30px rgba(255, 140, 0, 0.5);
+    }
 
-      .sponsor-box:hover::before {
-        opacity: 1;
-      }
+    .sponsor-box:hover::before {
+      opacity: 1;
+    }
 
-      /* Creative Position Badge */
-      .sponsor-position {
-        background: linear-gradient(45deg, #ffd700, #ff8c00);
-        color: #000;
-        padding: 12px 26px;
-        font-weight: 800;
-        font-size: 1.1rem;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        box-shadow: 0 6px 16px rgba(255, 140, 0, 0.5);
-        border: 3px solid #000;
-        margin-bottom: 25px;
-        display: inline-block;
-        clip-path: polygon(
-          0% 0%,
+    /* Creative Position Badge */
+    .sponsor-position {
+      background: linear-gradient(45deg, #ffd700, #ff8c00);
+      color: #000;
+      padding: 12px 26px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      box-shadow: 0 6px 16px rgba(255, 140, 0, 0.5);
+      border: 3px solid #000;
+      margin-bottom: 25px;
+      display: inline-block;
+      clip-path: polygon(0% 0%,
           calc(100% - 15px) 0%,
           100% 50%,
           calc(100% - 15px) 100%,
           0% 100%,
-          15px 50%
-        );
-        position: relative;
-      }
+          15px 50%);
+      position: relative;
+    }
 
-      /* FIXED: Enhanced Logo Container with consistent 4:3 aspect ratio and BLACK background maintained */
-      .sponsor-logo {
-        margin: 25px 0;
-        width: 100%;
-        aspect-ratio: 4/3;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #000000;
-        /* Changed to solid black background */
-        border: 3px solid #ffd700;
-        /* Changed border to gold */
-        border-radius: 15px;
-        overflow: hidden;
-        position: relative;
-        transition: all 0.4s ease;
-      }
+    /* FIXED: Enhanced Logo Container with consistent 4:3 aspect ratio and BLACK background maintained */
+    .sponsor-logo {
+      margin: 25px 0;
+      width: 100%;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000000;
+      /* Changed to solid black background */
+      border: 3px solid #ffd700;
+      /* Changed border to gold */
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.4s ease;
+    }
 
-      /* REMOVED: Background overlay that was changing colors */
-      /* The ::before pseudo-element that was changing colors on hover has been removed */
+    /* REMOVED: Background overlay that was changing colors */
+    /* The ::before pseudo-element that was changing colors on hover has been removed */
 
-      /* Shimmer effect - kept but simplified */
-      .sponsor-logo::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
+    /* Shimmer effect - kept but simplified */
+    .sponsor-logo::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg,
           transparent,
           rgba(255, 255, 255, 0.2),
-          /* Reduced opacity for subtler effect */ transparent
-        );
-        transition: left 0.8s ease;
-        z-index: 3;
-      }
+          /* Reduced opacity for subtler effect */
+          transparent);
+      transition: left 0.8s ease;
+      z-index: 3;
+    }
 
-      .sponsor-box:hover .sponsor-logo::after {
-        left: 100%;
-      }
+    .sponsor-box:hover .sponsor-logo::after {
+      left: 100%;
+    }
 
-      .sponsor-box:hover .sponsor-logo {
-        transform: scale(1.02);
-        box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
-        /* Background remains black - no color change */
-      }
+    .sponsor-box:hover .sponsor-logo {
+      transform: scale(1.02);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+      /* Background remains black - no color change */
+    }
 
-      /* FIXED: Logo Image Styling with proper aspect ratio maintenance */
-      .sponsor-logo img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        object-position: center;
-        transition: all 0.5s ease;
-        border-radius: 12px;
-        position: relative;
-        z-index: 2;
-        filter: brightness(1) contrast(1.1);
-        padding: 10px;
-      }
+    /* FIXED: Logo Image Styling with proper aspect ratio maintenance */
+    .sponsor-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      transition: all 0.5s ease;
+      border-radius: 12px;
+      position: relative;
+      z-index: 2;
+      filter: brightness(1) contrast(1.1);
+      padding: 10px;
+    }
 
-      .sponsor-logo:hover img {
+    .sponsor-logo:hover img {
+      transform: scale(1.05);
+      filter: brightness(1.1) contrast(1.2) saturate(1.2);
+    }
+
+    /* Enhanced image animations */
+    .sponsor-box:hover .sponsor-logo img {
+      animation: imageGlow 0.6s ease-in-out;
+    }
+
+    @keyframes imageGlow {
+      0% {
         transform: scale(1.05);
         filter: brightness(1.1) contrast(1.2) saturate(1.2);
       }
 
-      /* Enhanced image animations */
-      .sponsor-box:hover .sponsor-logo img {
-        animation: imageGlow 0.6s ease-in-out;
+      50% {
+        transform: scale(1.08);
+        filter: brightness(1.2) contrast(1.3) saturate(1.3);
       }
 
-      @keyframes imageGlow {
-        0% {
-          transform: scale(1.05);
-          filter: brightness(1.1) contrast(1.2) saturate(1.2);
-        }
+      100% {
+        transform: scale(1.05);
+        filter: brightness(1.1) contrast(1.2) saturate(1.2);
+      }
+    }
 
-        50% {
-          transform: scale(1.08);
-          filter: brightness(1.2) contrast(1.3) saturate(1.3);
-        }
+    /* FIXED: Placeholder Text for when no image is provided */
+    .placeholder-text {
+      color: #ffd700;
+      /* Changed to gold for better contrast on black */
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      z-index: 2;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    }
 
-        100% {
-          transform: scale(1.05);
-          filter: brightness(1.1) contrast(1.2) saturate(1.2);
-        }
+    /* Hide placeholder when image is present */
+    .sponsor-logo img+.placeholder-text {
+      display: none;
+    }
+
+    /* Enhanced Text Styling */
+    .sponsor-name {
+      font-size: 1.8rem;
+      color: #fff;
+      font-weight: 700;
+      margin-top: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+      letter-spacing: 1px;
+    }
+
+    .sponsor-description {
+      color: #ccc;
+      font-size: 0.9rem;
+      margin-top: 10px;
+      line-height: 1.4;
+      font-style: italic;
+    }
+
+    /* Fire Gradient Animation */
+    @keyframes fireGradient {
+
+      0%,
+      100% {
+        background-position: 0% 50%;
       }
 
-      /* FIXED: Placeholder Text for when no image is provided */
-      .placeholder-text {
-        color: #ffd700;
-        /* Changed to gold for better contrast on black */
-        font-size: 1.1rem;
-        font-weight: 700;
-        letter-spacing: 1px;
-        text-align: center;
-        padding: 20px;
-        position: relative;
-        z-index: 2;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    /* Existing Animations */
+    @keyframes slideInTitle {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
       }
 
-      /* Hide placeholder when image is present */
-      .sponsor-logo img + .placeholder-text {
-        display: none;
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInSubtitle {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
       }
 
-      /* Enhanced Text Styling */
-      .sponsor-name {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideUpTier {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInBox {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-100px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(100px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* FIXED: Mobile Responsive with maintained aspect ratio */
+    @media (max-width: 768px) {
+      .sponsors-section {
+        padding: 40px 15px;
+      }
+
+      .hero-title {
+        font-size: 6rem;
+        padding: 15px 25px;
+        border-radius: 15px;
+        letter-spacing: 4px;
+        margin-bottom: 5rem;
+        margin-top: 3rem;
+      }
+
+      .hero-subtitle {
         font-size: 1.8rem;
-        color: #fff;
-        font-weight: 700;
-        margin-top: 20px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-        letter-spacing: 1px;
+        margin-bottom: 50px;
+      }
+
+      .sponsor-container {
+        max-width: 100%;
+      }
+
+      .sponsor-tier {
+        margin-bottom: 50px;
+      }
+
+      .tier-title {
+        font-size: 2.8rem;
+        margin-bottom: 10px;
+        transform: none;
+      }
+
+      .tier-subtitle {
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+      }
+
+      .sponsor-boxes {
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      /* All sponsor boxes same size on mobile with maintained aspect ratio */
+      .sponsor-box {
+        max-width: 350px;
+        margin: 0 auto;
+        align-self: center !important;
+        width: 100%;
+      }
+
+      .sponsor-box>div {
+        padding: 25px 20px;
+      }
+
+      /* Remove zig-zag on mobile */
+      .sponsor-box:nth-child(odd),
+      .sponsor-box:nth-child(even) {
+        animation-name: slideInBox;
+      }
+
+      /* Maintained 4:3 aspect ratio on mobile */
+      .sponsor-logo {
+        margin: 15px 0;
+        aspect-ratio: 4/3;
+      }
+
+      .sponsor-name {
+        font-size: 1.5rem;
+        margin-top: 15px;
       }
 
       .sponsor-description {
-        color: #ccc;
         font-size: 0.9rem;
         margin-top: 10px;
-        line-height: 1.4;
-        font-style: italic;
       }
 
-      /* Fire Gradient Animation */
-      @keyframes fireGradient {
-        0%,
-        100% {
-          background-position: 0% 50%;
-        }
+      .sponsor-position {
+        font-size: 0.9rem;
+        padding: 10px 18px;
+      }
+    }
 
-        50% {
-          background-position: 100% 50%;
-        }
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 4rem;
+        letter-spacing: 2px;
+        padding: 10px 20px;
       }
 
-      /* Existing Animations */
-      @keyframes slideInTitle {
-        from {
-          opacity: 0;
-          transform: translateY(-50px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      .hero-subtitle {
+        font-size: 1.4rem;
       }
 
-      @keyframes slideInSubtitle {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      .sponsors-section {
+        padding: 30px 10px;
       }
 
-      @keyframes slideUpTier {
-        from {
-          opacity: 0;
-          transform: translateY(50px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      .tier-title {
+        font-size: 2.2rem;
       }
 
-      @keyframes slideInBox {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      .tier-subtitle {
+        font-size: 1.4rem;
+        letter-spacing: 1px;
       }
 
-      @keyframes slideInLeft {
-        from {
-          opacity: 0;
-          transform: translateX(-100px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
+      .sponsor-box {
+        max-width: 300px;
       }
 
-      @keyframes slideInRight {
-        from {
-          opacity: 0;
-          transform: translateX(100px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
+      .sponsor-box>div {
+        padding: 20px 15px;
       }
 
-      /* FIXED: Mobile Responsive with maintained aspect ratio */
-      @media (max-width: 768px) {
-        .sponsors-section {
-          padding: 40px 15px;
-        }
-
-        .hero-title {
-          font-size: 6rem;
-          padding: 15px 25px;
-          border-radius: 15px;
-          letter-spacing: 4px;
-          margin-bottom: 5rem;
-          margin-top: 3rem;
-        }
-
-        .hero-subtitle {
-          font-size: 1.8rem;
-          margin-bottom: 50px;
-        }
-
-        .sponsor-container {
-          max-width: 100%;
-        }
-
-        .sponsor-tier {
-          margin-bottom: 50px;
-        }
-
-        .tier-title {
-          font-size: 2.8rem;
-          margin-bottom: 10px;
-          transform: none;
-        }
-
-        .tier-subtitle {
-          font-size: 1.8rem;
-          letter-spacing: 2px;
-        }
-
-        .sponsor-boxes {
-          flex-direction: column;
-          gap: 25px;
-        }
-
-        /* All sponsor boxes same size on mobile with maintained aspect ratio */
-        .sponsor-box {
-          max-width: 350px;
-          margin: 0 auto;
-          align-self: center !important;
-          width: 100%;
-        }
-
-        .sponsor-box > div {
-          padding: 25px 20px;
-        }
-
-        /* Remove zig-zag on mobile */
-        .sponsor-box:nth-child(odd),
-        .sponsor-box:nth-child(even) {
-          animation-name: slideInBox;
-        }
-
-        /* Maintained 4:3 aspect ratio on mobile */
-        .sponsor-logo {
-          margin: 15px 0;
-          aspect-ratio: 4/3;
-        }
-
-        .sponsor-name {
-          font-size: 1.5rem;
-          margin-top: 15px;
-        }
-
-        .sponsor-description {
-          font-size: 0.9rem;
-          margin-top: 10px;
-        }
-
-        .sponsor-position {
-          font-size: 0.9rem;
-          padding: 10px 18px;
-        }
+      /* Maintained 4:3 aspect ratio on small screens */
+      .sponsor-logo {
+        aspect-ratio: 4/3;
+        margin: 15px 0;
       }
 
-      @media (max-width: 480px) {
-        .hero-title {
-          font-size: 4rem;
-          letter-spacing: 2px;
-          padding: 10px 20px;
-        }
+      .placeholder-text {
+        font-size: 0.9rem;
+        padding: 15px;
+      }
+    }
 
-        .hero-subtitle {
-          font-size: 1.4rem;
-        }
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
 
-        .sponsors-section {
-          padding: 30px 10px;
-        }
+    /* Floating chess pieces */
+    .floating-pieces {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
 
-        .tier-title {
-          font-size: 2.2rem;
-        }
+    .floating-piece {
+      position: absolute;
+      color: rgba(255, 215, 0, 0.1);
+      font-size: 2.5rem;
+      animation: float 8s ease-in-out infinite;
+    }
 
-        .tier-subtitle {
-          font-size: 1.4rem;
-          letter-spacing: 1px;
-        }
+    @keyframes float {
 
-        .sponsor-box {
-          max-width: 300px;
-        }
-
-        .sponsor-box > div {
-          padding: 20px 15px;
-        }
-
-        /* Maintained 4:3 aspect ratio on small screens */
-        .sponsor-logo {
-          aspect-ratio: 4/3;
-          margin: 15px 0;
-        }
-
-        .placeholder-text {
-          font-size: 0.9rem;
-          padding: 15px;
-        }
+      0%,
+      100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.1;
       }
 
-      /* Smooth scrolling */
-      html {
-        scroll-behavior: smooth;
+      50% {
+        transform: translateY(-20px) rotate(180deg);
+        opacity: 0.3;
       }
+    }
 
-      /* Floating chess pieces */
-      .floating-pieces {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        overflow: hidden;
-        z-index: 0;
-      }
+    /* Navigation Bar Styles */
+    .navbar {
+      position: fixed;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 50%;
+      opacity: 1;
+      transition: all 0.8s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-      .floating-piece {
-        position: absolute;
-        color: rgba(255, 215, 0, 0.1);
-        font-size: 2.5rem;
-        animation: float 8s ease-in-out infinite;
-      }
+    /* Desktop navbar - vertical at left center */
+    .navbar.desktop {
+      top: 50%;
+      left: 20px;
+      transform: translateY(-50%);
+      width: 60px;
+      height: 60px;
+      padding: 10px;
+    }
 
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0px) rotate(0deg);
-          opacity: 0.1;
-        }
+    /* Mobile navbar - horizontal at top center */
+    .navbar.mobile {
+      top: 1vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 45px;
+      height: 45px;
+      padding: 6px;
+    }
 
-        50% {
-          transform: translateY(-20px) rotate(180deg);
-          opacity: 0.3;
-        }
-      }
+    /* STUCO Logo - Black circular centerpiece */
+    .navbar-logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      background: black;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 101;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
 
-      /* Navigation Bar Styles */
-      .navbar {
-        position: fixed;
-        z-index: 100;
-        background: rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(10px);
-        border-radius: 50%;
-        opacity: 1;
-        transition: all 0.8s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
+    .navbar-logo img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
 
-      /* Desktop navbar - vertical at left center */
+    .navbar.mobile .navbar-logo {
+      width: 32px;
+      height: 32px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .navbar.mobile .navbar-logo img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      margin: 0 auto;
+      padding: 0;
+      display: block;
+      position: relative;
+      top: 30%;
+      left: 30%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Navigation items container */
+    .navbar-items {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .navbar-items.show {
+      opacity: 1;
+    }
+
+    /* Desktop: Vertical layout */
+    .navbar.desktop .navbar-items {
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Mobile: Horizontal layout */
+    .navbar.mobile .navbar-items {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8px;
+    }
+
+    .navbar-items-left,
+    .navbar-items-right {
+      display: flex;
+      gap: 8px;
+    }
+
+    /* Desktop: Vertical groups */
+    .navbar.desktop .navbar-items-left,
+    .navbar.desktop .navbar-items-right {
+      flex-direction: column;
+    }
+
+    /* Mobile: Horizontal groups */
+    .navbar.mobile .navbar-items-left,
+    .navbar.mobile .navbar-items-right {
+      flex-direction: row;
+      gap: 4px;
+    }
+
+    /* Expanded state - Desktop vertical */
+    .navbar.desktop.expanded {
+      width: 6vw;
+      height: 62vh;
+      border-radius: 3vw;
+      padding: 20px 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Expanded state - Mobile horizontal */
+    .navbar.mobile.expanded {
+      width: calc(100vw - 20px);
+      max-width: 420px;
+      height: 65px;
+      border-radius: 27px;
+      padding: 8px 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .navbar-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 8px 6px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: white;
+      position: relative;
+      min-width: 50px;
+      min-height: 50px;
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    .navbar.mobile .navbar-item {
+      min-width: 36px;
+      min-height: 36px;
+      padding: 4px 3px;
+      margin: 0 1px;
+    }
+
+    .navbar-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1.05);
+    }
+
+    .navbar-item i {
+      font-size: 18px;
+      color: white;
+      transition: all 0.3s ease;
+      margin-bottom: 3px;
+    }
+
+    .navbar.mobile .navbar-item i {
+      font-size: 14px;
+      margin-bottom: 1px;
+    }
+
+    .navbar-item .chess-icon {
+      display: block;
+    }
+
+    .navbar-item .hover-icon {
+      display: none;
+    }
+
+    .navbar-item:hover .chess-icon {
+      display: none;
+    }
+
+    .navbar-item:hover .hover-icon {
+      display: block;
+    }
+
+    .navbar-item .label {
+      font-size: 9px;
+      margin-top: 1px;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+      white-space: nowrap;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      text-align: center;
+    }
+
+    .navbar.mobile .navbar-item .label {
+      font-size: 7px;
+    }
+
+    .navbar-item:hover .label {
+      opacity: 1;
+    }
+
+    /* Show navbar after animations */
+    .navbar.show {
+      opacity: 1;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+
+      /* Ensure desktop navbar is completely hidden on mobile */
       .navbar.desktop {
-        top: 50%;
-        left: 20px;
-        transform: translateY(-50%);
-        width: 60px;
-        height: 60px;
-        padding: 10px;
+        display: none !important;
       }
+    }
 
-      /* Mobile navbar - horizontal at top center */
+    /* Ensure mobile navbar is completely hidden on desktop */
+    @media (min-width: 769px) {
       .navbar.mobile {
-        top: 1vh;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 45px;
-        height: 45px;
-        padding: 6px;
+        display: none !important;
       }
+    }
 
-      /* STUCO Logo - Black circular centerpiece */
-      .navbar-logo {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 40px;
-        height: 40px;
-        background: black;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 101;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-      }
-
-      .navbar-logo img {
-        width: 24px;
-        height: 24px;
-        object-fit: contain;
-      }
-
-      .navbar.mobile .navbar-logo {
-        width: 32px;
-        height: 32px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .navbar.mobile .navbar-logo img {
-        width: 18px;
-        height: 18px;
-        object-fit: contain;
-        margin: 0 auto;
-        padding: 0;
-        display: block;
-        position: relative;
-        top: 30%;
-        left: 30%;
-        transform: translate(-50%, -50%);
-      }
-
-      /* Navigation items container */
-      .navbar-items {
-        display: flex;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        transition: opacity 0.5s ease;
-      }
-
-      .navbar-items.show {
-        opacity: 1;
-      }
-
-      /* Desktop: Vertical layout */
-      .navbar.desktop .navbar-items {
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      /* Mobile: Horizontal layout */
-      .navbar.mobile .navbar-items {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 8px;
-      }
-
-      .navbar-items-left,
-      .navbar-items-right {
-        display: flex;
-        gap: 8px;
-      }
-
-      /* Desktop: Vertical groups */
-      .navbar.desktop .navbar-items-left,
-      .navbar.desktop .navbar-items-right {
-        flex-direction: column;
-      }
-
-      /* Mobile: Horizontal groups */
-      .navbar.mobile .navbar-items-left,
-      .navbar.mobile .navbar-items-right {
-        flex-direction: row;
-        gap: 4px;
-      }
-
-      /* Expanded state - Desktop vertical */
-      .navbar.desktop.expanded {
-        width: 6vw;
-        height: 62vh;
-        border-radius: 3vw;
-        padding: 20px 10px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-      }
-
-      /* Expanded state - Mobile horizontal */
+    /* Extra small mobile screens */
+    @media (max-width: 360px) {
       .navbar.mobile.expanded {
         width: calc(100vw - 20px);
-        max-width: 420px;
-        height: 65px;
-        border-radius: 27px;
-        padding: 8px 16px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-      }
-
-      .navbar-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin: 0;
-        padding: 8px 6px;
-        border-radius: 12px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-decoration: none;
-        color: white;
-        position: relative;
-        min-width: 50px;
-        min-height: 50px;
-        opacity: 0;
-        transform: scale(0.8);
+        max-width: 340px;
+        height: 50px;
+        padding: 6px 10px;
       }
 
       .navbar.mobile .navbar-item {
-        min-width: 36px;
-        min-height: 36px;
-        padding: 4px 3px;
-        margin: 0 1px;
-      }
-
-      .navbar-item:hover {
-        background: rgba(255, 255, 255, 0.1);
-        transform: scale(1.05);
-      }
-
-      .navbar-item i {
-        font-size: 18px;
-        color: white;
-        transition: all 0.3s ease;
-        margin-bottom: 3px;
+        min-width: 28px;
+        min-height: 28px;
+        padding: 2px 1px;
+        margin: 0;
       }
 
       .navbar.mobile .navbar-item i {
-        font-size: 14px;
-        margin-bottom: 1px;
-      }
-
-      .navbar-item .chess-icon {
-        display: block;
-      }
-
-      .navbar-item .hover-icon {
-        display: none;
-      }
-
-      .navbar-item:hover .chess-icon {
-        display: none;
-      }
-
-      .navbar-item:hover .hover-icon {
-        display: block;
-      }
-
-      .navbar-item .label {
-        font-size: 9px;
-        margin-top: 1px;
-        opacity: 1;
-        transition: opacity 0.3s ease;
-        white-space: nowrap;
-        font-weight: 500;
-        letter-spacing: 0.3px;
-        text-align: center;
+        font-size: 11px;
+        margin-bottom: 0.5px;
       }
 
       .navbar.mobile .navbar-item .label {
-        font-size: 7px;
+        font-size: 6px;
       }
+    }
+  </style>
+</head>
 
-      .navbar-item:hover .label {
-        opacity: 1;
-      }
-
-      /* Show navbar after animations */
-      .navbar.show {
-        opacity: 1;
-      }
-
-      /* Mobile responsiveness */
-      @media (max-width: 768px) {
-        /* Ensure desktop navbar is completely hidden on mobile */
-        .navbar.desktop {
-          display: none !important;
-        }
-      }
-
-      /* Ensure mobile navbar is completely hidden on desktop */
-      @media (min-width: 769px) {
-        .navbar.mobile {
-          display: none !important;
-        }
-      }
-
-      /* Extra small mobile screens */
-      @media (max-width: 360px) {
-        .navbar.mobile.expanded {
-          width: calc(100vw - 20px);
-          max-width: 340px;
-          height: 50px;
-          padding: 6px 10px;
-        }
-
-        .navbar.mobile .navbar-item {
-          min-width: 28px;
-          min-height: 28px;
-          padding: 2px 1px;
-          margin: 0;
-        }
-
-        .navbar.mobile .navbar-item i {
-          font-size: 11px;
-          margin-bottom: 0.5px;
-        }
-
-        .navbar.mobile .navbar-item .label {
-          font-size: 6px;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <!-- Navigation Bar with STUCO Logo Centerpiece -->
-    <nav class="navbar desktop desktop-only" id="navbarDesktop">
-      <div class="navbar-logo desktop-only">
-        <img src="Assests/favicon.ico" alt="STUCO Logo" />
+<body>
+  <!-- Navigation Bar with STUCO Logo Centerpiece -->
+  <nav class="navbar desktop desktop-only" id="navbarDesktop">
+    <div class="navbar-logo desktop-only">
+      <img src="Assests/favicon.ico" alt="STUCO Logo" />
+    </div>
+    <div class="navbar-items" id="navbarItemsDesktop">
+      <div class="navbar-items-left">
+        <a href="index.html" class="navbar-item" data-page="home">
+          <i class="fas fa-chess-king chess-icon"></i>
+          <i class="fas fa-home hover-icon"></i>
+          <span class="label">Home</span>
+        </a>
+        <a href="crmd-about.html" class="navbar-item" data-page="about">
+          <i class="fas fa-chess-queen chess-icon"></i>
+          <i class="fas fa-users hover-icon"></i>
+          <span class="label">About</span>
+        </a>
+        <a href="crmd-testimonial.html" class="navbar-item" data-page="testimonials">
+          <i class="fas fa-chess-rook chess-icon"></i>
+          <i class="fas fa-star hover-icon"></i>
+          <span class="label">Reviews</span>
+        </a>
       </div>
-      <div class="navbar-items" id="navbarItemsDesktop">
-        <div class="navbar-items-left">
-          <a href="index.html" class="navbar-item" data-page="home">
-            <i class="fas fa-chess-king chess-icon"></i>
-            <i class="fas fa-home hover-icon"></i>
-            <span class="label">Home</span>
-          </a>
-          <a href="crmd-about.html" class="navbar-item" data-page="about">
-            <i class="fas fa-chess-queen chess-icon"></i>
-            <i class="fas fa-users hover-icon"></i>
-            <span class="label">About</span>
-          </a>
-          <a
-            href="crmd-testimonial.html"
-            class="navbar-item"
-            data-page="testimonials"
-          >
-            <i class="fas fa-chess-rook chess-icon"></i>
-            <i class="fas fa-star hover-icon"></i>
-            <span class="label">Reviews</span>
-          </a>
+      <div class="navbar-items-right">
+        <a href="crmd-rules.html" class="navbar-item" data-page="rules">
+          <i class="fas fa-chess-knight chess-icon"></i>
+          <i class="fas fa-scroll hover-icon"></i>
+          <span class="label">Rules</span>
+        </a>
+        <a href="crmd-contactus.html" class="navbar-item" data-page="contact">
+          <i class="fas fa-chess-pawn chess-icon"></i>
+          <i class="fas fa-envelope hover-icon"></i>
+          <span class="label">Contact</span>
+        </a>
+        <a href="crmd-sponsors.html" class="navbar-item" data-page="sponsors">
+          <i class="fas fa-chess-bishop chess-icon"></i>
+          <i class="fas fa-handshake hover-icon"></i>
+          <span class="label">Sponsors</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="navbar mobile mobile-only" id="navbarMobile">
+    <div class="navbar-logo mobile-only">
+      <img src="Assests/favicon.ico" alt="STUCO Logo" />
+    </div>
+    <div class="navbar-items" id="navbarItemsMobile">
+      <div class="navbar-items-left">
+        <a href="index.html" class="navbar-item" data-page="home">
+          <i class="fas fa-chess-king chess-icon"></i>
+          <i class="fas fa-home hover-icon"></i>
+          <span class="label">Home</span>
+        </a>
+        <a href="crmd-about.html" class="navbar-item" data-page="about">
+          <i class="fas fa-chess-queen chess-icon"></i>
+          <i class="fas fa-users hover-icon"></i>
+          <span class="label">About</span>
+        </a>
+        <a href="crmd-testimonial.html" class="navbar-item" data-page="testimonials">
+          <i class="fas fa-chess-rook chess-icon"></i>
+          <i class="fas fa-star hover-icon"></i>
+          <span class="label">Reviews</span>
+        </a>
+      </div>
+      <div class="navbar-items-right">
+        <a href="crmd-rules.html" class="navbar-item" data-page="rules">
+          <i class="fas fa-chess-knight chess-icon"></i>
+          <i class="fas fa-scroll hover-icon"></i>
+          <span class="label">Rules</span>
+        </a>
+        <a href="crmd-contactus.html" class="navbar-item" data-page="contact">
+          <i class="fas fa-chess-pawn chess-icon"></i>
+          <i class="fas fa-envelope hover-icon"></i>
+          <span class="label">Contact</span>
+        </a>
+        <a href="crmd-sponsors.html" class="navbar-item" data-page="sponsors">
+          <i class="fas fa-chess-bishop chess-icon"></i>
+          <i class="fas fa-handshake hover-icon"></i>
+          <span class="label">Sponsors</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+  <section class="sponsors-section" id="sponsors-section">
+    <div class="floating-pieces">
+      <i class="fas fa-chess-pawn floating-piece" style="top: 15%; left: 5%; animation-delay: 0s"></i>
+      <i class="fas fa-chess-knight floating-piece" style="top: 70%; left: 90%; animation-delay: 2s"></i>
+      <i class="fas fa-chess-bishop floating-piece" style="top: 40%; left: 3%; animation-delay: 4s"></i>
+      <i class="fas fa-chess-rook floating-piece" style="top: 85%; left: 85%; animation-delay: 1s"></i>
+    </div>
+
+    <div class="hero-content">
+      <h1 class="hero-title">SPONSORS</h1>
+      <p class="hero-subtitle">
+        Powered by you, driven by the Grand Chessboard
+      </p>
+    </div>
+
+    <div class="sponsor-container">
+      <div class="sponsor-tier other-sponsors">
+        <div class="tier-header">
+          <h2 class="tier-title">Our Partners</h2>
+          <p class="tier-subtitle">Supporting The Grand Chessboard</p>
         </div>
-        <div class="navbar-items-right">
-          <a href="crmd-rules.html" class="navbar-item" data-page="rules">
-            <i class="fas fa-chess-knight chess-icon"></i>
-            <i class="fas fa-scroll hover-icon"></i>
-            <span class="label">Rules</span>
-          </a>
-          <a href="crmd-contactus.html" class="navbar-item" data-page="contact">
-            <i class="fas fa-chess-pawn chess-icon"></i>
-            <i class="fas fa-envelope hover-icon"></i>
-            <span class="label">Contact</span>
-          </a>
-          <a href="crmd-sponsors.html" class="navbar-item" data-page="sponsors">
-            <i class="fas fa-chess-bishop chess-icon"></i>
-            <i class="fas fa-handshake hover-icon"></i>
-            <span class="label">Sponsors</span>
-          </a>
-        </div>
-      </div>
-    </nav>
 
-    <nav class="navbar mobile mobile-only" id="navbarMobile">
-      <div class="navbar-logo mobile-only">
-        <img src="Assests/favicon.ico" alt="STUCO Logo" />
-      </div>
-      <div class="navbar-items" id="navbarItemsMobile">
-        <div class="navbar-items-left">
-          <a href="index.html" class="navbar-item" data-page="home">
-            <i class="fas fa-chess-king chess-icon"></i>
-            <i class="fas fa-home hover-icon"></i>
-            <span class="label">Home</span>
-          </a>
-          <a href="crmd-about.html" class="navbar-item" data-page="about">
-            <i class="fas fa-chess-queen chess-icon"></i>
-            <i class="fas fa-users hover-icon"></i>
-            <span class="label">About</span>
-          </a>
-          <a
-            href="crmd-testimonial.html"
-            class="navbar-item"
-            data-page="testimonials"
-          >
-            <i class="fas fa-chess-rook chess-icon"></i>
-            <i class="fas fa-star hover-icon"></i>
-            <span class="label">Reviews</span>
-          </a>
-        </div>
-        <div class="navbar-items-right">
-          <a href="crmd-rules.html" class="navbar-item" data-page="rules">
-            <i class="fas fa-chess-knight chess-icon"></i>
-            <i class="fas fa-scroll hover-icon"></i>
-            <span class="label">Rules</span>
-          </a>
-          <a href="crmd-contactus.html" class="navbar-item" data-page="contact">
-            <i class="fas fa-chess-pawn chess-icon"></i>
-            <i class="fas fa-envelope hover-icon"></i>
-            <span class="label">Contact</span>
-          </a>
-          <a href="crmd-sponsors.html" class="navbar-item" data-page="sponsors">
-            <i class="fas fa-chess-bishop chess-icon"></i>
-            <i class="fas fa-handshake hover-icon"></i>
-            <span class="label">Sponsors</span>
-          </a>
-        </div>
-      </div>
-    </nav>
-    <section class="sponsors-section" id="sponsors-section">
-      <div class="floating-pieces">
-        <i
-          class="fas fa-chess-pawn floating-piece"
-          style="top: 15%; left: 5%; animation-delay: 0s"
-        ></i>
-        <i
-          class="fas fa-chess-knight floating-piece"
-          style="top: 70%; left: 90%; animation-delay: 2s"
-        ></i>
-        <i
-          class="fas fa-chess-bishop floating-piece"
-          style="top: 40%; left: 3%; animation-delay: 4s"
-        ></i>
-        <i
-          class="fas fa-chess-rook floating-piece"
-          style="top: 85%; left: 85%; animation-delay: 1s"
-        ></i>
-      </div>
-
-      <div class="hero-content">
-        <h1 class="hero-title">SPONSORS</h1>
-        <p class="hero-subtitle">
-          Powered by you, driven by the Grand Chessboard
-        </p>
-      </div>
-
-      <div class="sponsor-container">
-        <div class="sponsor-tier other-sponsors">
-          <div class="tier-header">
-            <h2 class="tier-title">Our Partners</h2>
-            <p class="tier-subtitle">Supporting The Grand Chessboard</p>
+        <div class="sponsor-boxes">
+          <div class="sponsor-box">
+            <div style="padding: 35px 30px">
+              <div class="sponsor-position">EVENT PARTNER</div>
+              <div class="sponsor-logo">
+                <img src="Assests/sponsors/sizzle-and-sip.webp" alt="Associate Sponsor Logo" />
+              </div>
+              <div class="sponsor-name">Negative</div>
+            </div>
           </div>
 
-          <div class="sponsor-boxes">
-            <div class="sponsor-box">
-              <div style="padding: 35px 30px">
-                <div class="sponsor-position">EVENT PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/sponsors/sizzle-and-sip.webp"
-                    alt="Associate Sponsor Logo"
-                  />
-                </div>
-                <div class="sponsor-name">Negative</div>
+          <div class="sponsor-box">
+            <div style="padding: 35px 30px">
+              <div class="sponsor-position">GIFTING PARTNER</div>
+              <div class="sponsor-logo">
+                <img src="Assests/sponsors/sizzle-and-sip.webp" alt="Associate Sponsor Logo" />
               </div>
+              <div class="sponsor-name">Valencia Nutrition</div>
             </div>
+          </div>
 
-            <div class="sponsor-box">
-              <div style="padding: 35px 30px">
-                <div class="sponsor-position">GIFTING PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/sponsors/sizzle-and-sip.webp"
-                    alt="Associate Sponsor Logo"
-                  />
-                </div>
-                <div class="sponsor-name">Valencia Nutrition</div>
+          <div class="sponsor-box">
+            <div style="padding: 35px 30px">
+              <div class="sponsor-position">Protein Snacking PARTNER</div>
+              <div class="sponsor-logo">
+                <img src="Assests/sponsors/sizzle-and-sip.webp" alt="Associate Sponsor Logo" />
               </div>
+              <div class="sponsor-name">Klaw Snacks</div>
             </div>
+          </div>
 
-            <div class="sponsor-box">
-              <div style="padding: 35px 30px">
-                <div class="sponsor-position">Protein Snacking PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/sponsors/sizzle-and-sip.webp"
-                    alt="Associate Sponsor Logo"
-                  />
-                </div>
-                <div class="sponsor-name">Klaw Snacks</div>
+          <div class="sponsor-box">
+            <div style="padding: 35px 30px">
+              <div class="sponsor-position">Coffee PARTNER</div>
+              <div class="sponsor-logo">
+                <img src="Assests/sponsors/sizzle-and-sip.webp" alt="Associate Sponsor Logo" />
               </div>
+              <div class="sponsor-name">Zenforset Coffee</div>
             </div>
+          </div>
 
-            <div class="sponsor-box">
-              <div style="padding: 35px 30px">
-                <div class="sponsor-position">Coffee PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/sponsors/sizzle-and-sip.webp"
-                    alt="Associate Sponsor Logo"
-                  />
-                </div>
-                <div class="sponsor-name">Zenforset Coffee</div>
+          <div class="sponsor-box">
+            <div style="padding: 35px 30px">
+              <div class="sponsor-position">Coffee PARTNER</div>
+              <div class="sponsor-logo">
+                <img src="Assests/sponsors/sizzle-and-sip.webp" alt="Associate Sponsor Logo" />
               </div>
+              <div class="sponsor-name">Zenforset Coffee</div>
             </div>
+          </div>
 
-            <div class="sponsor-box">
-              <div style="padding: 35px 30px">
-                <div class="sponsor-position">Coffee PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/sponsors/sizzle-and-sip.webp"
-                    alt="Associate Sponsor Logo"
-                  />
-                </div>
-                <div class="sponsor-name">Zenforset Coffee</div>
+          <div class="sponsor-box">
+            <div style="padding: 35px 30px">
+              <div class="sponsor-position">BAG PARTNER</div>
+              <div class="sponsor-logo">
+                <img src="Assests/sponsors/sizzle-and-sip.webp" alt="Associate Sponsor Logo" />
               </div>
+              <div class="sponsor-name">Lemonx Bags</div>
             </div>
+          </div>
 
-            <div class="sponsor-box">
-              <div style="padding: 35px 30px">
-                <div class="sponsor-position">BAG PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/sponsors/sizzle-and-sip.webp"
-                    alt="Associate Sponsor Logo"
-                  />
-                </div>
-                <div class="sponsor-name">Lemonx Bags</div>
+          <div class="sponsor-box">
+            <div style="padding: 35px 30px">
+              <div class="sponsor-position">SNACKING PARTNER</div>
+              <div class="sponsor-logo">
+                <img src="Assests/sponsors/sizzle-and-sip.webp" alt="Associate Sponsor Logo" />
               </div>
+              <div class="sponsor-name">Balaji Wafers</div>
             </div>
+          </div>
 
-            <div class="sponsor-box">
-              <div style="padding: 35px 30px">
-                <div class="sponsor-position">SNACKING PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/sponsors/sizzle-and-sip.webp"
-                    alt="Associate Sponsor Logo"
-                  />
-                </div>
-                <div class="sponsor-name">Balaji Wafers</div>
+          <div class="sponsor-box">
+            <div style="padding: 35px 30px">
+              <div class="sponsor-position">JUICE PARTNER</div>
+              <div class="sponsor-logo">
+                <img src="Assests/sponsors/sizzle-and-sip.webp" alt="Associate Sponsor Logo" />
               </div>
+              <div class="sponsor-name">Panaa</div>
             </div>
+          </div>
 
-            <div class="sponsor-box">
-              <div style="padding: 35px 30px">
-                <div class="sponsor-position">JUICE PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/sponsors/sizzle-and-sip.webp"
-                    alt="Associate Sponsor Logo"
-                  />
-                </div>
-                <div class="sponsor-name">Panaa</div>
+          <div class="sponsor-box">
+            <div style="padding: 35px 30px">
+              <div class="sponsor-position">FRAGRANCE PARTNER</div>
+              <div class="sponsor-logo">
+                <img src="Assests/sponsors/sizzle-and-sip.webp" alt="Associate Sponsor Logo" />
               </div>
+              <div class="sponsor-name">Al Qadri</div>
             </div>
+          </div>
 
-            <div class="sponsor-box">
-              <div style="padding: 35px 30px">
-                <div class="sponsor-position">FRAGRANCE PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/sponsors/sizzle-and-sip.webp"
-                    alt="Associate Sponsor Logo"
-                  />
-                </div>
-                <div class="sponsor-name">Al Qadri</div>
+          <div class="sponsor-box">
+            <div style="padding: 35px 30px">
+              <div class="sponsor-position">REFRESHMENT PARTNER</div>
+              <div class="sponsor-logo">
+                <img src="Assests/sponsors/sizzle-and-sip.webp" alt="Associate Sponsor Logo" />
               </div>
+              <div class="sponsor-name">The Pulp</div>
             </div>
+          </div>
 
-            <div class="sponsor-box">
-              <div style="padding: 35px 30px">
-                <div class="sponsor-position">REFRESHMENT PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/sponsors/sizzle-and-sip.webp"
-                    alt="Associate Sponsor Logo"
-                  />
-                </div>
-                <div class="sponsor-name">The Pulp</div>
+          <div class="sponsor-box">
+            <div style="padding: 35px 30px">
+              <div class="sponsor-position">WRITING PARTNER</div>
+              <div class="sponsor-logo">
+                <img src="Assests/sponsors/sizzle-and-sip.webp" alt="Associate Sponsor Logo" />
               </div>
+              <div class="sponsor-name">Stylish Pens</div>
             </div>
+          </div>
 
-            <div class="sponsor-box">
-              <div style="padding: 35px 30px">
-                <div class="sponsor-position">WRITING PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/sponsors/sizzle-and-sip.webp"
-                    alt="Associate Sponsor Logo"
-                  />
-                </div>
-                <div class="sponsor-name">Stylish Pens</div>
+          <div class="sponsor-box">
+            <div style="padding: 35px 30px">
+              <div class="sponsor-position">COUPON PARTNER</div>
+              <div class="sponsor-logo">
+                <img src="Assests/sponsors/sizzle-and-sip.webp" alt="Associate Sponsor Logo" />
               </div>
+              <div class="sponsor-name">Sky Breeze</div>
             </div>
+          </div>
 
-            <div class="sponsor-box">
-              <div style="padding: 35px 30px">
-                <div class="sponsor-position">COUPON PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/sponsors/sizzle-and-sip.webp"
-                    alt="Associate Sponsor Logo"
-                  />
-                </div>
-                <div class="sponsor-name">Sky Breeze</div>
+          <div class="sponsor-box">
+            <div style="padding: 35px 30px">
+              <div class="sponsor-position">CONFECTIONERY PARTNER</div>
+              <div class="sponsor-logo">
+                <img src="Assests/sponsors/sizzle-and-sip.webp" alt="Associate Sponsor Logo" />
               </div>
+              <div class="sponsor-name">Nutri Snacks Box</div>
             </div>
+          </div>
 
-            <div class="sponsor-box">
-              <div style="padding: 35px 30px">
-                <div class="sponsor-position">CONFECTIONERY PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/sponsors/sizzle-and-sip.webp"
-                    alt="Associate Sponsor Logo"
-                  />
-                </div>
-                <div class="sponsor-name">Nutri Snacks Box</div>
+          <div class="sponsor-box">
+            <div style="padding: 35px 30px">
+              <div class="sponsor-position">SPORTS PARTNER</div>
+              <div class="sponsor-logo">
+                <img src="Assests/sponsors/sizzle-and-sip.webp" alt="Associate Sponsor Logo" />
               </div>
+              <div class="sponsor-name">Total Sports and Fitness</div>
             </div>
+          </div>
 
-            <div class="sponsor-box">
-              <div style="padding: 35px 30px">
-                <div class="sponsor-position">SPORTS PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/sponsors/sizzle-and-sip.webp"
-                    alt="Associate Sponsor Logo"
-                  />
-                </div>
-                <div class="sponsor-name">Total Sports and Fitness</div>
+          <div class="sponsor-box">
+            <div style="padding: 35px 30px">
+              <div class="sponsor-position">ENTERTAINMENT PARTNER</div>
+              <div class="sponsor-logo">
+                <img src="Assests/sponsors/sizzle-and-sip.webp" alt="Associate Sponsor Logo" />
               </div>
+              <div class="sponsor-name">Smaaash Entertainment</div>
             </div>
+          </div>
 
-            <div class="sponsor-box">
-              <div style="padding: 35px 30px">
-                <div class="sponsor-position">ENTERTAINMENT PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/sponsors/sizzle-and-sip.webp"
-                    alt="Associate Sponsor Logo"
-                  />
-                </div>
-                <div class="sponsor-name">Smaaash Entertainment</div>
+          <div class="sponsor-box">
+            <div style="padding: 35px 30px">
+              <div class="sponsor-position">FAST FOOD PARTNER</div>
+              <div class="sponsor-logo">
+                <img src="Assests/sponsors/sizzle-and-sip.webp" alt="Associate Sponsor Logo" />
               </div>
+              <div class="sponsor-name">Sizzle and Sip</div>
             </div>
+          </div>
 
-            <div class="sponsor-box">
-              <div style="padding: 35px 30px">
-                <div class="sponsor-position">FAST FOOD PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/sponsors/sizzle-and-sip.webp"
-                    alt="Associate Sponsor Logo"
-                  />
-                </div>
-                <div class="sponsor-name">Sizzle and Sip</div>
+          <div class="sponsor-box">
+            <div style="padding: 35px 30px">
+              <div class="sponsor-position">DESSERT PARTNER</div>
+              <div class="sponsor-logo">
+                <img src="Assests/sponsors/sizzle-and-sip.webp" alt="Associate Sponsor Logo" />
               </div>
+              <div class="sponsor-name">Mad Over Donuts</div>
             </div>
+          </div>
 
-            <div class="sponsor-box">
-              <div style="padding: 35px 30px">
-                <div class="sponsor-position">DESSERT PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/sponsors/sizzle-and-sip.webp"
-                    alt="Associate Sponsor Logo"
-                  />
-                </div>
-                <div class="sponsor-name">Mad Over Donuts</div>
+          <div class="sponsor-box">
+            <div style="padding: 35px 30px">
+              <div class="sponsor-position">KEYCHAIN PARTNER</div>
+              <div class="sponsor-logo">
+                <img src="Assests/sponsors/sizzle-and-sip.webp" alt="Associate Sponsor Logo" />
               </div>
+              <div class="sponsor-name">Ishtikutum Crochet</div>
             </div>
+          </div>
 
-            <div class="sponsor-box">
-              <div style="padding: 35px 30px">
-                <div class="sponsor-position">KEYCHAIN PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/sponsors/sizzle-and-sip.webp"
-                    alt="Associate Sponsor Logo"
-                  />
-                </div>
-                <div class="sponsor-name">Ishtikutum Crochet</div>
+          <div class="sponsor-box">
+            <div style="padding: 35px 30px">
+              <div class="sponsor-position">GIFTING PARTNER</div>
+              <div class="sponsor-logo">
+                <img src="Assests/sponsors/sizzle-and-sip.webp" alt="Associate Sponsor Logo" />
               </div>
+              <div class="sponsor-name">Evepaper</div>
             </div>
+          </div>
 
-            <div class="sponsor-box">
-              <div style="padding: 35px 30px">
-                <div class="sponsor-position">GIFTING PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/sponsors/sizzle-and-sip.webp"
-                    alt="Associate Sponsor Logo"
-                  />
-                </div>
-                <div class="sponsor-name">Evepaper</div>
+          <div class="sponsor-box">
+            <div style="padding: 35px 30px">
+              <div class="sponsor-position">COUPON PARTNER</div>
+              <div class="sponsor-logo">
+                <img src="Assests/sponsors/sizzle-and-sip.webp" alt="Associate Sponsor Logo" />
               </div>
-            </div>
-
-            <div class="sponsor-box">
-              <div style="padding: 35px 30px">
-                <div class="sponsor-position">COUPON PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/sponsors/sizzle-and-sip.webp"
-                    alt="Associate Sponsor Logo"
-                  />
-                </div>
-                <div class="sponsor-name">No Escape</div>
-              </div>
+              <div class="sponsor-name">No Escape</div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <script>
-      // Navbar expansion functionality
-      function showNavbar() {
-        const isDesktop = window.innerWidth > 768;
-        const navbar = isDesktop
-          ? document.getElementById("navbarDesktop")
-          : document.getElementById("navbarMobile");
-        const navbarItems = isDesktop
-          ? document.getElementById("navbarItemsDesktop")
-          : document.getElementById("navbarItemsMobile");
+  <script>
+    // Navbar expansion functionality
+    function showNavbar() {
+      const isDesktop = window.innerWidth > 768;
+      const navbar = isDesktop
+        ? document.getElementById("navbarDesktop")
+        : document.getElementById("navbarMobile");
+      const navbarItems = isDesktop
+        ? document.getElementById("navbarItemsDesktop")
+        : document.getElementById("navbarItemsMobile");
 
-        console.log("Starting STUCO logo centerpiece expansion animation...");
+      console.log("Starting STUCO logo centerpiece expansion animation...");
 
-        // The navbar is already visible, so we just need to expand it
-        // Phase 1: Expand the circle outward to rounded rectangle
-        setTimeout(() => {
-          navbar.classList.add("expanded");
+      // The navbar is already visible, so we just need to expand it
+      // Phase 1: Expand the circle outward to rounded rectangle
+      setTimeout(() => {
+        navbar.classList.add("expanded");
 
-          // Desktop: Expand vertically
-          if (isDesktop) {
-            anime({
-              targets: navbar,
-              width: "6vw",
-              height: "62vh",
-              borderRadius: "3vw",
-              duration: 700,
-              easing: "easeOutQuart",
-              complete: function () {
-                // Reset any transform properties that might interfere with positioning
-                navbar.style.transform = "translateY(-50%)";
-                revealNavItems();
-              },
-            });
-          }
-          // Mobile: Expand horizontally
-          else {
-            const screenWidth = window.innerWidth;
-            const margin = screenWidth <= 360 ? 20 : 20;
-            const maxWidth = screenWidth <= 360 ? 340 : 420;
-            const mobileWidth = Math.min(screenWidth - margin, maxWidth);
-            const mobileHeight = screenWidth <= 360 ? "50px" : "55px";
-            const borderRadius = screenWidth <= 360 ? "25px" : "27px";
-
-            anime({
-              targets: navbar,
-              width: mobileWidth + "px",
-              height: mobileHeight,
-              borderRadius: borderRadius,
-              duration: 700,
-              easing: "easeOutQuart",
-              complete: function () {
-                // Reset any transform properties that might interfere with positioning
-                navbar.style.transform = "translateX(-50%)";
-                revealNavItems();
-              },
-            });
-          }
-        }, 300);
-
-        // Phase 2: Reveal navigation items from both sides
-        function revealNavItems() {
-          console.log("Revealing navigation items...");
-          navbarItems.classList.add("show");
-
-          // Animate left side items (Home, About, Reviews)
+        // Desktop: Expand vertically
+        if (isDesktop) {
           anime({
-            targets: ".navbar-items-left .navbar-item",
+            targets: navbar,
+            width: "6vw",
+            height: "62vh",
+            borderRadius: "3vw",
+            duration: 700,
+            easing: "easeOutQuart",
+            complete: function () {
+              // Reset any transform properties that might interfere with positioning
+              navbar.style.transform = "translateY(-50%)";
+              revealNavItems();
+            },
+          });
+        }
+        // Mobile: Expand horizontally
+        else {
+          const screenWidth = window.innerWidth;
+          const margin = screenWidth <= 360 ? 20 : 20;
+          const maxWidth = screenWidth <= 360 ? 340 : 420;
+          const mobileWidth = Math.min(screenWidth - margin, maxWidth);
+          const mobileHeight = screenWidth <= 360 ? "50px" : "55px";
+          const borderRadius = screenWidth <= 360 ? "25px" : "27px";
+
+          anime({
+            targets: navbar,
+            width: mobileWidth + "px",
+            height: mobileHeight,
+            borderRadius: borderRadius,
+            duration: 700,
+            easing: "easeOutQuart",
+            complete: function () {
+              // Reset any transform properties that might interfere with positioning
+              navbar.style.transform = "translateX(-50%)";
+              revealNavItems();
+            },
+          });
+        }
+      }, 300);
+
+      // Phase 2: Reveal navigation items from both sides
+      function revealNavItems() {
+        console.log("Revealing navigation items...");
+        navbarItems.classList.add("show");
+
+        // Animate left side items (Home, About, Reviews)
+        anime({
+          targets: ".navbar-items-left .navbar-item",
+          opacity: [0, 1],
+          scale: [0.8, 1],
+          translateX: isDesktop ? [0, 0] : [-30, 0],
+          translateY: isDesktop ? [-30, 0] : [0, 0],
+          duration: 400,
+          delay: anime.stagger(100),
+          easing: "easeOutQuad",
+        });
+
+        // Animate right side items (Rules, Contact, Sponsors) with slight delay
+        setTimeout(() => {
+          anime({
+            targets: ".navbar-items-right .navbar-item",
             opacity: [0, 1],
             scale: [0.8, 1],
-            translateX: isDesktop ? [0, 0] : [-30, 0],
-            translateY: isDesktop ? [-30, 0] : [0, 0],
+            translateX: isDesktop ? [0, 0] : [30, 0],
+            translateY: isDesktop ? [30, 0] : [0, 0],
             duration: 400,
             delay: anime.stagger(100),
             easing: "easeOutQuad",
+            complete: function () {
+              console.log("Navbar expansion animation completed!");
+              navbar.classList.add("show");
+            },
           });
-
-          // Animate right side items (Rules, Contact, Sponsors) with slight delay
-          setTimeout(() => {
-            anime({
-              targets: ".navbar-items-right .navbar-item",
-              opacity: [0, 1],
-              scale: [0.8, 1],
-              translateX: isDesktop ? [0, 0] : [30, 0],
-              translateY: isDesktop ? [30, 0] : [0, 0],
-              duration: 400,
-              delay: anime.stagger(100),
-              easing: "easeOutQuad",
-              complete: function () {
-                console.log("Navbar expansion animation completed!");
-                navbar.classList.add("show");
-              },
-            });
-          }, 200);
-        }
+        }, 200);
       }
+    }
 
-      // Show navbar after a short delay
-      setTimeout(showNavbar, 1000);
-    </script>
-  </body>
+    // Show navbar after a short delay
+    setTimeout(showNavbar, 1000);
+  </script>
+</body>
+
 </html>

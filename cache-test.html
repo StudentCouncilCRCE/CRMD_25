@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRMD Cache Test</title>
+    <script src="crmd-cache.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            color: white;
+        }
+
+        .status {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        button {
+            background: #ffd700;
+            color: #1a1a1a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #ffa500;
+        }
+
+        .log {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .nav-links a {
+            color: #ffd700;
+            text-decoration: none;
+            padding: 10px 15px;
+            border: 1px solid #ffd700;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: #ffd700;
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🏁 CRMD Cache System Test</h1>
+
+    <div class="status" id="status">
+        <h3>Cache Status</h3>
+        <div id="cache-info">Loading...</div>
+    </div>
+
+    <div class="actions">
+        <button onclick="refreshStatus()">🔄 Refresh Status</button>
+        <button onclick="clearCache()">🗑️ Clear Cache</button>
+        <button onclick="testPreload()">⚡ Test Preload</button>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">🏠 Home</a>
+        <a href="crmd-about.html">👥 About</a>
+        <a href="crmd-rules.html">📋 Rules</a>
+        <a href="crmd-sponsors.html">🤝 Sponsors</a>
+        <a href="crmd-testimonial.html">⭐ Testimonials</a>
+        <a href="crmd-contactus.html">📞 Contact</a>
+    </div>
+
+    <div class="log" id="log">
+        <strong>System Log:</strong><br>
+    </div>
+
+    <script>
+        function log(message) {
+            const logDiv = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            logDiv.innerHTML += `[${timestamp}] ${message}<br>`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function refreshStatus() {
+            if (typeof window.CRMDCache !== 'undefined') {
+                const status = window.CRMDCache.getStatus();
+                const infoDiv = document.getElementById('cache-info');
+
+                infoDiv.innerHTML = `
+                    <strong>Cache Fresh:</strong> ${status.isFresh ? '✅ Yes' : '❌ No'}<br>
+                    <strong>Version:</strong> ${status.version || 'Not set'}<br>
+                    <strong>Timestamp:</strong> ${status.timestamp ? new Date(parseInt(status.timestamp)).toLocaleString() : 'Not set'}<br>
+                    <strong>Cached:</strong> ${status.cached || 'No'}<br>
+                    <strong>Total Assets:</strong> ${window.CRMD_ASSETS ? window.CRMD_ASSETS.getAll().length : 'Unknown'}<br>
+                    <strong>Device Type:</strong> ${window.innerWidth > 768 ? 'Desktop' : 'Mobile'}
+                `;
+
+                log('Status refreshed: ' + (status.isFresh ? 'Cache is fresh' : 'Cache needs refresh'));
+            } else {
+                log('❌ Cache system not loaded!');
+            }
+        }
+
+        function clearCache() {
+            if (typeof window.CRMDCache !== 'undefined') {
+                window.CRMDCache.clear();
+                log('🗑️ Cache cleared successfully');
+                refreshStatus();
+            } else {
+                log('❌ Cache system not available');
+            }
+        }
+
+        function testPreload() {
+            if (typeof window.CRMDPreloader !== 'undefined') {
+                log('⚡ Starting preload test...');
+
+                // Test with a small subset of assets
+                const testAssets = [
+                    'Assests/favicon.ico',
+                    'Assests/chess_bg_desktop.webp',
+                    'Assests/king_desktop.webp'
+                ];
+
+                window.CRMDPreloader.preloadAll(
+                    testAssets,
+                    (loaded, total, percentage) => {
+                        log(`📊 Progress: ${loaded}/${total} (${percentage}%)`);
+                    },
+                    (result) => {
+                        log(`✅ Test completed! Success rate: ${result.successRate}%`);
+                    },
+                    (error) => {
+                        log(`❌ Test failed: ${error.message}`);
+                    }
+                );
+            } else {
+                log('❌ Preloader not available');
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            log('🚀 Cache test page loaded');
+            setTimeout(() => {
+                refreshStatus();
+
+                // Auto-refresh status every 5 seconds
+                setInterval(refreshStatus, 5000);
+            }, 100);
+        });
+    </script>
+</body>
+
+</html>

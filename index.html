@@ -1,908 +1,851 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CRMD - Animated Chess Landing</title>
-    <link rel="icon" type="image/x-icon" href="Assests/favicon.ico" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <!-- Font Awesome for icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
 
-  <style>
-    /* Custom Font */
-    @font-face {
-      font-family: "Kodex";
-      src: url("Fonts/kodex/Kodex-Regular.ttf") format("truetype");
-      font-weight: normal;
-      font-style: normal;
-    }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRMD - Animated Chess Landing</title>
+  <link rel="icon" type="image/x-icon" href="Assests/favicon.ico" />
+  <!-- CRMD Shared Cache System -->
+  <script src="crmd-cache.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="crmd-transitions.css" />
+</head>
 
-    /* Reset and base styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+  /* Custom Font */
+  @font-face {
+    font-family: "Kodex";
+    src: url("Fonts/kodex/Kodex-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
 
-    html,
-    body {
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      background-color: goldenrod;
-      font-family: "Arial", sans-serif;
-    }
+  /* Reset and base styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 
-    /* Loading Screen Styles */
-    .loading-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: linear-gradient(
-        135deg,
+  html,
+  body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: goldenrod;
+    font-family: "Arial", sans-serif;
+  }
+
+  /* Loading Screen Styles */
+  .loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg,
         #1a1a1a 0%,
         #2d2d2d 50%,
-        #1a1a1a 100%
-      );
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
+        #1a1a1a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+
+  .loading-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .loading-logo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .loading-logo img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+  }
+
+  .loading-text {
+    color: #ffffff;
+    font-family: "Kodex", "Arial", sans-serif;
+    font-size: 48px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+  }
+
+  .loading-subtitle {
+    color: rgba(255, 255, 255, 0.8);
+    font-family: "Kodex", "Arial", sans-serif;
+    font-size: 20px;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  }
+
+  /* New Loader Design */
+  .loader {
+    height: 4px;
+    width: 130px;
+    --c: no-repeat linear-gradient(#ffd700 0 0);
+    background: var(--c), var(--c), #fff8dc;
+    background-size: 60% 100%;
+    animation: l16 3s infinite;
+    margin-bottom: 20px;
+  }
+
+  @keyframes l16 {
+    0% {
+      background-position: -150% 0, -150% 0;
     }
 
-    .loading-screen.fade-out {
-      opacity: 0;
-      visibility: hidden;
+    66% {
+      background-position: 250% 0, -150% 0;
     }
 
-    .loading-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+    100% {
+      background-position: 250% 0, 250% 0;
+    }
+  }
+
+  /* Legacy progress bar styles for compatibility */
+  .loading-progress {
+    width: 200px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    display: none;
+    /* Hide the old progress bar */
+  }
+
+  .loading-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ffd700, #ffa500, #ffd700);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  .loading-percentage {
+    color: #ffd700;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  /* Chess pieces floating animation */
+  .floating-pieces {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .chess-piece-float {
+    position: absolute;
+    color: rgba(255, 215, 0, 0.1);
+    font-size: 40px;
+    animation: float 8s ease-in-out infinite;
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0.1;
     }
 
+    25% {
+      transform: translateY(-20px) rotate(90deg);
+      opacity: 0.3;
+    }
+
+    50% {
+      transform: translateY(-40px) rotate(180deg);
+      opacity: 0.1;
+    }
+
+    75% {
+      transform: translateY(-20px) rotate(270deg);
+      opacity: 0.3;
+    }
+  }
+
+  /* Mobile loading adjustments */
+  @media (max-width: 768px) {
     .loading-logo {
-      width: 120px;
-      height: 120px;
-      margin-bottom: 30px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 20px;
-      box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 100px;
+      height: 100px;
+      padding: 15px;
     }
 
     .loading-logo img {
-      width: 80px;
-      height: 80px;
-      object-fit: contain;
-      filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+      width: 70px;
+      height: 70px;
     }
 
     .loading-text {
-      color: #ffffff;
-      font-family: "Kodex", "Arial", sans-serif;
-      font-size: 48px;
-      font-weight: 600;
-      margin-bottom: 20px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      font-size: 36px;
     }
 
     .loading-subtitle {
-      color: rgba(255, 255, 255, 0.8);
-      font-family: "Kodex", "Arial", sans-serif;
-      font-size: 20px;
-      margin-bottom: 40px;
-      letter-spacing: 2px;
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-    }
-
-    /* New Loader Design */
-    .loader {
-      height: 4px;
-      width: 130px;
-      --c: no-repeat linear-gradient(#ffd700 0 0);
-      background: var(--c), var(--c), #fff8dc;
-      background-size: 60% 100%;
-      animation: l16 3s infinite;
-      margin-bottom: 20px;
-    }
-
-    @keyframes l16 {
-      0% {
-        background-position: -150% 0, -150% 0;
-      }
-
-      66% {
-        background-position: 250% 0, -150% 0;
-      }
-
-      100% {
-        background-position: 250% 0, 250% 0;
-      }
-    }
-
-    /* Legacy progress bar styles for compatibility */
-    .loading-progress {
-      width: 200px;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 2px;
-      overflow: hidden;
-      margin-bottom: 20px;
-      display: none;
-      /* Hide the old progress bar */
-    }
-
-    .loading-progress-bar {
-      width: 0%;
-      height: 100%;
-      background: linear-gradient(90deg, #ffd700, #ffa500, #ffd700);
-      border-radius: 2px;
-      transition: width 0.3s ease;
-    }
-
-    .loading-percentage {
-      color: #ffd700;
       font-size: 16px;
-      font-weight: 600;
-      letter-spacing: 1px;
     }
 
-    /* Chess pieces floating animation */
-    .floating-pieces {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      overflow: hidden;
+    .loader {
+      width: 110px;
+      height: 4px;
+    }
+
+    .loading-progress {
+      width: 160px;
     }
 
     .chess-piece-float {
-      position: absolute;
-      color: rgba(255, 215, 0, 0.1);
-      font-size: 40px;
-      animation: float 8s ease-in-out infinite;
+      font-size: 30px;
     }
+  }
 
-    @keyframes float {
-      0%,
-      100% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0.1;
-      }
+  /* Chessboard container */
+  .chessboard-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
 
-      25% {
-        transform: translateY(-20px) rotate(90deg);
-        opacity: 0.3;
-      }
+  /* Background image styling */
+  .chessboard-img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    z-index: 1;
+  }
 
-      50% {
-        transform: translateY(-40px) rotate(180deg);
-        opacity: 0.1;
-      }
+  /* King image styling - positioned absolutely for animation */
+  .king-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    /* Full screen width like background */
+    height: 100vh;
+    /* Full screen height like background */
+    object-fit: cover;
+    /* Scale to cover entire screen */
+    object-position: center;
+    /* Center the image */
+    pointer-events: none;
+    /* Disable interactions during animation */
+    z-index: 10;
+    opacity: 1;
+    /* Make visible for debugging */
+    transform: translateY(-100vh);
+    /* Start above the screen */
+  }
 
-      75% {
-        transform: translateY(-20px) rotate(270deg);
-        opacity: 0.3;
-      }
-    }
+  /* Desktop/Mobile visibility controls */
+  .desktop-only {
+    display: block;
+  }
 
-    /* Mobile loading adjustments */
-    @media (max-width: 768px) {
-      .loading-logo {
-        width: 100px;
-        height: 100px;
-        padding: 15px;
-      }
+  .mobile-only {
+    display: none;
+  }
 
-      .loading-logo img {
-        width: 70px;
-        height: 70px;
-      }
-
-      .loading-text {
-        font-size: 36px;
-      }
-
-      .loading-subtitle {
-        font-size: 16px;
-      }
-
-      .loader {
-        width: 110px;
-        height: 4px;
-      }
-
-      .loading-progress {
-        width: 160px;
-      }
-
-      .chess-piece-float {
-        font-size: 30px;
-      }
-    }
-
-    /* Chessboard container */
-    .chessboard-container {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    /* Background image styling */
-    .chessboard-img {
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      z-index: 1;
-    }
-
-    /* King image styling - positioned absolutely for animation */
-    .king-img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      /* Full screen width like background */
-      height: 100vh;
-      /* Full screen height like background */
-      object-fit: cover;
-      /* Scale to cover entire screen */
-      object-position: center;
-      /* Center the image */
-      pointer-events: none;
-      /* Disable interactions during animation */
-      z-index: 10;
-      opacity: 1;
-      /* Make visible for debugging */
-      transform: translateY(-100vh);
-      /* Start above the screen */
-    }
-
-    /* Desktop/Mobile visibility controls */
+  @media (max-width: 768px) {
     .desktop-only {
-      display: block;
+      display: none !important;
     }
 
     .mobile-only {
+      display: block !important;
+    }
+  }
+
+  /* Additional chess pieces for staggered animation */
+  .chess-piece {
+    position: absolute;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  /* Content overlay for text or additional elements */
+  .content-overlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    z-index: 20;
+  }
+
+  /* Main title picture and image styling */
+  .main-title-picture {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 25;
+    opacity: 0;
+  }
+
+  .main-title-img {
+    width: 108vw;
+    max-width: 500px;
+    height: auto;
+    display: block;
+  }
+
+  /* Desktop title and hand styling */
+  .desktop-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+    z-index: 25;
+    opacity: 0;
+  }
+
+  .desktop-hand {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+    z-index: 24;
+    opacity: 0;
+    transform: translateX(100%) translateY(-100%);
+  }
+
+  /* Hide main title on desktop, show desktop elements */
+  @media (min-width: 769px) {
+    .main-title-picture {
       display: none;
     }
 
-    @media (max-width: 768px) {
-      .desktop-only {
-        display: none !important;
-      }
-
-      .mobile-only {
-        display: block !important;
-      }
-    }
-
-    /* Additional chess pieces for staggered animation */
-    .chess-piece {
-      position: absolute;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
-    /* Content overlay for text or additional elements */
-    .content-overlay {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      color: white;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-      z-index: 20;
-    }
-
-    /* Main title picture and image styling */
-    .main-title-picture {
-      position: absolute;
-      top: 35%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 25;
-      opacity: 0;
-    }
-
-    .main-title-img {
-      width: 108vw;
-      max-width: 500px;
-      height: auto;
-      display: block;
-    }
-
-    /* Desktop title and hand styling */
     .desktop-title {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      object-position: center;
-      z-index: 25;
-      opacity: 0;
+      display: block;
     }
 
     .desktop-hand {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      object-position: center;
-      z-index: 24;
-      opacity: 0;
-      transform: translateX(100%) translateY(-100%);
-    }
-
-    /* Hide main title on desktop, show desktop elements */
-    @media (min-width: 769px) {
-      .main-title-picture {
-        display: none;
-      }
-
-      .desktop-title {
-        display: block;
-      }
-
-      .desktop-hand {
-        display: block;
-      }
-    }
-
-    /* Hide desktop elements on mobile */
-    @media (max-width: 768px) {
-      .desktop-title {
-        display: none;
-      }
-
-      .desktop-hand {
-        display: none;
-      }
-    }
-
-    /* Navigation Bar Styles */
-    .navbar {
-      position: fixed;
-      z-index: 100;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(10px);
-      border-radius: 50%;
-      opacity: 1;
-      transition: all 0.8s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    /* Desktop navbar - vertical at left center */
-    .navbar.desktop {
-      top: 50%;
-      left: 20px;
-      transform: translateY(-50%);
-      width: 60px;
-      height: 60px;
-      padding: 10px;
-    }
-
-    /* Mobile navbar - horizontal at top center */
-    .navbar.mobile {
-      top: 1vh;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 45px;
-      height: 45px;
-      padding: 6px;
-    }
-
-    /* STUCO Logo - Black circular centerpiece */
-    .navbar-logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 40px;
-      height: 40px;
-      background: black;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 101;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-    }
-
-    .navbar-logo img {
-      width: 24px;
-      height: 24px;
-      object-fit: contain;
-    }
-
-    .navbar.mobile .navbar-logo {
-      width: 32px;
-      height: 32px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .navbar.mobile .navbar-logo img {
-      width: 18px;
-      height: 18px;
-      object-fit: contain;
-      margin: 0 auto;
-      padding: 0;
       display: block;
-      position: relative;
-      top: 50%;
-      left: 30%;
-      transform: translate(-50%, -50%);
+    }
+  }
+
+  /* Hide desktop elements on mobile */
+  @media (max-width: 768px) {
+    .desktop-title {
+      display: none;
     }
 
-    /* Navigation items container */
-    .navbar-items {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 0.5s ease;
+    .desktop-hand {
+      display: none;
+    }
+  }
+
+  /* Navigation Bar Styles */
+  .navbar {
+    position: fixed;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    opacity: 1;
+    transition: all 0.8s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Desktop navbar - vertical at left center */
+  .navbar.desktop {
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+  }
+
+  /* Mobile navbar - horizontal at top center */
+  .navbar.mobile {
+    top: 1vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 45px;
+    height: 45px;
+    padding: 6px;
+  }
+
+  /* STUCO Logo - Black circular centerpiece */
+  .navbar-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background: black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 101;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .navbar-logo img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+
+  .navbar.mobile .navbar-logo {
+    width: 32px;
+    height: 32px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navbar.mobile .navbar-logo img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    margin: 0 auto;
+    padding: 0;
+    display: block;
+    position: relative;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Navigation items container */
+  .navbar-items {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .navbar-items.show {
+    opacity: 1;
+  }
+
+  /* Desktop: Vertical layout */
+  .navbar.desktop .navbar-items {
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* Mobile: Horizontal layout */
+  .navbar.mobile .navbar-items {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
+  }
+
+  .navbar-items-left,
+  .navbar-items-right {
+    display: flex;
+    gap: 8px;
+  }
+
+  /* Desktop: Vertical groups */
+  .navbar.desktop .navbar-items-left,
+  .navbar.desktop .navbar-items-right {
+    flex-direction: column;
+  }
+
+  /* Mobile: Horizontal groups */
+  .navbar.mobile .navbar-items-left,
+  .navbar.mobile .navbar-items-right {
+    flex-direction: row;
+    gap: 4px;
+  }
+
+  /* Expanded state - Desktop vertical */
+  .navbar.desktop.expanded {
+    width: 6vw;
+    height: 62vh;
+    border-radius: 3vw;
+    padding: 20px 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Expanded state - Mobile horizontal */
+  .navbar.mobile.expanded {
+    width: calc(100vw - 20px);
+    max-width: 420px;
+    height: 65px;
+    border-radius: 27px;
+    padding: 8px 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  .navbar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 8px 6px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: white;
+    position: relative;
+    min-width: 50px;
+    min-height: 50px;
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  .navbar.mobile .navbar-item {
+    min-width: 36px;
+    min-height: 36px;
+    padding: 4px 3px;
+    margin: 0 1px;
+  }
+
+  .navbar-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+  }
+
+  .navbar-item i {
+    font-size: 18px;
+    color: white;
+    transition: all 0.3s ease;
+    margin-bottom: 3px;
+  }
+
+  .navbar.mobile .navbar-item i {
+    font-size: 14px;
+    margin-bottom: 1px;
+  }
+
+  .navbar-item .chess-icon {
+    display: block;
+  }
+
+  .navbar-item .hover-icon {
+    display: none;
+  }
+
+  .navbar-item:hover .chess-icon {
+    display: none;
+  }
+
+  .navbar-item:hover .hover-icon {
+    display: block;
+  }
+
+  .navbar-item .label {
+    font-size: 9px;
+    margin-top: 1px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    text-align: center;
+  }
+
+  .navbar.mobile .navbar-item .label {
+    font-size: 7px;
+  }
+
+  .navbar-item:hover .label {
+    opacity: 1;
+  }
+
+  /* Show navbar after animations */
+  .navbar.show {
+    opacity: 1;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .content-overlay {
+      top: 10px;
+      left: 10px;
     }
 
-    .navbar-items.show {
-      opacity: 1;
+    /* Ensure desktop navbar is completely hidden on mobile */
+    .navbar.desktop {
+      display: none !important;
     }
+  }
 
-    /* Desktop: Vertical layout */
-    .navbar.desktop .navbar-items {
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
+  /* Ensure mobile navbar is completely hidden on desktop */
+  @media (min-width: 769px) {
+    .navbar.mobile {
+      display: none !important;
     }
+  }
 
-    /* Mobile: Horizontal layout */
-    .navbar.mobile .navbar-items {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 8px;
-    }
-
-    .navbar-items-left,
-    .navbar-items-right {
-      display: flex;
-      gap: 8px;
-    }
-
-    /* Desktop: Vertical groups */
-    .navbar.desktop .navbar-items-left,
-    .navbar.desktop .navbar-items-right {
-      flex-direction: column;
-    }
-
-    /* Mobile: Horizontal groups */
-    .navbar.mobile .navbar-items-left,
-    .navbar.mobile .navbar-items-right {
-      flex-direction: row;
-      gap: 4px;
-    }
-
-    /* Expanded state - Desktop vertical */
-    .navbar.desktop.expanded {
-      width: 6vw;
-      height: 62vh;
-      border-radius: 3vw;
-      padding: 20px 10px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    }
-
-    /* Expanded state - Mobile horizontal */
+  /* Extra small mobile screens */
+  @media (max-width: 360px) {
     .navbar.mobile.expanded {
       width: calc(100vw - 20px);
-      max-width: 420px;
-      height: 65px;
-      border-radius: 27px;
-      padding: 8px 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    }
-
-    .navbar-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-      padding: 8px 6px;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-decoration: none;
-      color: white;
-      position: relative;
-      min-width: 50px;
-      min-height: 50px;
-      opacity: 0;
-      transform: scale(0.8);
+      max-width: 340px;
+      height: 50px;
+      padding: 6px 10px;
     }
 
     .navbar.mobile .navbar-item {
-      min-width: 36px;
-      min-height: 36px;
-      padding: 4px 3px;
-      margin: 0 1px;
-    }
-
-    .navbar-item:hover {
-      background: rgba(255, 255, 255, 0.1);
-      transform: scale(1.05);
-    }
-
-    .navbar-item i {
-      font-size: 18px;
-      color: white;
-      transition: all 0.3s ease;
-      margin-bottom: 3px;
+      min-width: 28px;
+      min-height: 28px;
+      padding: 2px 1px;
+      margin: 0;
     }
 
     .navbar.mobile .navbar-item i {
-      font-size: 14px;
-      margin-bottom: 1px;
-    }
-
-    .navbar-item .chess-icon {
-      display: block;
-    }
-
-    .navbar-item .hover-icon {
-      display: none;
-    }
-
-    .navbar-item:hover .chess-icon {
-      display: none;
-    }
-
-    .navbar-item:hover .hover-icon {
-      display: block;
-    }
-
-    .navbar-item .label {
-      font-size: 9px;
-      margin-top: 1px;
-      opacity: 1;
-      transition: opacity 0.3s ease;
-      white-space: nowrap;
-      font-weight: 500;
-      letter-spacing: 0.3px;
-      text-align: center;
+      font-size: 11px;
     }
 
     .navbar.mobile .navbar-item .label {
-      font-size: 7px;
+      font-size: 5px;
     }
+  }
+</style>
 
-    .navbar-item:hover .label {
-      opacity: 1;
-    }
-
-    /* Show navbar after animations */
-    .navbar.show {
-      opacity: 1;
-    }
-
-    /* Mobile responsiveness */
-    @media (max-width: 768px) {
-      .content-overlay {
-        top: 10px;
-        left: 10px;
-      }
-
-      /* Ensure desktop navbar is completely hidden on mobile */
-      .navbar.desktop {
-        display: none !important;
-      }
-    }
-
-    /* Ensure mobile navbar is completely hidden on desktop */
-    @media (min-width: 769px) {
-      .navbar.mobile {
-        display: none !important;
-      }
-    }
-
-    /* Extra small mobile screens */
-    @media (max-width: 360px) {
-      .navbar.mobile.expanded {
-        width: calc(100vw - 20px);
-        max-width: 340px;
-        height: 50px;
-        padding: 6px 10px;
-      }
-
-      .navbar.mobile .navbar-item {
-        min-width: 28px;
-        min-height: 28px;
-        padding: 2px 1px;
-        margin: 0;
-      }
-
-      .navbar.mobile .navbar-item i {
-        font-size: 11px;
-      }
-
-      .navbar.mobile .navbar-item .label {
-        font-size: 5px;
-      }
-    }
-  </style>
-
-  <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loadingScreen">
-      <div class="floating-pieces">
-        <i
-          class="fas fa-chess-king chess-piece-float"
-          style="top: 20%; left: 15%; animation-delay: 0s"
-        ></i>
-        <i
-          class="fas fa-chess-queen chess-piece-float"
-          style="top: 60%; left: 80%; animation-delay: 1s"
-        ></i>
-        <i
-          class="fas fa-chess-rook chess-piece-float"
-          style="top: 80%; left: 20%; animation-delay: 2s"
-        ></i>
-        <i
-          class="fas fa-chess-bishop chess-piece-float"
-          style="top: 30%; left: 70%; animation-delay: 3s"
-        ></i>
-        <i
-          class="fas fa-chess-knight chess-piece-float"
-          style="top: 70%; left: 10%; animation-delay: 4s"
-        ></i>
-        <i
-          class="fas fa-chess-pawn chess-piece-float"
-          style="top: 40%; left: 90%; animation-delay: 5s"
-        ></i>
-      </div>
-      <div class="loading-container">
-        <div class="loading-logo">
-          <img src="Assests/favicon.ico" alt="STUCO Loading" id="loadingLogo" />
-        </div>
-        <div class="loading-text">CRMD</div>
-        <div class="loading-subtitle">The Grand Chessboard</div>
-        <div class="loader" id="loader"></div>
-        <div class="loading-progress">
-          <div class="loading-progress-bar" id="loadingProgressBar"></div>
-        </div>
-        <div class="loading-percentage" id="loadingPercentage">0%</div>
-      </div>
+<body>
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="floating-pieces">
+      <i class="fas fa-chess-king chess-piece-float" style="top: 20%; left: 15%; animation-delay: 0s"></i>
+      <i class="fas fa-chess-queen chess-piece-float" style="top: 60%; left: 80%; animation-delay: 1s"></i>
+      <i class="fas fa-chess-rook chess-piece-float" style="top: 80%; left: 20%; animation-delay: 2s"></i>
+      <i class="fas fa-chess-bishop chess-piece-float" style="top: 30%; left: 70%; animation-delay: 3s"></i>
+      <i class="fas fa-chess-knight chess-piece-float" style="top: 70%; left: 10%; animation-delay: 4s"></i>
+      <i class="fas fa-chess-pawn chess-piece-float" style="top: 40%; left: 90%; animation-delay: 5s"></i>
     </div>
-    <section class="hero">
-      <div class="chessboard-container">
-        <!-- Responsive background image -->
-        <picture>
-          <source
-            media="(max-width: 768px)"
-            srcset="Assests/chess_bg_mobile.webp"
-          />
-          <img
-            src="Assests/chess_bg_desktop.webp"
-            alt="Chessboard"
-            class="chessboard-img"
-          />
-        </picture>
-
-        <!-- King images that scale perfectly with background -->
-        <img
-          src="Assests/king_desktop.webp"
-          class="king-img desktop-only"
-          alt="King"
-          id="kingDesktop"
-        />
-        <img
-          src="Assests/king_mobile.webp"
-          class="king-img mobile-only"
-          alt="King"
-          id="kingMobile"
-        />
-
-        <!-- Colored king images (initially hidden) -->
-        <img
-          src="Assests/king_desktop_fade.webp"
-          class="king-img desktop-only"
-          alt="Colored King"
-          id="kingColoredDesktop"
-          style="opacity: 0; transform: translateY(0vh)"
-        />
-        <img
-          src="Assests/king_mobile_fade.webp"
-          class="king-img mobile-only"
-          alt="Colored King"
-          id="kingColoredMobile"
-          style="opacity: 0; transform: translateY(0vh)"
-        />
-
-        <!-- Content overlay - replaced with responsive title image -->
-        <picture class="main-title-picture">
-          <source
-            media="(max-width: 768px)"
-            srcset="Assests/crmd_landing_mobile_title.webp"
-          />
-          <!-- For desktop, we can use a different title image or hide it -->
-          <img
-            src="Assests/crmd_landing_mobile_title.webp"
-            class="main-title-img"
-            alt="CRMD - The Grand Chessboard"
-            id="mainTitle"
-          />
-        </picture>
-
-        <!-- Desktop elements -->
-        <img
-          src="Assests/crmd_landing_desktop_title.webp"
-          class="desktop-title"
-          alt="CRMD Desktop Title"
-          id="desktopTitle"
-        />
-        <!-- <img src="Assests/crmd_landing_desktop_hand.webp" class="desktop-hand" alt="Desktop Hand" id="desktopHand"> -->
-
-        <!-- Navigation Bar with STUCO Logo Centerpiece -->
-        <nav class="navbar desktop desktop-only" id="navbarDesktop">
-          <div class="navbar-logo desktop-only">
-            <img src="Assests/favicon.ico" alt="STUCO Logo" />
-          </div>
-          <div class="navbar-items" id="navbarItemsDesktop">
-            <div class="navbar-items-left">
-              <a href="index.html" class="navbar-item" data-page="home">
-                <i class="fas fa-chess-king chess-icon"></i>
-                <i class="fas fa-home hover-icon"></i>
-                <span class="label">Home</span>
-              </a>
-              <a href="crmd-about.html" class="navbar-item" data-page="about">
-                <i class="fas fa-chess-queen chess-icon"></i>
-                <i class="fas fa-users hover-icon"></i>
-                <span class="label">About</span>
-              </a>
-              <a
-                href="crmd-testimonial.html"
-                class="navbar-item"
-                data-page="testimonials"
-              >
-                <i class="fas fa-chess-rook chess-icon"></i>
-                <i class="fas fa-star hover-icon"></i>
-                <span class="label">Reviews</span>
-              </a>
-            </div>
-            <div class="navbar-items-right">
-              <a href="crmd-rules.html" class="navbar-item" data-page="rules">
-                <i class="fas fa-chess-knight chess-icon"></i>
-                <i class="fas fa-scroll hover-icon"></i>
-                <span class="label">Rules</span>
-              </a>
-              <a
-                href="crmd-contactus.html"
-                class="navbar-item"
-                data-page="contact"
-              >
-                <i class="fas fa-chess-pawn chess-icon"></i>
-                <i class="fas fa-envelope hover-icon"></i>
-                <span class="label">Contact</span>
-              </a>
-              <a
-                href="crmd-sponsors.html"
-                class="navbar-item"
-                data-page="sponsors"
-              >
-                <i class="fas fa-chess-bishop chess-icon"></i>
-                <i class="fas fa-handshake hover-icon"></i>
-                <span class="label">Sponsors</span>
-              </a>
-            </div>
-          </div>
-        </nav>
-
-        <nav class="navbar mobile mobile-only" id="navbarMobile">
-          <div class="navbar-logo mobile-only">
-            <img src="Assests/favicon.ico" alt="STUCO Logo" />
-          </div>
-          <div class="navbar-items" id="navbarItemsMobile">
-            <div class="navbar-items-left">
-              <a href="index.html" class="navbar-item" data-page="home">
-                <i class="fas fa-chess-king chess-icon"></i>
-                <i class="fas fa-home hover-icon"></i>
-                <span class="label">Home</span>
-              </a>
-              <a href="crmd-about.html" class="navbar-item" data-page="about">
-                <i class="fas fa-chess-queen chess-icon"></i>
-                <i class="fas fa-users hover-icon"></i>
-                <span class="label">About</span>
-              </a>
-              <a
-                href="crmd-testimonial.html"
-                class="navbar-item"
-                data-page="testimonials"
-              >
-                <i class="fas fa-chess-rook chess-icon"></i>
-                <i class="fas fa-star hover-icon"></i>
-                <span class="label">Reviews</span>
-              </a>
-            </div>
-            <div class="navbar-items-right">
-              <a href="crmd-rules.html" class="navbar-item" data-page="rules">
-                <i class="fas fa-chess-knight chess-icon"></i>
-                <i class="fas fa-scroll hover-icon"></i>
-                <span class="label">Rules</span>
-              </a>
-              <a
-                href="crmd-contactus.html"
-                class="navbar-item"
-                data-page="contact"
-              >
-                <i class="fas fa-chess-pawn chess-icon"></i>
-                <i class="fas fa-envelope hover-icon"></i>
-                <span class="label">Contact</span>
-              </a>
-              <a
-                href="crmd-sponsors.html"
-                class="navbar-item"
-                data-page="sponsors"
-              >
-                <i class="fas fa-chess-bishop chess-icon"></i>
-                <i class="fas fa-handshake hover-icon"></i>
-                <span class="label">Sponsors</span>
-              </a>
-            </div>
-          </div>
-        </nav>
+    <div class="loading-container">
+      <div class="loading-logo">
+        <img src="Assests/favicon.ico" alt="STUCO Loading" id="loadingLogo" />
       </div>
-    </section>
-  </body>
+      <div class="loading-text">CRMD</div>
+      <div class="loading-subtitle">The Grand Chessboard</div>
+      <div class="loader" id="loader"></div>
+      <div class="loading-progress">
+        <div class="loading-progress-bar" id="loadingProgressBar"></div>
+      </div>
+      <div class="loading-percentage" id="loadingPercentage">0%</div>
+    </div>
+  </div>
+  <section class="hero">
+    <div class="chessboard-container">
+      <!-- Responsive background image -->
+      <picture>
+        <source media="(max-width: 768px)" srcset="Assests/chess_bg_mobile.webp" />
+        <img src="Assests/chess_bg_desktop.webp" alt="Chessboard" class="chessboard-img" />
+      </picture>
 
-  <script>
-    // Image preloading and loading animation system
-    document.addEventListener("DOMContentLoaded", function () {
-      // Check if anime.js is loaded
-      if (typeof anime === "undefined") {
-        console.error("Anime.js not loaded! Check the script tag.");
-        return;
-      }
+      <!-- King images that scale perfectly with background -->
+      <img src="Assests/king_desktop.webp" class="king-img desktop-only" alt="King" id="kingDesktop" />
+      <img src="Assests/king_mobile.webp" class="king-img mobile-only" alt="King" id="kingMobile" />
 
-      console.log("Starting loading sequence..."); // Debug log
+      <!-- Colored king images (initially hidden) -->
+      <img src="Assests/king_desktop_fade.webp" class="king-img desktop-only" alt="Colored King" id="kingColoredDesktop"
+        style="opacity: 0; transform: translateY(0vh)" />
+      <img src="Assests/king_mobile_fade.webp" class="king-img mobile-only" alt="Colored King" id="kingColoredMobile"
+        style="opacity: 0; transform: translateY(0vh)" />
 
-      // Loading screen elements
-      const loadingScreen = document.getElementById("loadingScreen");
-      const loadingLogo = document.getElementById("loadingLogo");
-      const loadingProgressBar = document.getElementById("loadingProgressBar");
-      const loadingPercentage = document.getElementById("loadingPercentage");
+      <!-- Content overlay - replaced with responsive title image -->
+      <picture class="main-title-picture">
+        <source media="(max-width: 768px)" srcset="Assests/crmd_landing_mobile_title.webp" />
+        <!-- For desktop, we can use a different title image or hide it -->
+        <img src="Assests/crmd_landing_mobile_title.webp" class="main-title-img" alt="CRMD - The Grand Chessboard"
+          id="mainTitle" />
+      </picture>
 
-      // Start loading logo animation
+      <!-- Desktop elements -->
+      <img src="Assests/crmd_landing_desktop_title.webp" class="desktop-title" alt="CRMD Desktop Title"
+        id="desktopTitle" />
+      <!-- <img src="Assests/crmd_landing_desktop_hand.webp" class="desktop-hand" alt="Desktop Hand" id="desktopHand"> -->
+
+      <!-- Navigation Bar with STUCO Logo Centerpiece -->
+      <nav class="navbar desktop desktop-only" id="navbarDesktop">
+        <div class="navbar-logo desktop-only">
+          <img src="Assests/favicon.ico" alt="STUCO Logo" />
+        </div>
+        <div class="navbar-items" id="navbarItemsDesktop">
+          <div class="navbar-items-left">
+            <a href="index.html" class="navbar-item" data-page="home">
+              <i class="fas fa-chess-king chess-icon"></i>
+              <i class="fas fa-home hover-icon"></i>
+              <span class="label">Home</span>
+            </a>
+            <a href="crmd-about.html" class="navbar-item" data-page="about">
+              <i class="fas fa-chess-queen chess-icon"></i>
+              <i class="fas fa-users hover-icon"></i>
+              <span class="label">About</span>
+            </a>
+            <a href="crmd-testimonial.html" class="navbar-item" data-page="testimonials">
+              <i class="fas fa-chess-rook chess-icon"></i>
+              <i class="fas fa-star hover-icon"></i>
+              <span class="label">Reviews</span>
+            </a>
+          </div>
+          <div class="navbar-items-right">
+            <a href="crmd-rules.html" class="navbar-item" data-page="rules">
+              <i class="fas fa-chess-knight chess-icon"></i>
+              <i class="fas fa-scroll hover-icon"></i>
+              <span class="label">Rules</span>
+            </a>
+            <a href="crmd-contactus.html" class="navbar-item" data-page="contact">
+              <i class="fas fa-chess-pawn chess-icon"></i>
+              <i class="fas fa-envelope hover-icon"></i>
+              <span class="label">Contact</span>
+            </a>
+            <a href="crmd-sponsors.html" class="navbar-item" data-page="sponsors">
+              <i class="fas fa-chess-bishop chess-icon"></i>
+              <i class="fas fa-handshake hover-icon"></i>
+              <span class="label">Sponsors</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <nav class="navbar mobile mobile-only" id="navbarMobile">
+        <div class="navbar-logo mobile-only">
+          <img src="Assests/favicon.ico" alt="STUCO Logo" />
+        </div>
+        <div class="navbar-items" id="navbarItemsMobile">
+          <div class="navbar-items-left">
+            <a href="index.html" class="navbar-item" data-page="home">
+              <i class="fas fa-chess-king chess-icon"></i>
+              <i class="fas fa-home hover-icon"></i>
+              <span class="label">Home</span>
+            </a>
+            <a href="crmd-about.html" class="navbar-item" data-page="about">
+              <i class="fas fa-chess-queen chess-icon"></i>
+              <i class="fas fa-users hover-icon"></i>
+              <span class="label">About</span>
+            </a>
+            <a href="crmd-testimonial.html" class="navbar-item" data-page="testimonials">
+              <i class="fas fa-chess-rook chess-icon"></i>
+              <i class="fas fa-star hover-icon"></i>
+              <span class="label">Reviews</span>
+            </a>
+          </div>
+          <div class="navbar-items-right">
+            <a href="crmd-rules.html" class="navbar-item" data-page="rules">
+              <i class="fas fa-chess-knight chess-icon"></i>
+              <i class="fas fa-scroll hover-icon"></i>
+              <span class="label">Rules</span>
+            </a>
+            <a href="crmd-contactus.html" class="navbar-item" data-page="contact">
+              <i class="fas fa-chess-pawn chess-icon"></i>
+              <i class="fas fa-envelope hover-icon"></i>
+              <span class="label">Contact</span>
+            </a>
+            <a href="crmd-sponsors.html" class="navbar-item" data-page="sponsors">
+              <i class="fas fa-chess-bishop chess-icon"></i>
+              <i class="fas fa-handshake hover-icon"></i>
+              <span class="label">Sponsors</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </section>
+</body>
+
+<script>
+  // ========== ENHANCED CRMD PRELOADER WITH SHARED CACHE ==========
+  document.addEventListener("DOMContentLoaded", function () {
+    // Check if anime.js is loaded
+    if (typeof anime === "undefined") {
+      console.error("Anime.js not loaded! Check the script tag.");
+      return;
+    }
+
+    // Wait for cache utility to be ready
+    if (typeof window.CRMDCache === "undefined") {
+      console.error("CRMD Cache utility not loaded! Check crmd-cache.js");
+      return;
+    }
+
+    console.log("=== CRMD Enhanced Preloader Initialized ===");
+
+    // Determine device type
+    const isDesktop = window.innerWidth > 768;
+
+    // Get optimized asset list from shared cache
+    const allAssets = window.CRMD_ASSETS.getOptimized(isDesktop);
+
+    console.log(`Device: ${isDesktop ? 'Desktop' : 'Mobile'}`);
+    console.log(`Total assets to cache: ${allAssets.length}`);
+
+    // ========== LOADING SCREEN CONTROL ==========
+    const loadingScreen = document.getElementById("loadingScreen");
+    const loadingLogo = document.getElementById("loadingLogo");
+    const loadingProgressBar = document.getElementById("loadingProgressBar");
+    const loadingPercentage = document.getElementById("loadingPercentage");
+
+    // Check if we should show loading screen
+    if (window.CRMDCache.isFresh()) {
+      console.log("✓ Assets already cached - but showing loading animation for home page");
+
+      // Always show loading animation on home page for the experience
+      // But skip the actual asset preloading since they're cached
+      console.log("⟳ Starting loading animation (assets already cached)...");
+
+      // Start loading animations
       anime({
         targets: "#loadingLogo",
         rotate: "360deg",
@@ -911,7 +854,6 @@
         loop: true,
       });
 
-      // Pulse effect for loading logo
       anime({
         targets: ".loading-logo",
         scale: [1, 1.1, 1],
@@ -920,450 +862,525 @@
         loop: true,
       });
 
-      // Determine which images to preload based on screen size
-      const isDesktop = window.innerWidth > 768;
+      // Simulate loading progress quickly since assets are cached
+      let progress = 0;
+      const progressInterval = setInterval(() => {
+        progress += Math.random() * 15 + 10; // Faster progress increments
+        if (progress >= 100) {
+          progress = 100;
+          clearInterval(progressInterval);
 
-      // List of critical images to preload
-      const imagesToPreload = [
-        // Loading logo
-        "Assests/favicon.ico", // Favicon
-        isDesktop
-          ? "Assests/chess_bg_desktop.webp"
-          : "Assests/chess_bg_mobile.webp", // Background
-        isDesktop ? "Assests/king_desktop.webp" : "Assests/king_mobile.webp", // King
-        isDesktop
-          ? "Assests/king_desktop_fade.webp"
-          : "Assests/king_mobile_fade.webp", // Colored king
-        isDesktop
-          ? "Assests/crmd_landing_desktop_title.webp"
-          : "Assests/crmd_landing_mobile_title.webp", // Title
-      ];
+          // Hide loading screen after brief display
+          setTimeout(() => {
+            hideLoadingScreen();
 
-      // Add desktop-specific images
-      if (isDesktop) {
-        imagesToPreload.push("Assests/crmd_landing_desktop_hand.webp");
-      }
+            // Enable instant navigation after loading screen
+            window.CRMDNavigation.init();
+          }, 800); // Shorter delay since assets are ready
+        }
 
-      console.log(
-        `Preloading ${imagesToPreload.length} images for ${
-          isDesktop ? "desktop" : "mobile"
-        }...`
-      );
-
-      // Image preloading function
-      function preloadImages(imageUrls) {
-        return new Promise((resolve, reject) => {
-          let loadedCount = 0;
-          let failedCount = 0;
-          const totalImages = imageUrls.length;
-
-          if (totalImages === 0) {
-            resolve();
-            return;
-          }
-
-          imageUrls.forEach((url, index) => {
-            const img = new Image();
-
-            img.onload = function () {
-              loadedCount++;
-              console.log(
-                `Image loaded: ${url} (${loadedCount}/${totalImages})`
-              );
-              updateProgress(loadedCount, totalImages);
-
-              if (loadedCount + failedCount === totalImages) {
-                if (loadedCount > 0) {
-                  resolve();
-                } else {
-                  reject(new Error("All images failed to load"));
-                }
-              }
-            };
-
-            img.onerror = function () {
-              failedCount++;
-              console.warn(`Failed to load image: ${url}`);
-              updateProgress(loadedCount, totalImages);
-
-              if (loadedCount + failedCount === totalImages) {
-                if (loadedCount > 0) {
-                  resolve();
-                } else {
-                  reject(new Error("All images failed to load"));
-                }
-              }
-            };
-
-            // Add delay between image loads to show progress
-            setTimeout(() => {
-              img.src = url;
-            }, index * 100);
-          });
-        });
-      }
-
-      // Update loader and percentage
-      function updateProgress(loaded, total) {
-        const percentage = Math.round((loaded / total) * 100);
-
-        // The new loader automatically animates, so we just update the percentage
+        // Update progress display
         anime({
           targets: "#loadingPercentage",
           innerHTML: [
-            parseInt(loadingPercentage.textContent),
-            percentage + "%",
+            parseInt(loadingPercentage.textContent || '0'),
+            Math.round(progress) + "%",
           ],
-          duration: 300,
+          duration: 200,
           easing: "easeOutQuad",
           round: 1,
         });
-      } // Hide loading screen and start main animations
-      function hideLoadingScreen() {
-        console.log("All images loaded! Starting exit animation...");
+      }, 150); // Fast progress updates
 
-        // Final progress completion
-        anime({
-          targets: "#loadingPercentage",
-          innerHTML: "100%",
-          duration: 200,
-          easing: "easeOutQuad",
-        });
+      return; // Skip the full preloading process
+    }
 
-        // Exit animation sequence
-        setTimeout(() => {
-          // Scale up logo dramatically
-          anime({
-            targets: ".loading-logo",
-            scale: [1, 2.5],
-            opacity: [1, 0],
-            duration: 600,
-            easing: "easeInQuart",
-          });
+    console.log("⟳ Starting comprehensive asset preloading...");
 
-          // Fade out text elements and loader
-          anime({
-            targets:
-              ".loading-text, .loading-subtitle, .loader, .loading-percentage",
-            opacity: [1, 0],
-            translateY: [0, -30],
-            duration: 400,
-            delay: anime.stagger(50),
-            easing: "easeInQuart",
-          });
+    // Start loading animations
+    anime({
+      targets: "#loadingLogo",
+      rotate: "360deg",
+      duration: 2000,
+      easing: "linear",
+      loop: true,
+    });
 
-          // Scatter floating pieces
-          anime({
-            targets: ".chess-piece-float",
-            translateY: [0, -200],
-            opacity: [0.3, 0],
-            scale: [1, 1.5],
-            rotate: "+=360deg",
-            duration: 800,
-            delay: anime.stagger(100),
-            easing: "easeInQuart",
-          });
+    anime({
+      targets: ".loading-logo",
+      scale: [1, 1.1, 1],
+      duration: 2500,
+      easing: "easeInOutQuad",
+      loop: true,
+    });
 
-          // Final loading screen fade
-          setTimeout(() => {
-            loadingScreen.classList.add("fade-out");
+    // Update progress display using anime.js
+    function updateProgress(loaded, total, percentage) {
+      anime({
+        targets: "#loadingPercentage",
+        innerHTML: [
+          parseInt(loadingPercentage.textContent || '0'),
+          percentage + "%",
+        ],
+        duration: 300,
+        easing: "easeOutQuad",
+        round: 1,
+      });
+    }
 
-            // Start main animations after loading screen is hidden
-            setTimeout(() => {
-              loadingScreen.style.display = "none";
-              startMainAnimations();
-            }, 800);
-          }, 600);
-        }, 500);
+    // Hide loading screen and start main animations
+    function hideLoadingScreen(skipAnimation = false) {
+      console.log("All assets loaded! Starting exit animation...");
+
+      if (skipAnimation) {
+        // Fast hide for cached visits
+        loadingScreen.style.display = "none";
+        return;
       }
 
-      // Start image preloading
-      preloadImages(imagesToPreload)
-        .then(() => {
-          // Minimum loading time for better UX
-          setTimeout(() => {
-            hideLoadingScreen();
-          }, 1000);
-        })
-        .catch((error) => {
-          console.error("Error loading images:", error);
-          // Still proceed to hide loading screen even if some images failed
-          setTimeout(() => {
-            hideLoadingScreen();
-          }, 2000);
+      // Final progress completion
+      anime({
+        targets: "#loadingPercentage",
+        innerHTML: "100%",
+        duration: 200,
+        easing: "easeOutQuad",
+      });
+
+      // Exit animation sequence
+      setTimeout(() => {
+        // Scale up logo dramatically
+        anime({
+          targets: ".loading-logo",
+          scale: [1, 2.5],
+          opacity: [1, 0],
+          duration: 600,
+          easing: "easeInQuart",
         });
 
-      // Main website animations (after loading)
-      function startMainAnimations() {
-        console.log("Starting main website animations...");
+        // Fade out text elements and loader
+        anime({
+          targets:
+            ".loading-text, .loading-subtitle, .loader, .loading-percentage",
+          opacity: [1, 0],
+          translateY: [0, -30],
+          duration: 400,
+          delay: anime.stagger(50),
+          easing: "easeInQuart",
+        });
 
-        // Get the appropriate king element based on screen size
-        const kingDesktop = document.getElementById("kingDesktop");
-        const kingMobile = document.getElementById("kingMobile");
-        const kingColoredDesktop =
-          document.getElementById("kingColoredDesktop");
-        const kingColoredMobile = document.getElementById("kingColoredMobile");
+        // Scatter floating pieces
+        anime({
+          targets: ".chess-piece-float",
+          translateY: [0, -200],
+          opacity: [0.3, 0],
+          scale: [1, 1.5],
+          rotate: "+=360deg",
+          duration: 800,
+          delay: anime.stagger(100),
+          easing: "easeInQuart",
+        });
 
-        // Determine which king is currently visible
-        const currentKing = isDesktop ? kingDesktop : kingMobile;
-        const currentColoredKing = isDesktop
-          ? kingColoredDesktop
-          : kingColoredMobile;
-        const kingSelector = isDesktop ? "#kingDesktop" : "#kingMobile";
-        const coloredKingSelector = isDesktop
-          ? "#kingColoredDesktop"
-          : "#kingColoredMobile";
+        // Final loading screen fade
+        setTimeout(() => {
+          loadingScreen.classList.add("fade-out");
 
-        console.log(`Using ${isDesktop ? "desktop" : "mobile"} king elements`);
+          // Start main animations after loading screen is hidden
+          setTimeout(() => {
+            loadingScreen.style.display = "none";
+            startMainAnimations();
 
-        if (currentKing) {
-          console.log(`King element found, starting drop animation...`);
+            // Enable instant navigation after successful caching
+            window.CRMDNavigation.init();
+          }, 800);
+        }, 600);
+      }, 500);
+    }
 
-          // 1. King Drop Animation - Falls with full momentum, no slowdown
-          anime({
-            targets: kingSelector,
-            translateY: ["-100vh", "0vh"], // Falls from top to final position
-            opacity: [0, 1], // Fades in as it falls
-            duration: 1200, // Faster fall with constant speed
-            easing: "linear", // Constant speed, no deceleration
-            delay: 500, // Small delay before starting
-            complete: function () {
-              console.log(
-                "King landed with full impact! Starting background vibration..."
-              );
-
-              // Enable mouse interactions after landing
-              currentKing.style.pointerEvents = "auto";
-
-              // 2. Background Vibration Effect immediately when king touches position
-              anime({
-                targets: ".chessboard-img",
-                translateX: [0, -10, 10, -6, 6, -3, 3, -1, 1, 0], // Even stronger vibration for impact
-                translateY: [0, -4, 4, -2, 2, -1, 1, 0], // More vertical shake
-                duration: 500, // Slightly longer vibration for the impact
-                easing: "easeOutQuad",
-                complete: function () {
-                  console.log(
-                    "Background vibration completed! King is now still and interactive."
-                  );
-
-                  // Different animations for desktop vs mobile
-                  if (isDesktop) {
-                    // Desktop: Animate title, hand
-                    anime({
-                      targets: "#desktopTitle",
-                      opacity: [0, 1],
-                      duration: 800,
-                      delay: 200,
-                      easing: "easeOutQuad",
-                      complete: function () {
-                        // Start navbar animation after title appears
-                        setTimeout(() => {
-                          showNavbar();
-                        }, 300);
-                      },
-                    });
-
-                    anime({
-                      targets: "#desktopHand",
-                      translateX: ["100%", "0%"],
-                      translateY: ["-100%", "0%"],
-                      opacity: [0, 1],
-                      duration: 1200,
-                      delay: 200,
-                      easing: "easeOutQuad",
-                    });
-                  } else {
-                    // Mobile: Animate title image
-                    anime({
-                      targets: ".main-title-picture",
-                      transform: [
-                        "translate(-50%, calc(-50% + 50px))",
-                        "translate(-50%, -50%)",
-                      ],
-                      opacity: [0, 1],
-                      duration: 800,
-                      delay: 200,
-                      easing: "easeOutQuad",
-                      complete: function () {
-                        // Start navbar animation after title appears
-                        setTimeout(() => {
-                          showNavbar();
-                        }, 300);
-                      },
-                    });
-                  }
-
-                  // Wait for navbar animations to complete, then transition to colored king
-                  setTimeout(() => {
-                    console.log("Starting transition to colored king...");
-
-                    // 3. Fade out black king and fade in colored king simultaneously
-                    anime({
-                      targets: kingSelector,
-                      opacity: 0,
-                      duration: 1000,
-                      easing: "easeInOutQuad",
-                    });
-
-                    anime({
-                      targets: coloredKingSelector,
-                      opacity: 1,
-                      duration: 1000,
-                      easing: "easeInOutQuad",
-                      complete: function () {
-                        console.log("Colored king transition completed!");
-                        // Transfer interactions to colored king
-                        currentColoredKing.style.pointerEvents = "auto";
-                        currentKing.style.pointerEvents = "none";
-                      },
-                    });
-                  }, 2800); // Wait for navbar animation to complete
-                },
-              });
-            },
-          });
-
-          // 4. Hover interaction for both kings (black and colored)
-          currentKing.addEventListener("mouseenter", function () {
-            anime({
-              targets: kingSelector,
-              scale: 1.05, // Subtle hover effect
-              duration: 300,
-              easing: "easeOutQuad",
-            });
-          });
-
-          currentKing.addEventListener("mouseleave", function () {
-            anime({
-              targets: kingSelector,
-              scale: 1, // Return to normal size (no breathing effect)
-              duration: 300,
-              easing: "easeOutQuad",
-            });
-          });
-
-          // Hover interactions for colored king (same effects)
-          currentColoredKing.addEventListener("mouseenter", function () {
-            anime({
-              targets: coloredKingSelector,
-              scale: 1.05,
-              duration: 300,
-              easing: "easeOutQuad",
-            });
-          });
-
-          currentColoredKing.addEventListener("mouseleave", function () {
-            anime({
-              targets: coloredKingSelector,
-              scale: 1,
-              duration: 300,
-              easing: "easeOutQuad",
-            });
-          });
-        } else {
-          console.error(
-            "King image not found! Desktop:",
-            kingDesktop,
-            "Mobile:",
-            kingMobile
-          );
+    // Start comprehensive asset preloading using shared system
+    window.CRMDPreloader.preloadAll(
+      allAssets,
+      // Progress callback
+      updateProgress,
+      // Complete callback
+      function (result) {
+        console.log(`✓ Preloading complete! Success rate: ${result.successRate}%`);
+        console.log(`✓ Loaded: ${result.loaded.length}/${result.total}`);
+        if (result.failed.length > 0) {
+          console.warn(`✗ Failed: ${result.failed.length} assets`);
         }
 
-        // Navbar expansion animation function
-        function showNavbar() {
-          const navbar = isDesktop
-            ? document.getElementById("navbarDesktop")
-            : document.getElementById("navbarMobile");
-          const navbarItems = isDesktop
-            ? document.getElementById("navbarItemsDesktop")
-            : document.getElementById("navbarItemsMobile");
+        // Mark assets as cached
+        window.CRMDCache.markCached();
 
-          console.log("Starting STUCO logo centerpiece expansion animation...");
+        // Hide loading screen with minimum display time
+        setTimeout(() => {
+          hideLoadingScreen();
+        }, 1500);
+      },
+      // Error callback
+      function (error) {
+        console.error("Error loading assets:", error);
+        // Still proceed even if some assets failed
+        setTimeout(() => {
+          hideLoadingScreen();
+        }, 2000);
+      }
+    );
 
-          // The navbar is already visible, so we just need to expand it
-          // Phase 1: Expand the circle outward to rounded rectangle
+    // Hide loading screen and start main animations
+    function hideLoadingScreen(skipAnimation = false) {
+      console.log("All assets loaded! Starting exit animation...");
+
+      if (skipAnimation) {
+        // Fast hide for cached visits
+        loadingScreen.style.display = "none";
+        return;
+      }
+
+      // Final progress completion
+      anime({
+        targets: "#loadingPercentage",
+        innerHTML: "100%",
+        duration: 200,
+        easing: "easeOutQuad",
+      });
+
+      // Exit animation sequence
+      setTimeout(() => {
+        // Scale up logo dramatically
+        anime({
+          targets: ".loading-logo",
+          scale: [1, 2.5],
+          opacity: [1, 0],
+          duration: 600,
+          easing: "easeInQuart",
+        });
+
+        // Fade out text elements and loader
+        anime({
+          targets:
+            ".loading-text, .loading-subtitle, .loader, .loading-percentage",
+          opacity: [1, 0],
+          translateY: [0, -30],
+          duration: 400,
+          delay: anime.stagger(50),
+          easing: "easeInQuart",
+        });
+
+        // Scatter floating pieces
+        anime({
+          targets: ".chess-piece-float",
+          translateY: [0, -200],
+          opacity: [0.3, 0],
+          scale: [1, 1.5],
+          rotate: "+=360deg",
+          duration: 800,
+          delay: anime.stagger(100),
+          easing: "easeInQuart",
+        });
+
+        // Final loading screen fade
+        setTimeout(() => {
+          loadingScreen.classList.add("fade-out");
+
+          // Start main animations after loading screen is hidden
           setTimeout(() => {
-            navbar.classList.add("expanded");
+            loadingScreen.style.display = "none";
+            startMainAnimations();
+          }, 800);
+        }, 600);
+      }, 500);
+    }
 
-            // Desktop: Expand vertically
-            if (isDesktop) {
-              anime({
-                targets: navbar,
-                width: "6vw",
-                height: "62vh",
-                borderRadius: "3vw",
-                duration: 700,
-                easing: "easeOutQuart",
-                complete: function () {
-                  // Reset any transform properties that might interfere with positioning
-                  navbar.style.transform = "translateY(-50%)";
-                  revealNavItems();
-                },
-              });
-            }
-            // Mobile: Expand horizontally
-            else {
-              const screenWidth = window.innerWidth;
-              const margin = screenWidth <= 360 ? 20 : 20;
-              const maxWidth = screenWidth <= 360 ? 340 : 420;
-              const mobileWidth = Math.min(screenWidth - margin, maxWidth);
-              const mobileHeight = screenWidth <= 360 ? "50px" : "55px";
-              const borderRadius = screenWidth <= 360 ? "25px" : "27px";
+    // Start comprehensive asset preloading
+    preloadAllAssets(allAssets)
+      .then(() => {
+        console.log("✓ All website assets successfully cached!");
+        // Minimum loading time for better UX (only on first load)
+        setTimeout(() => {
+          hideLoadingScreen();
+        }, 1500);
+      })
+      .catch((error) => {
+        console.error("Error loading assets:", error);
+        // Still proceed to hide loading screen even if some assets failed
+        setTimeout(() => {
+          hideLoadingScreen();
+        }, 2000);
+      });
 
-              anime({
-                targets: navbar,
-                width: mobileWidth + "px",
-                height: mobileHeight,
-                borderRadius: borderRadius,
-                duration: 700,
-                easing: "easeOutQuart",
-                complete: function () {
-                  // Reset any transform properties that might interfere with positioning
-                  navbar.style.transform = "translateX(-50%)";
-                  revealNavItems();
-                },
-              });
-            }
-          }, 300);
+    // Main website animations (after loading)
+    function startMainAnimations() {
+      console.log("Starting main website animations...");
 
-          // Phase 2: Reveal navigation items from both sides
-          function revealNavItems() {
-            console.log("Revealing navigation items...");
-            navbarItems.classList.add("show");
+      // Get the appropriate king element based on screen size
+      const kingDesktop = document.getElementById("kingDesktop");
+      const kingMobile = document.getElementById("kingMobile");
+      const kingColoredDesktop =
+        document.getElementById("kingColoredDesktop");
+      const kingColoredMobile = document.getElementById("kingColoredMobile");
 
-            // Animate left side items (Home, About, Reviews)
+      // Determine which king is currently visible
+      const currentKing = isDesktop ? kingDesktop : kingMobile;
+      const currentColoredKing = isDesktop
+        ? kingColoredDesktop
+        : kingColoredMobile;
+      const kingSelector = isDesktop ? "#kingDesktop" : "#kingMobile";
+      const coloredKingSelector = isDesktop
+        ? "#kingColoredDesktop"
+        : "#kingColoredMobile";
+
+      console.log(`Using ${isDesktop ? "desktop" : "mobile"} king elements`);
+
+      if (currentKing) {
+        console.log(`King element found, starting drop animation...`);
+
+        // 1. King Drop Animation - Falls with full momentum, no slowdown
+        anime({
+          targets: kingSelector,
+          translateY: ["-100vh", "0vh"], // Falls from top to final position
+          opacity: [0, 1], // Fades in as it falls
+          duration: 1200, // Faster fall with constant speed
+          easing: "linear", // Constant speed, no deceleration
+          delay: 500, // Small delay before starting
+          complete: function () {
+            console.log(
+              "King landed with full impact! Starting background vibration..."
+            );
+
+            // Enable mouse interactions after landing
+            currentKing.style.pointerEvents = "auto";
+
+            // 2. Background Vibration Effect immediately when king touches position
             anime({
-              targets: ".navbar-items-left .navbar-item",
+              targets: ".chessboard-img",
+              translateX: [0, -10, 10, -6, 6, -3, 3, -1, 1, 0], // Even stronger vibration for impact
+              translateY: [0, -4, 4, -2, 2, -1, 1, 0], // More vertical shake
+              duration: 500, // Slightly longer vibration for the impact
+              easing: "easeOutQuad",
+              complete: function () {
+                console.log(
+                  "Background vibration completed! King is now still and interactive."
+                );
+
+                // Different animations for desktop vs mobile
+                if (isDesktop) {
+                  // Desktop: Animate title, hand
+                  anime({
+                    targets: "#desktopTitle",
+                    opacity: [0, 1],
+                    duration: 800,
+                    delay: 200,
+                    easing: "easeOutQuad",
+                    complete: function () {
+                      // Start navbar animation after title appears
+                      setTimeout(() => {
+                        showNavbar();
+                      }, 300);
+                    },
+                  });
+
+                  anime({
+                    targets: "#desktopHand",
+                    translateX: ["100%", "0%"],
+                    translateY: ["-100%", "0%"],
+                    opacity: [0, 1],
+                    duration: 1200,
+                    delay: 200,
+                    easing: "easeOutQuad",
+                  });
+                } else {
+                  // Mobile: Animate title image
+                  anime({
+                    targets: ".main-title-picture",
+                    transform: [
+                      "translate(-50%, calc(-50% + 50px))",
+                      "translate(-50%, -50%)",
+                    ],
+                    opacity: [0, 1],
+                    duration: 800,
+                    delay: 200,
+                    easing: "easeOutQuad",
+                    complete: function () {
+                      // Start navbar animation after title appears
+                      setTimeout(() => {
+                        showNavbar();
+                      }, 300);
+                    },
+                  });
+                }
+
+                // Wait for navbar animations to complete, then transition to colored king
+                setTimeout(() => {
+                  console.log("Starting transition to colored king...");
+
+                  // 3. Fade out black king and fade in colored king simultaneously
+                  anime({
+                    targets: kingSelector,
+                    opacity: 0,
+                    duration: 1000,
+                    easing: "easeInOutQuad",
+                  });
+
+                  anime({
+                    targets: coloredKingSelector,
+                    opacity: 1,
+                    duration: 1000,
+                    easing: "easeInOutQuad",
+                    complete: function () {
+                      console.log("Colored king transition completed!");
+                      // Transfer interactions to colored king
+                      currentColoredKing.style.pointerEvents = "auto";
+                      currentKing.style.pointerEvents = "none";
+                    },
+                  });
+                }, 2800); // Wait for navbar animation to complete
+              },
+            });
+          },
+        });
+
+        // 4. Hover interaction for both kings (black and colored)
+        currentKing.addEventListener("mouseenter", function () {
+          anime({
+            targets: kingSelector,
+            scale: 1.05, // Subtle hover effect
+            duration: 300,
+            easing: "easeOutQuad",
+          });
+        });
+
+        currentKing.addEventListener("mouseleave", function () {
+          anime({
+            targets: kingSelector,
+            scale: 1, // Return to normal size (no breathing effect)
+            duration: 300,
+            easing: "easeOutQuad",
+          });
+        });
+
+        // Hover interactions for colored king (same effects)
+        currentColoredKing.addEventListener("mouseenter", function () {
+          anime({
+            targets: coloredKingSelector,
+            scale: 1.05,
+            duration: 300,
+            easing: "easeOutQuad",
+          });
+        });
+
+        currentColoredKing.addEventListener("mouseleave", function () {
+          anime({
+            targets: coloredKingSelector,
+            scale: 1,
+            duration: 300,
+            easing: "easeOutQuad",
+          });
+        });
+      } else {
+        console.error(
+          "King image not found! Desktop:",
+          kingDesktop,
+          "Mobile:",
+          kingMobile
+        );
+      }
+
+      // Navbar expansion animation function
+      function showNavbar() {
+        const navbar = isDesktop
+          ? document.getElementById("navbarDesktop")
+          : document.getElementById("navbarMobile");
+        const navbarItems = isDesktop
+          ? document.getElementById("navbarItemsDesktop")
+          : document.getElementById("navbarItemsMobile");
+
+        console.log("Starting STUCO logo centerpiece expansion animation...");
+
+        // The navbar is already visible, so we just need to expand it
+        // Phase 1: Expand the circle outward to rounded rectangle
+        setTimeout(() => {
+          navbar.classList.add("expanded");
+
+          // Desktop: Expand vertically
+          if (isDesktop) {
+            anime({
+              targets: navbar,
+              width: "6vw",
+              height: "62vh",
+              borderRadius: "3vw",
+              duration: 700,
+              easing: "easeOutQuart",
+              complete: function () {
+                // Reset any transform properties that might interfere with positioning
+                navbar.style.transform = "translateY(-50%)";
+                revealNavItems();
+              },
+            });
+          }
+          // Mobile: Expand horizontally
+          else {
+            const screenWidth = window.innerWidth;
+            const margin = screenWidth <= 360 ? 20 : 20;
+            const maxWidth = screenWidth <= 360 ? 340 : 420;
+            const mobileWidth = Math.min(screenWidth - margin, maxWidth);
+            const mobileHeight = screenWidth <= 360 ? "50px" : "55px";
+            const borderRadius = screenWidth <= 360 ? "25px" : "27px";
+
+            anime({
+              targets: navbar,
+              width: mobileWidth + "px",
+              height: mobileHeight,
+              borderRadius: borderRadius,
+              duration: 700,
+              easing: "easeOutQuart",
+              complete: function () {
+                // Reset any transform properties that might interfere with positioning
+                navbar.style.transform = "translateX(-50%)";
+                revealNavItems();
+              },
+            });
+          }
+        }, 300);
+
+        // Phase 2: Reveal navigation items from both sides
+        function revealNavItems() {
+          console.log("Revealing navigation items...");
+          navbarItems.classList.add("show");
+
+          // Animate left side items (Home, About, Reviews)
+          anime({
+            targets: ".navbar-items-left .navbar-item",
+            opacity: [0, 1],
+            scale: [0.8, 1],
+            translateX: isDesktop ? [0, 0] : [-30, 0],
+            translateY: isDesktop ? [-30, 0] : [0, 0],
+            duration: 400,
+            delay: anime.stagger(100),
+            easing: "easeOutQuad",
+          });
+
+          // Animate right side items (Rules, Contact, Sponsors) with slight delay
+          setTimeout(() => {
+            anime({
+              targets: ".navbar-items-right .navbar-item",
               opacity: [0, 1],
               scale: [0.8, 1],
-              translateX: isDesktop ? [0, 0] : [-30, 0],
-              translateY: isDesktop ? [-30, 0] : [0, 0],
+              translateX: isDesktop ? [0, 0] : [30, 0],
+              translateY: isDesktop ? [30, 0] : [0, 0],
               duration: 400,
               delay: anime.stagger(100),
               easing: "easeOutQuad",
+              complete: function () {
+                console.log("Navbar expansion animation completed!");
+                navbar.classList.add("show");
+              },
             });
-
-            // Animate right side items (Rules, Contact, Sponsors) with slight delay
-            setTimeout(() => {
-              anime({
-                targets: ".navbar-items-right .navbar-item",
-                opacity: [0, 1],
-                scale: [0.8, 1],
-                translateX: isDesktop ? [0, 0] : [30, 0],
-                translateY: isDesktop ? [30, 0] : [0, 0],
-                duration: 400,
-                delay: anime.stagger(100),
-                easing: "easeOutQuad",
-                complete: function () {
-                  console.log("Navbar expansion animation completed!");
-                  navbar.classList.add("show");
-                },
-              });
-            }, 200);
-          }
+          }, 200);
         }
       }
-    });
-  </script>
+    }
+  });
+</script>
+
 </html>

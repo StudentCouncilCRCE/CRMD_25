@@ -1,0 +1,111 @@
+/* ========== CRMD INSTANT NAVIGATION TRANSITIONS ========== */
+
+/* Smooth body transitions for instant navigation */
+body {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* Page transition states */
+body.page-loading {
+    opacity: 0;
+}
+
+body.page-loaded {
+    opacity: 1;
+}
+
+/* Enhanced link hover effects for cached navigation */
+a[href$=".html"] {
+    transition: all 0.2s ease;
+}
+
+a[href$=".html"]:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.1);
+}
+
+/* Navbar link enhancements */
+.navbar-item {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+.navbar-item:hover {
+    transform: translateY(-2px) scale(1.05) !important;
+    filter: brightness(1.2) !important;
+}
+
+/* Loading state for images to prevent layout shift */
+img {
+    transition: opacity 0.3s ease;
+}
+
+img:not([src]) {
+    opacity: 0;
+}
+
+/* Prevent flash of unstyled content */
+.loading-screen+* {
+    visibility: hidden;
+}
+
+.loading-screen.fade-out+* {
+    visibility: visible;
+}
+
+/* Performance optimizations */
+* {
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* GPU acceleration for smooth animations */
+.king-img,
+.chessboard-img,
+.navbar,
+.loading-screen {
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: transform, opacity;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .loading-screen {
+        animation: none !important;
+    }
+}
+
+/* Debug utilities (only when ?debug is in URL) */
+.debug-cache-info {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: monospace;
+    font-size: 12px;
+    z-index: 10000;
+    display: none;
+}
+
+/* Show debug info when debug mode is active */
+body.debug-mode .debug-cache-info {
+    display: block;
+}

@@ -1,112 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CRMD - About Us</title>
-    <link rel="icon" type="image/x-icon" href="Assests/favicon.ico" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
-    <style>
-      /* Custom Font */
-      @font-face {
-        font-family: "Kodex";
-        src: url("Fonts/kodex/Kodex-Regular.ttf") format("truetype");
-        font-weight: normal;
-        font-style: normal;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRMD - About Us</title>
+  <link rel="icon" type="image/x-icon" href="Assests/favicon.ico" />
+  <!-- CRMD Shared Cache System -->
+  <script src="crmd-cache.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <link rel="stylesheet" href="crmd-transitions.css" />
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+  <style>
+    /* Custom Font */
+    @font-face {
+      font-family: "Kodex";
+      src: url("Fonts/kodex/Kodex-Regular.ttf") format("truetype");
+      font-weight: normal;
+      font-style: normal;
+    }
 
-      body,
-      html {
-        height: 100%;
-        overflow: hidden;
-      }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      .container {
-        position: relative;
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-      }
+    body,
+    html {
+      height: 100%;
+      overflow: hidden;
+    }
 
-      /* Background image using picture element for responsiveness */
-      picture {
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 0;
-      }
+    .container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
 
-      picture > img.background-img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-      }
+    /* Background image using picture element for responsiveness */
+    picture {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
 
-      .checkerboard-overlay {
-        position: absolute;
-        bottom: 0;
-        left: -25%;
-        width: 100vw;
-        height: 100vh;
-        background-image: url("Assests/CRMD_Poster_filed_map.webp");
-        background-size: contain;
-        background-position: center bottom;
-        background-repeat: no-repeat;
+    picture>img.background-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .checkerboard-overlay {
+      position: absolute;
+      bottom: 0;
+      left: -25%;
+      width: 100vw;
+      height: 100vh;
+      background-image: url("Assests/CRMD_Poster_filed_map.webp");
+      background-size: contain;
+      background-position: center bottom;
+      background-repeat: no-repeat;
+      opacity: 0;
+      animation: fadeInCheckerboard 2s ease-in-out forwards;
+      z-index: 1;
+    }
+
+    .hand-figure {
+      position: absolute;
+      top: -100vh;
+      /* Start completely off-screen from the top */
+      right: -50vw;
+      /* Start from top-right corner */
+      width: 100vw;
+      height: 100vh;
+      animation: slideInFromTopRight 2.5s ease-out 1s forwards;
+      z-index: 2;
+      overflow: hidden;
+      /* Ensure no parts go outside */
+    }
+
+    .hand-figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Changed back to cover for proper full-screen effect */
+      object-position: center;
+    }
+
+    @keyframes fadeInCheckerboard {
+      0% {
         opacity: 0;
-        animation: fadeInCheckerboard 2s ease-in-out forwards;
-        z-index: 1;
+        transform: scale(0.8);
       }
 
-      .hand-figure {
-        position: absolute;
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideInFromTopRight {
+      0% {
         top: -100vh;
-        /* Start completely off-screen from the top */
         right: -50vw;
-        /* Start from top-right corner */
-        width: 100vw;
-        height: 100vh;
-        animation: slideInFromTopRight 2.5s ease-out 1s forwards;
-        z-index: 2;
-        overflow: hidden;
-        /* Ensure no parts go outside */
+        opacity: 0;
+        transform: rotate(15deg);
+        /* Slight rotation during entry */
       }
 
-      .hand-figure img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        /* Changed back to cover for proper full-screen effect */
-        object-position: center;
+      20% {
+        opacity: 1;
       }
 
-      @keyframes fadeInCheckerboard {
-        0% {
-          opacity: 0;
-          transform: scale(0.8);
-        }
+      100% {
+        top: 0;
+        right: 0;
+        opacity: 1;
+        transform: rotate(0deg);
+        /* Settle into normal position */
+      }
+    }
 
-        100% {
-          opacity: 1;
-          transform: scale(1);
-        }
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .checkerboard-overlay {
+        height: 25vh;
       }
 
       @keyframes slideInFromTopRight {
@@ -115,7 +144,6 @@
           right: -50vw;
           opacity: 0;
           transform: rotate(15deg);
-          /* Slight rotation during entry */
         }
 
         20% {
@@ -127,998 +155,948 @@
           right: 0;
           opacity: 1;
           transform: rotate(0deg);
-          /* Settle into normal position */
         }
       }
+    }
 
-      /* Responsive adjustments */
-      @media (max-width: 768px) {
-        .checkerboard-overlay {
-          height: 25vh;
+    @media (max-width: 480px) {
+      @keyframes slideInFromTopRight {
+        0% {
+          top: -100vh;
+          right: -50vw;
+          opacity: 0;
+          transform: rotate(15deg);
         }
 
-        @keyframes slideInFromTopRight {
-          0% {
-            top: -100vh;
-            right: -50vw;
-            opacity: 0;
-            transform: rotate(15deg);
-          }
+        20% {
+          opacity: 1;
+        }
 
-          20% {
-            opacity: 1;
-          }
-
-          100% {
-            top: 0;
-            right: 0;
-            opacity: 1;
-            transform: rotate(0deg);
-          }
+        100% {
+          top: 0;
+          right: 0;
+          opacity: 1;
+          transform: rotate(0deg);
         }
       }
+    }
 
-      @media (max-width: 480px) {
-        @keyframes slideInFromTopRight {
-          0% {
-            top: -100vh;
-            right: -50vw;
-            opacity: 0;
-            transform: rotate(15deg);
-          }
+    /* Future SVG title positioning */
 
-          20% {
-            opacity: 1;
-          }
+    /* About Title Styles */
+    .about-title-container {
+      position: absolute;
+      bottom: 8%;
+      right: 5%;
+      text-align: right;
+      z-index: 4;
+    }
 
-          100% {
-            top: 0;
-            right: 0;
-            opacity: 1;
-            transform: rotate(0deg);
-          }
-        }
+    .about-title {
+      font-family: "Kodex", sans-serif;
+      font-size: 8rem;
+      font-weight: 900;
+      color: #000;
+      text-shadow: 3px 3px 0px #ffd700, 6px 6px 10px rgba(0, 0, 0, 0.3);
+      margin-bottom: 20px;
+      transform: translateY(-50px);
+      opacity: 0;
+      animation: slideInTitle 1.5s ease-out 2s forwards;
+      letter-spacing: 8px;
+      line-height: 1;
+    }
+
+    .about-subtitle {
+      font-family: "Kodex", sans-serif;
+      font-size: 1.5rem;
+      color: #2c2c2c;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+      transform: translateY(30px);
+      opacity: 0;
+      animation: slideInSubtitle 1.5s ease-out 2.5s forwards;
+    }
+
+    @keyframes slideInTitle {
+      0% {
+        transform: translateY(-50px);
+        opacity: 0;
       }
 
-      /* Future SVG title positioning */
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
 
-      /* About Title Styles */
+    @keyframes slideInSubtitle {
+      0% {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Mobile responsiveness for about title */
+    @media (max-width: 768px) {
       .about-title-container {
-        position: absolute;
-        bottom: 8%;
-        right: 5%;
+        top: 15%;
+        right: 55%;
+        bottom: auto;
         text-align: right;
-        z-index: 4;
       }
 
       .about-title {
-        font-family: "Kodex", sans-serif;
-        font-size: 8rem;
-        font-weight: 900;
-        color: #000;
-        text-shadow: 3px 3px 0px #ffd700, 6px 6px 10px rgba(0, 0, 0, 0.3);
-        margin-bottom: 20px;
-        transform: translateY(-50px);
-        opacity: 0;
-        animation: slideInTitle 1.5s ease-out 2s forwards;
-        letter-spacing: 8px;
-        line-height: 1;
+        font-size: 3.5rem;
+        letter-spacing: 4px;
+        margin-bottom: 15px;
       }
 
       .about-subtitle {
-        font-family: "Kodex", sans-serif;
-        font-size: 1.5rem;
-        color: #2c2c2c;
-        font-weight: 600;
-        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
-        transform: translateY(30px);
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .about-title-container {
+        top: 15%;
+        right: 55%;
+        bottom: auto;
+        text-align: right;
+      }
+
+      .about-title {
+        font-size: 3rem;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+      }
+
+      .about-subtitle {
+        font-size: 2rem;
+      }
+    }
+
+    /* About Content Section Styles */
+    .about-content-section {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url("Assests/CRMD_Poster_bg.webp");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.8s ease;
+    }
+
+    .about-content-section.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .about-containers {
+      display: flex;
+      gap: 40px;
+      max-width: 1200px;
+      width: 100%;
+      height: 80vh;
+    }
+
+    .about-container {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      transform: translateY(50px);
+      opacity: 0;
+      animation: slideInContainer 1s ease-out forwards;
+    }
+
+    .about-container:nth-child(1) {
+      animation-delay: 0.3s;
+    }
+
+    .about-container:nth-child(2) {
+      animation-delay: 0.6s;
+    }
+
+    .container-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 3px solid #ffd700;
+    }
+
+    .container-logo {
+      width: 60px;
+      height: 60px;
+      margin-right: 20px;
+      object-fit: contain;
+    }
+
+    .container-title {
+      font-family: "Kodex", sans-serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      text-shadow: 1px 1px 2px rgba(255, 215, 0, 0.3);
+    }
+
+    .container-content {
+      flex: 1;
+      font-family: "Arial", sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #333;
+      text-align: justify;
+      overflow-y: auto;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 6;
+    }
+
+    .close-button:hover {
+      background: rgba(0, 0, 0, 0.9);
+      transform: scale(1.1);
+    }
+
+    .view-more-button {
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(45deg, #ffd700, #ffa500);
+      color: #000;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-family: "Kodex", sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+      z-index: 4;
+      animation: pulse 2s infinite;
+    }
+
+    .view-more-button:hover {
+      transform: translateX(-50%) translateY(-5px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+    }
+
+    @keyframes slideInContainer {
+      0% {
+        transform: translateY(50px);
         opacity: 0;
-        animation: slideInSubtitle 1.5s ease-out 2.5s forwards;
       }
 
-      @keyframes slideInTitle {
-        0% {
-          transform: translateY(-50px);
-          opacity: 0;
-        }
-
-        100% {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-
-      @keyframes slideInSubtitle {
-        0% {
-          transform: translateY(30px);
-          opacity: 0;
-        }
-
-        100% {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-
-      /* Mobile responsiveness for about title */
-      @media (max-width: 768px) {
-        .about-title-container {
-          top: 15%;
-          right: 55%;
-          bottom: auto;
-          text-align: right;
-        }
-
-        .about-title {
-          font-size: 3.5rem;
-          letter-spacing: 4px;
-          margin-bottom: 15px;
-        }
-
-        .about-subtitle {
-          font-size: 1.2rem;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .about-title-container {
-          top: 15%;
-          right: 55%;
-          bottom: auto;
-          text-align: right;
-        }
-
-        .about-title {
-          font-size: 3rem;
-          letter-spacing: 2px;
-          margin-bottom: 10px;
-        }
-
-        .about-subtitle {
-          font-size: 2rem;
-        }
-      }
-
-      /* About Content Section Styles */
-      .about-content-section {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-image: url("Assests/CRMD_Poster_bg.webp");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        z-index: 5;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 40px;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.8s ease;
-      }
-
-      .about-content-section.show {
+      100% {
+        transform: translateY(0);
         opacity: 1;
-        visibility: visible;
+      }
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: translateX(-50%) scale(1);
+      }
+
+      50% {
+        transform: translateX(-50%) scale(1.05);
+      }
+    }
+
+    /* Mobile responsiveness for about content */
+    @media (max-width: 768px) {
+      .about-content-section {
+        padding: 20px;
       }
 
       .about-containers {
-        display: flex;
-        gap: 40px;
-        max-width: 1200px;
-        width: 100%;
-        height: 80vh;
-      }
-
-      .about-container {
-        flex: 1;
-        background: rgba(255, 255, 255, 0.95);
-        border-radius: 20px;
-        padding: 30px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(10px);
-        border: 2px solid rgba(255, 215, 0, 0.3);
-        display: flex;
         flex-direction: column;
-        transform: translateY(50px);
-        opacity: 0;
-        animation: slideInContainer 1s ease-out forwards;
-      }
-
-      .about-container:nth-child(1) {
-        animation-delay: 0.3s;
-      }
-
-      .about-container:nth-child(2) {
-        animation-delay: 0.6s;
-      }
-
-      .container-header {
-        display: flex;
-        align-items: center;
-        margin-bottom: 25px;
-        padding-bottom: 20px;
-        border-bottom: 3px solid #ffd700;
-      }
-
-      .container-logo {
-        width: 60px;
-        height: 60px;
-        margin-right: 20px;
-        object-fit: contain;
-      }
-
-      .container-title {
-        font-family: "Kodex", sans-serif;
-        font-size: 2.2rem;
-        font-weight: 700;
-        color: #1a1a1a;
-        text-shadow: 1px 1px 2px rgba(255, 215, 0, 0.3);
-      }
-
-      .container-content {
-        flex: 1;
-        font-family: "Arial", sans-serif;
-        font-size: 1.1rem;
-        line-height: 1.8;
-        color: #333;
-        text-align: justify;
+        gap: 20px;
+        height: auto;
+        max-height: 80vh;
         overflow-y: auto;
       }
 
-      .close-button {
-        position: absolute;
-        top: 30px;
-        right: 30px;
-        background: rgba(0, 0, 0, 0.7);
-        color: white;
-        border: none;
-        border-radius: 50%;
+      .about-container {
+        padding: 20px;
+        min-height: 300px;
+      }
+
+      .container-title {
+        font-size: 1.8rem;
+      }
+
+      .container-content {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      .container-logo {
         width: 50px;
         height: 50px;
-        font-size: 20px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        z-index: 6;
+        margin-right: 15px;
       }
 
-      .close-button:hover {
-        background: rgba(0, 0, 0, 0.9);
-        transform: scale(1.1);
-      }
-
-      .view-more-button {
-        position: absolute;
-        bottom: 10%;
-        left: 50%;
-        transform: translateX(-50%);
-        background: linear-gradient(45deg, #ffd700, #ffa500);
-        color: #000;
-        border: none;
-        padding: 15px 30px;
-        border-radius: 30px;
-        font-family: "Kodex", sans-serif;
-        font-size: 1.1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
-        z-index: 4;
-        animation: pulse 2s infinite;
-      }
-
-      .view-more-button:hover {
-        transform: translateX(-50%) translateY(-5px);
-        box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
-      }
-
-      @keyframes slideInContainer {
-        0% {
-          transform: translateY(50px);
-          opacity: 0;
-        }
-
-        100% {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          transform: translateX(-50%) scale(1);
-        }
-
-        50% {
-          transform: translateX(-50%) scale(1.05);
-        }
-      }
-
-      /* Mobile responsiveness for about content */
-      @media (max-width: 768px) {
-        .about-content-section {
-          padding: 20px;
-        }
-
-        .about-containers {
-          flex-direction: column;
-          gap: 20px;
-          height: auto;
-          max-height: 80vh;
-          overflow-y: auto;
-        }
-
-        .about-container {
-          padding: 20px;
-          min-height: 300px;
-        }
-
-        .container-title {
-          font-size: 1.8rem;
-        }
-
-        .container-content {
-          font-size: 1rem;
-          line-height: 1.6;
-        }
-
-        .container-logo {
-          width: 50px;
-          height: 50px;
-          margin-right: 15px;
-        }
-
-        .close-button {
-          width: 40px;
-          height: 40px;
-          font-size: 16px;
-          top: 20px;
-          right: 20px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .about-content-section {
-          padding: 15px;
-        }
-
-        .about-containers {
-          gap: 15px;
-        }
-
-        .about-container {
-          padding: 15px;
-        }
-
-        .container-title {
-          font-size: 1.5rem;
-        }
-
-        .container-content {
-          font-size: 0.9rem;
-        }
-
-        .container-logo {
-          width: 40px;
-          height: 40px;
-          margin-right: 10px;
-        }
-      }
-
-      /* Navigation Bar Styles */
-      .navbar {
-        position: fixed;
-        z-index: 100;
-        background: rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(10px);
-        border-radius: 50%;
-        opacity: 1;
-        transition: all 0.8s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      /* Desktop navbar - vertical at left center */
-      .navbar.desktop {
-        top: 50%;
-        left: 20px;
-        transform: translateY(-50%);
-        width: 60px;
-        height: 60px;
-        padding: 10px;
-      }
-
-      /* Mobile navbar - horizontal at top center */
-      .navbar.mobile {
-        top: 1vh;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 45px;
-        height: 45px;
-        padding: 6px;
-      }
-
-      /* STUCO Logo - Black circular centerpiece */
-      .navbar-logo {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+      .close-button {
         width: 40px;
         height: 40px;
-        background: black;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 101;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        font-size: 16px;
+        top: 20px;
+        right: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .about-content-section {
+        padding: 15px;
       }
 
-      .navbar-logo img {
-        width: 24px;
-        height: 24px;
-        object-fit: contain;
+      .about-containers {
+        gap: 15px;
       }
 
-      .navbar.mobile .navbar-logo {
-        width: 32px;
-        height: 32px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      .about-container {
+        padding: 15px;
       }
 
-      .navbar.mobile .navbar-logo img {
-        width: 18px;
-        height: 18px;
-        object-fit: contain;
-        margin: 0 auto;
-        padding: 0;
-        display: block;
-        position: relative;
-        top: 30%;
-        left: 30%;
-        transform: translate(-50%, -50%);
+      .container-title {
+        font-size: 1.5rem;
       }
 
-      /* Navigation items container */
-      .navbar-items {
-        display: flex;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        transition: opacity 0.5s ease;
+      .container-content {
+        font-size: 0.9rem;
       }
 
-      .navbar-items.show {
-        opacity: 1;
+      .container-logo {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
       }
+    }
 
-      /* Desktop: Vertical layout */
-      .navbar.desktop .navbar-items {
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
+    /* Navigation Bar Styles */
+    .navbar {
+      position: fixed;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 50%;
+      opacity: 1;
+      transition: all 0.8s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Desktop navbar - vertical at left center */
+    .navbar.desktop {
+      top: 50%;
+      left: 20px;
+      transform: translateY(-50%);
+      width: 60px;
+      height: 60px;
+      padding: 10px;
+    }
+
+    /* Mobile navbar - horizontal at top center */
+    .navbar.mobile {
+      top: 1vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 45px;
+      height: 45px;
+      padding: 6px;
+    }
+
+    /* STUCO Logo - Black circular centerpiece */
+    .navbar-logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      background: black;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 101;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .navbar-logo img {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+
+    .navbar.mobile .navbar-logo {
+      width: 32px;
+      height: 32px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .navbar.mobile .navbar-logo img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      margin: 0 auto;
+      padding: 0;
+      display: block;
+      position: relative;
+      top: 30%;
+      left: 30%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Navigation items container */
+    .navbar-items {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .navbar-items.show {
+      opacity: 1;
+    }
+
+    /* Desktop: Vertical layout */
+    .navbar.desktop .navbar-items {
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Mobile: Horizontal layout */
+    .navbar.mobile .navbar-items {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8px;
+    }
+
+    .navbar-items-left,
+    .navbar-items-right {
+      display: flex;
+      gap: 8px;
+    }
+
+    /* Desktop: Vertical groups */
+    .navbar.desktop .navbar-items-left,
+    .navbar.desktop .navbar-items-right {
+      flex-direction: column;
+    }
+
+    /* Mobile: Horizontal groups */
+    .navbar.mobile .navbar-items-left,
+    .navbar.mobile .navbar-items-right {
+      flex-direction: row;
+      gap: 4px;
+    }
+
+    /* Expanded state - Desktop vertical */
+    .navbar.desktop.expanded {
+      width: 6vw;
+      height: 62vh;
+      border-radius: 3vw;
+      padding: 20px 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Expanded state - Mobile horizontal */
+    .navbar.mobile.expanded {
+      width: calc(100vw - 20px);
+      max-width: 420px;
+      height: 65px;
+      border-radius: 27px;
+      padding: 8px 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .navbar-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 8px 6px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: white;
+      position: relative;
+      min-width: 50px;
+      min-height: 50px;
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    .navbar.mobile .navbar-item {
+      min-width: 36px;
+      min-height: 36px;
+      padding: 4px 3px;
+      margin: 0 1px;
+    }
+
+    .navbar-item:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1.05);
+    }
+
+    .navbar-item i {
+      font-size: 18px;
+      color: white;
+      transition: all 0.3s ease;
+      margin-bottom: 3px;
+    }
+
+    .navbar.mobile .navbar-item i {
+      font-size: 14px;
+      margin-bottom: 1px;
+    }
+
+    .navbar-item .chess-icon {
+      display: block;
+    }
+
+    .navbar-item .hover-icon {
+      display: none;
+    }
+
+    .navbar-item:hover .chess-icon {
+      display: none;
+    }
+
+    .navbar-item:hover .hover-icon {
+      display: block;
+    }
+
+    .navbar-item .label {
+      font-size: 9px;
+      margin-top: 1px;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+      white-space: nowrap;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      text-align: center;
+    }
+
+    .navbar.mobile .navbar-item .label {
+      font-size: 7px;
+    }
+
+    .navbar-item:hover .label {
+      opacity: 1;
+    }
+
+    /* Show navbar after animations */
+    .navbar.show {
+      opacity: 1;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+
+      /* Ensure desktop navbar is completely hidden on mobile */
+      .navbar.desktop {
+        display: none !important;
       }
+    }
 
-      /* Mobile: Horizontal layout */
-      .navbar.mobile .navbar-items {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 8px;
+    /* Ensure mobile navbar is completely hidden on desktop */
+    @media (min-width: 769px) {
+      .navbar.mobile {
+        display: none !important;
       }
+    }
 
-      .navbar-items-left,
-      .navbar-items-right {
-        display: flex;
-        gap: 8px;
-      }
-
-      /* Desktop: Vertical groups */
-      .navbar.desktop .navbar-items-left,
-      .navbar.desktop .navbar-items-right {
-        flex-direction: column;
-      }
-
-      /* Mobile: Horizontal groups */
-      .navbar.mobile .navbar-items-left,
-      .navbar.mobile .navbar-items-right {
-        flex-direction: row;
-        gap: 4px;
-      }
-
-      /* Expanded state - Desktop vertical */
-      .navbar.desktop.expanded {
-        width: 6vw;
-        height: 62vh;
-        border-radius: 3vw;
-        padding: 20px 10px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-      }
-
-      /* Expanded state - Mobile horizontal */
+    /* Extra small mobile screens */
+    @media (max-width: 360px) {
       .navbar.mobile.expanded {
         width: calc(100vw - 20px);
-        max-width: 420px;
-        height: 65px;
-        border-radius: 27px;
-        padding: 8px 16px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-      }
-
-      .navbar-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin: 0;
-        padding: 8px 6px;
-        border-radius: 12px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-decoration: none;
-        color: white;
-        position: relative;
-        min-width: 50px;
-        min-height: 50px;
-        opacity: 0;
-        transform: scale(0.8);
+        max-width: 340px;
+        height: 50px;
+        padding: 6px 10px;
       }
 
       .navbar.mobile .navbar-item {
-        min-width: 36px;
-        min-height: 36px;
-        padding: 4px 3px;
-        margin: 0 1px;
-      }
-
-      .navbar-item:hover {
-        background: rgba(255, 255, 255, 0.1);
-        transform: scale(1.05);
-      }
-
-      .navbar-item i {
-        font-size: 18px;
-        color: white;
-        transition: all 0.3s ease;
-        margin-bottom: 3px;
+        min-width: 28px;
+        min-height: 28px;
+        padding: 2px 1px;
+        margin: 0;
       }
 
       .navbar.mobile .navbar-item i {
-        font-size: 14px;
-        margin-bottom: 1px;
-      }
-
-      .navbar-item .chess-icon {
-        display: block;
-      }
-
-      .navbar-item .hover-icon {
-        display: none;
-      }
-
-      .navbar-item:hover .chess-icon {
-        display: none;
-      }
-
-      .navbar-item:hover .hover-icon {
-        display: block;
-      }
-
-      .navbar-item .label {
-        font-size: 9px;
-        margin-top: 1px;
-        opacity: 1;
-        transition: opacity 0.3s ease;
-        white-space: nowrap;
-        font-weight: 500;
-        letter-spacing: 0.3px;
-        text-align: center;
+        font-size: 11px;
+        margin-bottom: 0.5px;
       }
 
       .navbar.mobile .navbar-item .label {
-        font-size: 7px;
+        font-size: 6px;
       }
+    }
+  </style>
+</head>
 
-      .navbar-item:hover .label {
-        opacity: 1;
-      }
-
-      /* Show navbar after animations */
-      .navbar.show {
-        opacity: 1;
-      }
-
-      /* Mobile responsiveness */
-      @media (max-width: 768px) {
-        /* Ensure desktop navbar is completely hidden on mobile */
-        .navbar.desktop {
-          display: none !important;
-        }
-      }
-
-      /* Ensure mobile navbar is completely hidden on desktop */
-      @media (min-width: 769px) {
-        .navbar.mobile {
-          display: none !important;
-        }
-      }
-
-      /* Extra small mobile screens */
-      @media (max-width: 360px) {
-        .navbar.mobile.expanded {
-          width: calc(100vw - 20px);
-          max-width: 340px;
-          height: 50px;
-          padding: 6px 10px;
-        }
-
-        .navbar.mobile .navbar-item {
-          min-width: 28px;
-          min-height: 28px;
-          padding: 2px 1px;
-          margin: 0;
-        }
-
-        .navbar.mobile .navbar-item i {
-          font-size: 11px;
-          margin-bottom: 0.5px;
-        }
-
-        .navbar.mobile .navbar-item .label {
-          font-size: 6px;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <!-- Navigation Bar with STUCO Logo Centerpiece -->
-    <nav class="navbar desktop desktop-only" id="navbarDesktop">
-      <div class="navbar-logo desktop-only">
-        <img src="Assests/favicon.ico" alt="STUCO Logo" />
+<body>
+  <!-- Navigation Bar with STUCO Logo Centerpiece -->
+  <nav class="navbar desktop desktop-only" id="navbarDesktop">
+    <div class="navbar-logo desktop-only">
+      <img src="Assests/favicon.ico" alt="STUCO Logo" />
+    </div>
+    <div class="navbar-items" id="navbarItemsDesktop">
+      <div class="navbar-items-left">
+        <a href="index.html" class="navbar-item" data-page="home">
+          <i class="fas fa-chess-king chess-icon"></i>
+          <i class="fas fa-home hover-icon"></i>
+          <span class="label">Home</span>
+        </a>
+        <a href="crmd-about.html" class="navbar-item" data-page="about">
+          <i class="fas fa-chess-queen chess-icon"></i>
+          <i class="fas fa-users hover-icon"></i>
+          <span class="label">About</span>
+        </a>
+        <a href="crmd-testimonial.html" class="navbar-item" data-page="testimonials">
+          <i class="fas fa-chess-rook chess-icon"></i>
+          <i class="fas fa-star hover-icon"></i>
+          <span class="label">Reviews</span>
+        </a>
       </div>
-      <div class="navbar-items" id="navbarItemsDesktop">
-        <div class="navbar-items-left">
-          <a href="index.html" class="navbar-item" data-page="home">
-            <i class="fas fa-chess-king chess-icon"></i>
-            <i class="fas fa-home hover-icon"></i>
-            <span class="label">Home</span>
-          </a>
-          <a href="crmd-about.html" class="navbar-item" data-page="about">
-            <i class="fas fa-chess-queen chess-icon"></i>
-            <i class="fas fa-users hover-icon"></i>
-            <span class="label">About</span>
-          </a>
-          <a
-            href="crmd-testimonial.html"
-            class="navbar-item"
-            data-page="testimonials"
-          >
-            <i class="fas fa-chess-rook chess-icon"></i>
-            <i class="fas fa-star hover-icon"></i>
-            <span class="label">Reviews</span>
-          </a>
-        </div>
-        <div class="navbar-items-right">
-          <a href="crmd-rules.html" class="navbar-item" data-page="rules">
-            <i class="fas fa-chess-knight chess-icon"></i>
-            <i class="fas fa-scroll hover-icon"></i>
-            <span class="label">Rules</span>
-          </a>
-          <a href="crmd-contactus.html" class="navbar-item" data-page="contact">
-            <i class="fas fa-chess-pawn chess-icon"></i>
-            <i class="fas fa-envelope hover-icon"></i>
-            <span class="label">Contact</span>
-          </a>
-          <a href="crmd-sponsors.html" class="navbar-item" data-page="sponsors">
-            <i class="fas fa-chess-bishop chess-icon"></i>
-            <i class="fas fa-handshake hover-icon"></i>
-            <span class="label">Sponsors</span>
-          </a>
-        </div>
+      <div class="navbar-items-right">
+        <a href="crmd-rules.html" class="navbar-item" data-page="rules">
+          <i class="fas fa-chess-knight chess-icon"></i>
+          <i class="fas fa-scroll hover-icon"></i>
+          <span class="label">Rules</span>
+        </a>
+        <a href="crmd-contactus.html" class="navbar-item" data-page="contact">
+          <i class="fas fa-chess-pawn chess-icon"></i>
+          <i class="fas fa-envelope hover-icon"></i>
+          <span class="label">Contact</span>
+        </a>
+        <a href="crmd-sponsors.html" class="navbar-item" data-page="sponsors">
+          <i class="fas fa-chess-bishop chess-icon"></i>
+          <i class="fas fa-handshake hover-icon"></i>
+          <span class="label">Sponsors</span>
+        </a>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <nav class="navbar mobile mobile-only" id="navbarMobile">
-      <div class="navbar-logo mobile-only">
-        <img src="Assests/favicon.ico" alt="STUCO Logo" />
+  <nav class="navbar mobile mobile-only" id="navbarMobile">
+    <div class="navbar-logo mobile-only">
+      <img src="Assests/favicon.ico" alt="STUCO Logo" />
+    </div>
+    <div class="navbar-items" id="navbarItemsMobile">
+      <div class="navbar-items-left">
+        <a href="index.html" class="navbar-item" data-page="home">
+          <i class="fas fa-chess-king chess-icon"></i>
+          <i class="fas fa-home hover-icon"></i>
+          <span class="label">Home</span>
+        </a>
+        <a href="crmd-about.html" class="navbar-item" data-page="about">
+          <i class="fas fa-chess-queen chess-icon"></i>
+          <i class="fas fa-users hover-icon"></i>
+          <span class="label">About</span>
+        </a>
+        <a href="crmd-testimonial.html" class="navbar-item" data-page="testimonials">
+          <i class="fas fa-chess-rook chess-icon"></i>
+          <i class="fas fa-star hover-icon"></i>
+          <span class="label">Reviews</span>
+        </a>
       </div>
-      <div class="navbar-items" id="navbarItemsMobile">
-        <div class="navbar-items-left">
-          <a href="index.html" class="navbar-item" data-page="home">
-            <i class="fas fa-chess-king chess-icon"></i>
-            <i class="fas fa-home hover-icon"></i>
-            <span class="label">Home</span>
-          </a>
-          <a href="crmd-about.html" class="navbar-item" data-page="about">
-            <i class="fas fa-chess-queen chess-icon"></i>
-            <i class="fas fa-users hover-icon"></i>
-            <span class="label">About</span>
-          </a>
-          <a
-            href="crmd-testimonial.html"
-            class="navbar-item"
-            data-page="testimonials"
-          >
-            <i class="fas fa-chess-rook chess-icon"></i>
-            <i class="fas fa-star hover-icon"></i>
-            <span class="label">Reviews</span>
-          </a>
-        </div>
-        <div class="navbar-items-right">
-          <a href="crmd-rules.html" class="navbar-item" data-page="rules">
-            <i class="fas fa-chess-knight chess-icon"></i>
-            <i class="fas fa-scroll hover-icon"></i>
-            <span class="label">Rules</span>
-          </a>
-          <a href="crmd-contactus.html" class="navbar-item" data-page="contact">
-            <i class="fas fa-chess-pawn chess-icon"></i>
-            <i class="fas fa-envelope hover-icon"></i>
-            <span class="label">Contact</span>
-          </a>
-          <a href="crmd-sponsors.html" class="navbar-item" data-page="sponsors">
-            <i class="fas fa-chess-bishop chess-icon"></i>
-            <i class="fas fa-handshake hover-icon"></i>
-            <span class="label">Sponsors</span>
-          </a>
-        </div>
+      <div class="navbar-items-right">
+        <a href="crmd-rules.html" class="navbar-item" data-page="rules">
+          <i class="fas fa-chess-knight chess-icon"></i>
+          <i class="fas fa-scroll hover-icon"></i>
+          <span class="label">Rules</span>
+        </a>
+        <a href="crmd-contactus.html" class="navbar-item" data-page="contact">
+          <i class="fas fa-chess-pawn chess-icon"></i>
+          <i class="fas fa-envelope hover-icon"></i>
+          <span class="label">Contact</span>
+        </a>
+        <a href="crmd-sponsors.html" class="navbar-item" data-page="sponsors">
+          <i class="fas fa-chess-bishop chess-icon"></i>
+          <i class="fas fa-handshake hover-icon"></i>
+          <span class="label">Sponsors</span>
+        </a>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <div class="container">
-      <!-- Responsive background image using picture element -->
+  <div class="container">
+    <!-- Responsive background image using picture element -->
+    <picture>
+      <source media="(max-width: 768px)" srcset="Assests/crmd_mobile_bg.webp" />
+      <img src="Assests/crmd_desktop_bg.webp" alt="CRMD Background" class="background-img" />
+    </picture>
+
+    <!-- Checkerboard overlay (bottom-right 25% viewport) -->
+    <div class="checkerboard-overlay"></div>
+
+    <!-- Hand figure (slides in from right edge) -->
+    <div class="hand-figure">
       <picture>
-        <source
-          media="(max-width: 768px)"
-          srcset="Assests/crmd_mobile_bg.webp"
-        />
-        <img
-          src="Assests/crmd_desktop_bg.webp"
-          alt="CRMD Background"
-          class="background-img"
-        />
+        <source media="(max-width: 768px)" srcset="Assests/crmd_mobile_hand.webp" />
+        <img src="Assests/crmd_desktop_hand.webp" alt="Hand with figurine" />
       </picture>
-
-      <!-- Checkerboard overlay (bottom-right 25% viewport) -->
-      <div class="checkerboard-overlay"></div>
-
-      <!-- Hand figure (slides in from right edge) -->
-      <div class="hand-figure">
-        <picture>
-          <source
-            media="(max-width: 768px)"
-            srcset="Assests/crmd_mobile_hand.webp"
-          />
-          <img src="Assests/crmd_desktop_hand.webp" alt="Hand with figurine" />
-        </picture>
-      </div>
-
-      <!-- About Title Section -->
-      <div class="about-title-container">
-        <h1 class="about-title">ABOUT US</h1>
-        <p class="about-subtitle">The Grand Chessboard</p>
-      </div>
-
-      <!-- View More Button -->
-      <button class="view-more-button" onclick="showAboutContent()">
-        Learn More About Us
-      </button>
-
-      <!-- About Content Section (Initially Hidden) -->
-      <div class="about-content-section" id="aboutContentSection">
-        <button class="close-button" onclick="hideAboutContent()">×</button>
-        <div class="about-containers">
-          <!-- College Container -->
-          <div class="about-container">
-            <div class="container-header">
-              <img
-                src="Assests/crce_logo.webp"
-                alt="CRCE Logo"
-                class="container-logo"
-              />
-              <h2 class="container-title">About College</h2>
-            </div>
-            <div class="container-content">
-              Fr. Conceicao Rodrigues College of Engineering (FR.CRCE) is a top
-              private Autonomous engineering institution in the heart of Mumbai.
-              The college emphasizes on innovation and comprehensive education,
-              focusing on the latest technological trends while fostering a
-              holistic learning environment. With the implementation of NEP
-              2020, FR.CRCE will create its own curriculum from this year. It
-              has earned an "A" grade from the National Assessment and
-              Accreditation Council (NAAC). Its Computer Engineering department
-              is also accredited by the National Board of Accreditation (NBA).
-            </div>
-          </div>
-
-          <!-- Student Council Container -->
-          <div class="about-container">
-            <div class="container-header">
-              <img
-                src="Assests/favicon.ico"
-                alt="Student Council Logo"
-                class="container-logo"
-              />
-              <h2 class="container-title">About Student Council</h2>
-            </div>
-            <div class="container-content">
-              The Student Council at Fr. Conceicao Rodrigues College of
-              Engineering (Fr. CRCE) is the hub of student activity on campus.
-              With a team of dedicated representatives, the council organizes
-              events, facilitates communication with the administration, and
-              fosters a strong sense of community. By hosting a variety of
-              activities, from workshops to festivals, the Student Council
-              creates a vibrant and inclusive college experience, playing a key
-              role in shaping the culture at Fr. CRCE.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Placeholder for future SVG title -->
     </div>
 
-    <script>
-      function showAboutContent() {
-        const aboutSection = document.getElementById("aboutContentSection");
+    <!-- About Title Section -->
+    <div class="about-title-container">
+      <h1 class="about-title">ABOUT US</h1>
+      <p class="about-subtitle">The Grand Chessboard</p>
+    </div>
 
-        // Check if it's a mobile device (screen width <= 768px)
+    <!-- View More Button -->
+    <button class="view-more-button" onclick="showAboutContent()">
+      Learn More About Us
+    </button>
+
+    <!-- About Content Section (Initially Hidden) -->
+    <div class="about-content-section" id="aboutContentSection">
+      <button class="close-button" onclick="hideAboutContent()">×</button>
+      <div class="about-containers">
+        <!-- College Container -->
+        <div class="about-container">
+          <div class="container-header">
+            <img src="Assests/crce_logo.webp" alt="CRCE Logo" class="container-logo" />
+            <h2 class="container-title">About College</h2>
+          </div>
+          <div class="container-content">
+            Fr. Conceicao Rodrigues College of Engineering (FR.CRCE) is a top
+            private Autonomous engineering institution in the heart of Mumbai.
+            The college emphasizes on innovation and comprehensive education,
+            focusing on the latest technological trends while fostering a
+            holistic learning environment. With the implementation of NEP
+            2020, FR.CRCE will create its own curriculum from this year. It
+            has earned an "A" grade from the National Assessment and
+            Accreditation Council (NAAC). Its Computer Engineering department
+            is also accredited by the National Board of Accreditation (NBA).
+          </div>
+        </div>
+
+        <!-- Student Council Container -->
+        <div class="about-container">
+          <div class="container-header">
+            <img src="Assests/favicon.ico" alt="Student Council Logo" class="container-logo" />
+            <h2 class="container-title">About Student Council</h2>
+          </div>
+          <div class="container-content">
+            The Student Council at Fr. Conceicao Rodrigues College of
+            Engineering (Fr. CRCE) is the hub of student activity on campus.
+            With a team of dedicated representatives, the council organizes
+            events, facilitates communication with the administration, and
+            fosters a strong sense of community. By hosting a variety of
+            activities, from workshops to festivals, the Student Council
+            creates a vibrant and inclusive college experience, playing a key
+            role in shaping the culture at Fr. CRCE.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Placeholder for future SVG title -->
+  </div>
+
+  <script>
+    function showAboutContent() {
+      const aboutSection = document.getElementById("aboutContentSection");
+
+      // Check if it's a mobile device (screen width <= 768px)
+      if (window.innerWidth <= 768) {
+        aboutSection.style.backgroundImage =
+          "url('Assests/CRMD_Poster_bg.webp')";
+        aboutSection.style.backgroundSize = "cover";
+        aboutSection.style.backgroundPosition = "center";
+        aboutSection.style.backgroundRepeat = "no-repeat";
+      }
+
+      aboutSection.classList.add("show");
+    }
+
+    function hideAboutContent() {
+      const aboutSection = document.getElementById("aboutContentSection");
+      aboutSection.classList.remove("show");
+
+      // Reset background for mobile devices when closing
+      if (window.innerWidth <= 768) {
+        aboutSection.style.backgroundImage = "";
+      }
+    }
+
+    // Optional: Close on Escape key
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        hideAboutContent();
+      }
+    });
+
+    // Handle window resize to maintain proper background
+    window.addEventListener("resize", function () {
+      const aboutSection = document.getElementById("aboutContentSection");
+      if (aboutSection.classList.contains("show")) {
         if (window.innerWidth <= 768) {
           aboutSection.style.backgroundImage =
             "url('Assests/CRMD_Poster_bg.webp')";
           aboutSection.style.backgroundSize = "cover";
           aboutSection.style.backgroundPosition = "center";
           aboutSection.style.backgroundRepeat = "no-repeat";
-        }
-
-        aboutSection.classList.add("show");
-      }
-
-      function hideAboutContent() {
-        const aboutSection = document.getElementById("aboutContentSection");
-        aboutSection.classList.remove("show");
-
-        // Reset background for mobile devices when closing
-        if (window.innerWidth <= 768) {
+        } else {
           aboutSection.style.backgroundImage = "";
         }
       }
+    });
 
-      // Optional: Close on Escape key
-      document.addEventListener("keydown", function (event) {
-        if (event.key === "Escape") {
-          hideAboutContent();
-        }
-      });
+    // Navbar expansion functionality
+    function showNavbar() {
+      const isDesktop = window.innerWidth > 768;
+      const navbar = isDesktop
+        ? document.getElementById("navbarDesktop")
+        : document.getElementById("navbarMobile");
+      const navbarItems = isDesktop
+        ? document.getElementById("navbarItemsDesktop")
+        : document.getElementById("navbarItemsMobile");
 
-      // Handle window resize to maintain proper background
-      window.addEventListener("resize", function () {
-        const aboutSection = document.getElementById("aboutContentSection");
-        if (aboutSection.classList.contains("show")) {
-          if (window.innerWidth <= 768) {
-            aboutSection.style.backgroundImage =
-              "url('Assests/CRMD_Poster_bg.webp')";
-            aboutSection.style.backgroundSize = "cover";
-            aboutSection.style.backgroundPosition = "center";
-            aboutSection.style.backgroundRepeat = "no-repeat";
-          } else {
-            aboutSection.style.backgroundImage = "";
-          }
-        }
-      });
+      console.log("Starting STUCO logo centerpiece expansion animation...");
 
-      // Navbar expansion functionality
-      function showNavbar() {
-        const isDesktop = window.innerWidth > 768;
-        const navbar = isDesktop
-          ? document.getElementById("navbarDesktop")
-          : document.getElementById("navbarMobile");
-        const navbarItems = isDesktop
-          ? document.getElementById("navbarItemsDesktop")
-          : document.getElementById("navbarItemsMobile");
+      // The navbar is already visible, so we just need to expand it
+      // Phase 1: Expand the circle outward to rounded rectangle
+      setTimeout(() => {
+        navbar.classList.add("expanded");
 
-        console.log("Starting STUCO logo centerpiece expansion animation...");
-
-        // The navbar is already visible, so we just need to expand it
-        // Phase 1: Expand the circle outward to rounded rectangle
-        setTimeout(() => {
-          navbar.classList.add("expanded");
-
-          // Desktop: Expand vertically
-          if (isDesktop) {
-            anime({
-              targets: navbar,
-              width: "6vw",
-              height: "62vh",
-              borderRadius: "3vw",
-              duration: 700,
-              easing: "easeOutQuart",
-              complete: function () {
-                // Reset any transform properties that might interfere with positioning
-                navbar.style.transform = "translateY(-50%)";
-                revealNavItems();
-              },
-            });
-          }
-          // Mobile: Expand horizontally
-          else {
-            const screenWidth = window.innerWidth;
-            const margin = screenWidth <= 360 ? 20 : 20;
-            const maxWidth = screenWidth <= 360 ? 340 : 420;
-            const mobileWidth = Math.min(screenWidth - margin, maxWidth);
-            const mobileHeight = screenWidth <= 360 ? "50px" : "55px";
-            const borderRadius = screenWidth <= 360 ? "25px" : "27px";
-
-            anime({
-              targets: navbar,
-              width: mobileWidth + "px",
-              height: mobileHeight,
-              borderRadius: borderRadius,
-              duration: 700,
-              easing: "easeOutQuart",
-              complete: function () {
-                // Reset any transform properties that might interfere with positioning
-                navbar.style.transform = "translateX(-50%)";
-                revealNavItems();
-              },
-            });
-          }
-        }, 300);
-
-        // Phase 2: Reveal navigation items from both sides
-        function revealNavItems() {
-          console.log("Revealing navigation items...");
-          navbarItems.classList.add("show");
-
-          // Animate left side items (Home, About, Reviews)
+        // Desktop: Expand vertically
+        if (isDesktop) {
           anime({
-            targets: ".navbar-items-left .navbar-item",
+            targets: navbar,
+            width: "6vw",
+            height: "62vh",
+            borderRadius: "3vw",
+            duration: 700,
+            easing: "easeOutQuart",
+            complete: function () {
+              // Reset any transform properties that might interfere with positioning
+              navbar.style.transform = "translateY(-50%)";
+              revealNavItems();
+            },
+          });
+        }
+        // Mobile: Expand horizontally
+        else {
+          const screenWidth = window.innerWidth;
+          const margin = screenWidth <= 360 ? 20 : 20;
+          const maxWidth = screenWidth <= 360 ? 340 : 420;
+          const mobileWidth = Math.min(screenWidth - margin, maxWidth);
+          const mobileHeight = screenWidth <= 360 ? "50px" : "55px";
+          const borderRadius = screenWidth <= 360 ? "25px" : "27px";
+
+          anime({
+            targets: navbar,
+            width: mobileWidth + "px",
+            height: mobileHeight,
+            borderRadius: borderRadius,
+            duration: 700,
+            easing: "easeOutQuart",
+            complete: function () {
+              // Reset any transform properties that might interfere with positioning
+              navbar.style.transform = "translateX(-50%)";
+              revealNavItems();
+            },
+          });
+        }
+      }, 300);
+
+      // Phase 2: Reveal navigation items from both sides
+      function revealNavItems() {
+        console.log("Revealing navigation items...");
+        navbarItems.classList.add("show");
+
+        // Animate left side items (Home, About, Reviews)
+        anime({
+          targets: ".navbar-items-left .navbar-item",
+          opacity: [0, 1],
+          scale: [0.8, 1],
+          translateX: isDesktop ? [0, 0] : [-30, 0],
+          translateY: isDesktop ? [-30, 0] : [0, 0],
+          duration: 400,
+          delay: anime.stagger(100),
+          easing: "easeOutQuad",
+        });
+
+        // Animate right side items (Rules, Contact, Sponsors) with slight delay
+        setTimeout(() => {
+          anime({
+            targets: ".navbar-items-right .navbar-item",
             opacity: [0, 1],
             scale: [0.8, 1],
-            translateX: isDesktop ? [0, 0] : [-30, 0],
-            translateY: isDesktop ? [-30, 0] : [0, 0],
+            translateX: isDesktop ? [0, 0] : [30, 0],
+            translateY: isDesktop ? [30, 0] : [0, 0],
             duration: 400,
             delay: anime.stagger(100),
             easing: "easeOutQuad",
+            complete: function () {
+              console.log("Navbar expansion animation completed!");
+              navbar.classList.add("show");
+            },
           });
-
-          // Animate right side items (Rules, Contact, Sponsors) with slight delay
-          setTimeout(() => {
-            anime({
-              targets: ".navbar-items-right .navbar-item",
-              opacity: [0, 1],
-              scale: [0.8, 1],
-              translateX: isDesktop ? [0, 0] : [30, 0],
-              translateY: isDesktop ? [30, 0] : [0, 0],
-              duration: 400,
-              delay: anime.stagger(100),
-              easing: "easeOutQuad",
-              complete: function () {
-                console.log("Navbar expansion animation completed!");
-                navbar.classList.add("show");
-              },
-            });
-          }, 200);
-        }
+        }, 200);
       }
+    }
 
-      // Show navbar after a short delay
-      setTimeout(showNavbar, 1000);
-    </script>
-  </body>
+    // Show navbar after a short delay
+    setTimeout(showNavbar, 1000);
+  </script>
+</body>
+
 </html>
