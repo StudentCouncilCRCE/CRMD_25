@@ -54,7 +54,7 @@
     }
 
     .header h1 {
-      font-size: clamp(3rem, 6vw, 5rem);
+      font-size: clamp(4.5rem, 9vw, 8rem);
       color: #ffd700;
       font-weight: 700;
       margin-bottom: 1rem;
@@ -119,11 +119,11 @@
       flex-shrink: 0;
     }
 
+    /* ENHANCED GUEST IMAGE - SUPPORTS BOTH IMAGES AND INITIALS */
     .guest-image {
-      width: 200px;
-      height: 200px;
+      width: 280px;
+      height: 280px;
       border-radius: 50%;
-      object-fit: cover;
       border: 6px solid #ffd700;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       transition: all 0.3s ease;
@@ -131,9 +131,37 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 4rem;
+      font-size: 5.5rem;
       font-weight: bold;
       color: #1a1a1a;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* When image is present */
+    .guest-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    /* Hide initials when image is present */
+    .guest-image.has-image .initials {
+      display: none;
+    }
+
+    /* Show initials only when no image or image fails to load */
+    .guest-image .initials {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
     }
 
     .guest-image:hover {
@@ -143,16 +171,17 @@
 
     .badge {
       position: absolute;
-      top: -10px;
-      right: -10px;
+      top: -15px;
+      right: -15px;
       background: #1a1a1a;
       color: #ffd700;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
+      padding: 1rem 1.5rem;
+      border-radius: 25px;
+      font-size: 1.1rem;
       font-weight: 600;
-      border: 2px solid #ffd700;
+      border: 3px solid #ffd700;
       text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .content-container {
@@ -184,23 +213,39 @@
 
     .guest-name {
       color: #ffd700;
-      font-size: 1.8rem;
+      font-size: 2.4rem;
       font-weight: 700;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
       font-family: 'Kodex', 'Arial', sans-serif;
+      letter-spacing: 1px;
     }
 
     .guest-title {
       color: #ccc;
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
+      font-size: 1.4rem;
+      margin-bottom: 1.8rem;
       font-style: italic;
       font-family: 'Kodex', 'Arial', sans-serif;
     }
 
+    /* ENHANCED TESTIMONIAL QUOTE SECTION */
+    .testimonial-quote {
+      color: #f5f5f5;
+      font-size: 1.3rem;
+      line-height: 1.7;
+      margin-bottom: 1.8rem;
+      font-family: 'Kodex', 'Arial', sans-serif;
+      font-style: italic;
+      position: relative;
+      padding: 1.2rem;
+      background: rgba(255, 215, 0, 0.1);
+      border-left: 4px solid #ffd700;
+      border-radius: 0 10px 10px 0;
+    }
+
     .guest-bio {
       color: #f5f5f5;
-      font-size: 1rem;
+      font-size: 1.2rem;
       line-height: 1.7;
       margin-bottom: 1.5rem;
       font-family: 'Kodex', 'Arial', sans-serif;
@@ -301,7 +346,6 @@
 
       .testimonials-list {
         gap: 5rem;
-        /* Increased gap to accommodate merge */
       }
 
       .testimonial-item,
@@ -309,40 +353,45 @@
         flex-direction: column;
         text-align: center;
         gap: 0;
-        /* Remove gap to allow merge */
       }
 
-      /* --- MODIFICATION START --- */
       .image-container {
-        /* Pull the content card up by half the image height */
-        margin-bottom: -75px;
+        margin-bottom: -105px;
         position: relative;
         z-index: 2;
-        /* Ensure image is above content card */
       }
 
-      /* --- MODIFICATION END --- */
-
       .guest-image {
-        width: 150px;
-        height: 150px;
-        font-size: 3rem;
+        width: 210px;
+        height: 210px;
+        font-size: 4.5rem;
       }
 
       .content-container {
-        /* Add padding top to push content below merged image */
-        padding: 6rem 1.5rem 2rem;
+        padding: 8rem 2rem 2.5rem;
       }
 
       .guest-name {
-        font-size: 1.5rem;
+        font-size: 2rem;
       }
 
       .guest-title {
-        font-size: 1rem;
+        font-size: 1.2rem;
       }
 
-      /* Badge position is handled by desktop styles, no changes needed */
+      .testimonial-quote {
+        font-size: 1.1rem;
+        padding: 1rem;
+      }
+
+      .guest-bio {
+        font-size: 1.1rem;
+      }
+
+      .badge {
+        font-size: 1rem;
+        padding: 0.8rem 1.2rem;
+      }
 
       .quote-mark {
         font-size: 4rem;
@@ -353,23 +402,39 @@
 
     @media (max-width: 480px) {
       .guest-image {
-        width: 120px;
-        height: 120px;
-        font-size: 2.5rem;
+        width: 180px;
+        height: 180px;
+        font-size: 4rem;
       }
 
-      /* --- MODIFICATION START --- */
       .image-container {
-        /* Adjust negative margin for smaller image size */
-        margin-bottom: -60px;
+        margin-bottom: -90px;
       }
 
       .content-container {
-        padding: 5rem 1.5rem 1.5rem;
-        /* Adjust top padding for new merge */
+        padding: 7rem 1.5rem 2rem;
       }
 
-      /* --- MODIFICATION END --- */
+      .guest-name {
+        font-size: 1.8rem;
+      }
+
+      .guest-title {
+        font-size: 1.1rem;
+      }
+
+      .testimonial-quote {
+        font-size: 1rem;
+      }
+
+      .guest-bio {
+        font-size: 1rem;
+      }
+
+      .badge {
+        font-size: 0.9rem;
+        padding: 0.7rem 1rem;
+      }
     }
   </style>
 </head>
@@ -387,106 +452,125 @@
     </header>
 
     <div class="testimonials-list">
+      <!-- Example WITH IMAGE: Add has-image class and img tag -->
       <div class="testimonial-item">
         <div class="image-container">
-          <div class="guest-image">DR</div>
+          <div class="guest-image has-image">
+            <img src="Assets/Images/dr-rajesh.jpg" alt="Dr. Rajesh Kumar">
+            <span class="initials">DR</span>
+          </div>
           <div class="badge">Chief Guest</div>
         </div>
         <div class="content-container">
           <div class="quote-mark">"</div>
           <h3 class="guest-name">Dr. Rajesh Kumar</h3>
-          <p class="guest-title">
-            Former Director, IIT Delhi
-          </p>
+          <p class="guest-title">Former Director, IIT Delhi</p>
+          <div class="testimonial-quote">
+            "The level of innovation and technical expertise demonstrated at this event is truly remarkable. It's inspiring to see young minds tackling complex challenges with such creativity and determination."
+          </div>
           <p class="guest-bio">
-            A visionary leader in technology and education with over 25 years of experience in artificial intelligence
-            and machine learning.
+            A visionary leader in technology and education with over 25 years of experience in artificial intelligence and machine learning.
           </p>
         </div>
       </div>
 
+      <!-- Example WITHOUT IMAGE: Remove has-image class, keep only initials -->
       <div class="testimonial-item reverse">
         <div class="image-container">
-          <div class="guest-image">PS</div>
+          <div class="guest-image">
+            <span class="initials">PS</span>
+          </div>
           <div class="badge">Chief Judge</div>
         </div>
         <div class="content-container">
           <div class="quote-mark">"</div>
           <h3 class="guest-name">Priya Sharma</h3>
           <p class="guest-title">CEO, InnovateNext</p>
+          <div class="testimonial-quote">
+            "What impressed me most was not just the technical solutions, but the thoughtful approach to real-world problems. These participants are the future of technology entrepreneurship."
+          </div>
           <p class="guest-bio">
-            An accomplished entrepreneur and investor who has built multiple successful tech companies and helped
-            hundreds of startups scale globally.
+            An accomplished entrepreneur and investor who has built multiple successful tech companies and helped hundreds of startups scale globally.
           </p>
         </div>
       </div>
 
       <div class="testimonial-item">
         <div class="image-container">
-          <div class="guest-image">AM</div>
+          <div class="guest-image">
+            <span class="initials">AM</span>
+          </div>
           <div class="badge">Judge</div>
         </div>
         <div class="content-container">
           <div class="quote-mark">"</div>
           <h3 class="guest-name">Arjun Mehta</h3>
-          <p class="guest-title">
-            VP Engineering, TechGlobal
-          </p>
+          <p class="guest-title">VP Engineering, TechGlobal</p>
+          <div class="testimonial-quote">
+            "The quality of presentations and the depth of technical knowledge shown here gives me great confidence in the next generation of engineers and innovators."
+          </div>
           <p class="guest-bio">
-            A passionate technologist with expertise in cloud computing and distributed systems, leading engineering
-            teams at major tech companies.
+            A passionate technologist with expertise in cloud computing and distributed systems, leading engineering teams at major tech companies.
           </p>
         </div>
       </div>
 
       <div class="testimonial-item reverse">
         <div class="image-container">
-          <div class="guest-image">SK</div>
+          <div class="guest-image">
+            <span class="initials">SK</span>
+          </div>
           <div class="badge">Judge</div>
         </div>
         <div class="content-container">
           <div class="quote-mark">"</div>
           <h3 class="guest-name">Sneha Kapoor</h3>
           <p class="guest-title">Head of AI Research, FutureTech Labs</p>
+          <div class="testimonial-quote">
+            "The innovative use of AI and machine learning in these projects demonstrates a sophisticated understanding of emerging technologies. Truly exceptional work."
+          </div>
           <p class="guest-bio">
-            Leading researcher in artificial intelligence and machine learning with groundbreaking work in neural
-            networks and deep learning.
+            Leading researcher in artificial intelligence and machine learning with groundbreaking work in neural networks and deep learning.
           </p>
         </div>
       </div>
 
       <div class="testimonial-item">
         <div class="image-container">
-          <div class="guest-image">VG</div>
+          <div class="guest-image">
+            <span class="initials">VG</span>
+          </div>
           <div class="badge">Special Guest</div>
         </div>
         <div class="content-container">
           <div class="quote-mark">"</div>
           <h3 class="guest-name">Vikram Gupta</h3>
-          <p class="guest-title">
-            Managing Partner, VentureCapital Fund
-          </p>
+          <p class="guest-title">Managing Partner, VentureCapital Fund</p>
+          <div class="testimonial-quote">
+            "From an investment perspective, I see tremendous potential in several of these projects. The combination of technical excellence and market understanding is impressive."
+          </div>
           <p class="guest-bio">
-            A seasoned entrepreneur turned investor who has founded three successful startups and now leads one of
-            India's premier venture capital funds.
+            A seasoned entrepreneur turned investor who has founded three successful startups and now leads one of India's premier venture capital funds.
           </p>
         </div>
       </div>
 
       <div class="testimonial-item reverse">
         <div class="image-container">
-          <div class="guest-image">NT</div>
+          <div class="guest-image">
+            <span class="initials">NT</span>
+          </div>
           <div class="badge">Judge</div>
         </div>
         <div class="content-container">
           <div class="quote-mark">"</div>
           <h3 class="guest-name">Nisha Trivedi</h3>
-          <p class="guest-title">
-            Director of Innovation, Global Tech Solutions
-          </p>
+          <p class="guest-title">Director of Innovation, Global Tech Solutions</p>
+          <div class="testimonial-quote">
+            "The forward-thinking approach and practical applications showcased here align perfectly with industry needs. These solutions could genuinely impact how we work tomorrow."
+          </div>
           <p class="guest-bio">
-            Innovation strategist with expertise in emerging technologies and digital transformation, helping Fortune
-            500 companies navigate technological disruption.
+            Innovation strategist with expertise in emerging technologies and digital transformation, helping Fortune 500 companies navigate technological disruption.
           </p>
         </div>
       </div>
