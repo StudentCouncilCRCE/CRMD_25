@@ -63,9 +63,9 @@
         .hero-subtitle {
             font-family: 'Kodex', sans-serif;
             font-size: 2.5rem;
-            color: #2c2c2c;
+            color: #ff0000;
             font-weight: 600;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+            text-shadow: 1px 1px 2px rgba(63, 4, 165, 0.8);
             transform: translateY(30px);
             opacity: 0;
             animation: slideInSubtitle 1.5s ease-out 0.5s forwards;
@@ -129,7 +129,7 @@
         .tier-subtitle {
             font-family: 'Kodex', sans-serif;
             font-size: 3.4rem;
-            font-weight: 700;
+            font-weight: 500;
             background: linear-gradient(45deg, #FFD700, #ff0000, #ff5500);
             background-size: 200% 200%;
             -webkit-background-clip: text;
@@ -161,8 +161,8 @@
             background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
             padding: 0;
             border: none;
-            max-width: 450px;
-            width: 200%;
+            max-width: 500px;
+            width: 210%;
             text-align: center;
             transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
@@ -257,18 +257,16 @@
         /* Enhanced Logo Container with Image Support */
         .sponsor-logo {
             margin: 20px 0;
-            height: 100px;
+            height: 350px;
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #FFD700;
-            border: 3px solid #FF8C00;
+            background: transparent;
+            border: none;
             transition: all 0.4s ease;
             position: relative;
             border-radius: 15px;
-            box-shadow: 
-                0 8px 16px rgba(0,0,0,0.3),
-                inset 0 2px 0 rgba(255,255,255,0.2);
             overflow: hidden;
         }
 
@@ -279,8 +277,9 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
-            transition: left 0.6s ease;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.3), transparent);
+            transition: left 0.8s ease;
+            z-index: 2;
         }
 
         .sponsor-box:hover .sponsor-logo::before {
@@ -288,25 +287,42 @@
         }
 
         .sponsor-logo:hover {
-            background: #FF8C00;
-            transform: scale(1.08) rotateZ(-2deg);
-            border-color: #FFD700;
-            box-shadow: 
-                inset 0 0 20px rgba(0,0,0,0.2),
-                0 0 20px rgba(255, 140, 0, 0.5);
+            transform: scale(1.02);
         }
 
         /* Logo Image Styling */
         .sponsor-logo img {
-            max-width: 90%;
-            max-height: 90px;
-            object-fit: contain;
-            transition: all 0.3s ease;
-            border-radius: 8px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+            border-radius: 15px;
+            filter: brightness(1) contrast(1.1);
         }
 
         .sponsor-logo:hover img {
-            transform: scale(1.05);
+            transform: scale(1.1) rotateZ(2deg);
+            filter: brightness(1.2) contrast(1.2) saturate(1.3);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Enhanced image animations */
+        .sponsor-box:hover .sponsor-logo img {
+            animation: imageGlow 0.6s ease-in-out;
+        }
+
+        @keyframes imageGlow {
+            0% { 
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+                transform: scale(1.15) rotateZ(3deg);
+            }
+            100% { 
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+                transform: scale(1.1) rotateZ(2deg);
+            }
         }
 
         /* Placeholder Text for when no image is provided */
@@ -464,7 +480,7 @@
 
             /* All sponsor boxes same size on mobile */
             .sponsor-box {
-                max-width: 300px;
+                max-width: 350px;
                 margin: 0 auto;
                 align-self: center !important;
                 border-radius: 15px;
@@ -481,8 +497,8 @@
             }
 
             .sponsor-logo {
-                height: 100px;
-                margin: 20px 0;
+                height: 280px;
+                margin: 15px 0;
             }
 
             .sponsor-name {
@@ -532,7 +548,7 @@
             }
 
             .sponsor-logo {
-                height: 80px;
+                height: 15x0px;
             }
         }
 
@@ -575,7 +591,7 @@
 
 <body>
     <section class="sponsors-section" id="sponsors-section">
-        <!-- Floating chess pieces background -->
+        
         <div class="floating-pieces">
             <i class="fas fa-chess-pawn floating-piece" style="top: 15%; left: 5%; animation-delay: 0s;"></i>
             <i class="fas fa-chess-knight floating-piece" style="top: 70%; left: 90%; animation-delay: 2s;"></i>
@@ -583,14 +599,14 @@
             <i class="fas fa-chess-rook floating-piece" style="top: 85%; left: 85%; animation-delay: 1s;"></i>
         </div>
 
-        <!-- Hero Content -->
+        
         <div class="hero-content">
             <h1 class="hero-title">SPONSORS</h1>
             <p class="hero-subtitle">Powered by you, driven by the Grand Chessboard</p>
         </div>
 
         <div class="sponsor-container">
-            <!-- Our Partners Tier -->
+            
             <div class="sponsor-tier other-sponsors">
                 <div class="tier-header">
                     <h2 class="tier-title">Our Partners</h2>
@@ -598,130 +614,246 @@
                 </div>
                 
                 <div class="sponsor-boxes">
+                    
                     <div class="sponsor-box">
                         <div style="padding: 35px 30px;">
-                            <div class="sponsor-position">Associate Sponsor</div>
+                            <div class="sponsor-position">EVENT PARTNER</div>
                             <div class="sponsor-logo">
-                                <img src="logos/associate_sponsor.png" alt="Associate Sponsor Logo">
-                                <div class="placeholder-text">ASSOCIATE SPONSOR</div>
+                                <img src="Assests/Images/Negative.webp" alt="Associate Sponsor Logo">
+                                <div class="placeholder-text">EVENT PARTNER</div>
                             </div>
-                            <div class="sponsor-name">Associate Partner</div>
-                            <div class="sponsor-description">Building strategic alliances</div>
+                            <div class="sponsor-name">NEGATIVE</div>
+                            
                         </div>
                     </div>
 
                     <div class="sponsor-box">
                         <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">Food Partner</div>
+                            <div class="sponsor-position">GIFTING PARTNER</div>
                             <div class="sponsor-logo">
-                                <img src="logos/food_partner.png" alt="Food Partner Logo">
-                                <div class="placeholder-text">FOOD PARTNER</div>
+                                <img src="Assests/Images/Valencia perfumes.webp" alt="Food Partner Logo">
+                                <div class="placeholder-text">GIFTING PARTNER</div>
                             </div>
-                            <div class="sponsor-name">Culinary Partner</div>
-                            <div class="sponsor-description">Fueling minds for victory</div>
+                            <div class="sponsor-name">VALENCIA PERFUMES</div>
+                            
                         </div>
                     </div>
 
                     <div class="sponsor-box">
                         <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">Beverage Partner</div>
+                            <div class="sponsor-position">GIFTING PARTNER</div>
                             <div class="sponsor-logo">
-                                <img src="logos/beverage_partner.png" alt="Beverage Partner Logo">
-                                <div class="placeholder-text">BEVERAGE PARTNER</div>
+                                <img src="Assests/Images/Valencia drinks.webp" alt="Beverage Partner Logo">
+                                <div class="placeholder-text">GIFTING PARTNER</div>
                             </div>
-                            <div class="sponsor-name">Beverage Partner</div>
-                            <div class="sponsor-description">Refreshing every move</div>
+                            <div class="sponsor-name">VALENCIA DRINKS</div>
+                            
                         </div>
                     </div>
 
                     <div class="sponsor-box">
                         <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">Education Partner</div>
+                            <div class="sponsor-position">PROTEIN SNACKING PARTNER</div>
                             <div class="sponsor-logo">
-                                <img src="logos/education_partner.png" alt="Education Partner Logo">
-                                <div class="placeholder-text">EDUCATION PARTNER</div>
+                                <img src="Assests/Images/Klaw snacks.webp" alt="Education Partner Logo">
+                                <div class="placeholder-text">PROTEIN SNACKING PARTNER</div>
                             </div>
-                            <div class="sponsor-name">Education Partner</div>
-                            <div class="sponsor-description">Nurturing strategic thinking</div>
+                            <div class="sponsor-name">KLAW SNACKS</div>
+                            
                         </div>
                     </div>
 
                     <div class="sponsor-box">
                         <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">Media Partner</div>
+                            <div class="sponsor-position">COFFEE PARTNER</div>
                             <div class="sponsor-logo">
-                                <img src="logos/media_partner.png" alt="Media Partner Logo">
-                                <div class="placeholder-text">MEDIA PARTNER</div>
+                                <img src="Assests/Images/Zenforest.webp" alt="Media Partner Logo">
+                                <div class="placeholder-text">COFFEE PARTNER</div>
                             </div>
-                            <div class="sponsor-name">Media Partner</div>
-                            <div class="sponsor-description">Broadcasting excellence</div>
+                            <div class="sponsor-name">ZENFOREST COFFEE</div>
+                            
                         </div>
                     </div>
 
                     <div class="sponsor-box">
                         <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">Tech Partner</div>
+                            <div class="sponsor-position">BAG PARTNER</div>
                             <div class="sponsor-logo">
-                                <img src="logos/tech_partner.png" alt="Tech Partner Logo">
-                                <div class="placeholder-text">TECH PARTNER</div>
+                                <img src="Assests/Images/Lemonx.webp" alt="Tech Partner Logo">
+                                <div class="placeholder-text">BAG PARTNER</div>
                             </div>
-                            <div class="sponsor-name">Technology Partner</div>
-                            <div class="sponsor-description">Powering digital innovation</div>
+                            <div class="sponsor-name">LEMONX BAGS</div>
+                            
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <script>
-        // Staggered animation delays for sponsor boxes
-        document.addEventListener('DOMContentLoaded', function() {
-            const sponsorBoxes = document.querySelectorAll('.sponsor-box');
-            sponsorBoxes.forEach((box, index) => {
-                box.style.animationDelay = `${1.5 + (index * 0.2)}s`;
-            });
-        });
+                    <div class="sponsor-box">
+                        <div style="padding: 30px 25px;">
+                            <div class="sponsor-position">SNACKING PARTNER</div>
+                            <div class="sponsor-logo">
+                                <img src="Assests/Images/Balaji wafers.webp" alt="Banking Partner Logo">
+                                <div class="placeholder-text">SNACKING PARTNER</div>
+                            </div>
+                            <div class="sponsor-name">BALAJI WAFERS</div>
+                            
+                        </div>
+                    </div>
 
-        // Enhanced hover effects
-        document.querySelectorAll('.sponsor-box').forEach(box => {
-            box.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-15px) scale(1.02)';
-                this.style.zIndex = '10';
-            });
+                    <div class="sponsor-box">
+                        <div style="padding: 30px 25px;">
+                            <div class="sponsor-position">JUICE PARTNER</div>
+                            <div class="sponsor-logo">
+                                <img src="Assests/Images/Panaa.webp" alt="Healthcare Partner Logo">
+                                <div class="placeholder-text">JUICE PARTNER</div>
+                            </div>
+                            <div class="sponsor-name">PANAA</div>
+                            
+                        </div>
+                    </div>
 
-            box.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-                this.style.zIndex = '1';
-            });
-        });
+                    <div class="sponsor-box">
+                        <div style="padding: 30px 25px;">
+                            <div class="sponsor-position">FRAGRANCE PARTNER</div>
+                            <div class="sponsor-logo">
+                                <img src="Assests/Images/Al Qadri.webp" alt="Travel Partner Logo">
+                                <div class="placeholder-text">FRAGRANCE PARTNER</div>
+                            </div>
+                            <div class="sponsor-name">AL QADRI</div>
+                            
+                        </div>
+                    </div>
 
-        // Scroll-triggered animations
-        window.addEventListener('scroll', function() {
-            const tiers = document.querySelectorAll('.sponsor-tier');
-            const triggerHeight = window.innerHeight * 0.8;
+                    <div class="sponsor-box">
+                        <div style="padding: 30px 25px;">
+                            <div class="sponsor-position">REFRESHMENT PARTNER</div>
+                            <div class="sponsor-logo">
+                                <img src="Assests/Images/Thepulpco.webp" alt="Sports Partner Logo">
+                                <div class="placeholder-text">REFRESHMENT PARTNER</div>
+                            </div>
+                            <div class="sponsor-name">THE PULP</div>
+                            
+                        </div>
+                    </div>
 
-            tiers.forEach(tier => {
-                const tierTop = tier.getBoundingClientRect().top;
-                if (tierTop < triggerHeight && !tier.classList.contains('animated')) {
-                    tier.style.animationPlayState = 'running';
-                    tier.classList.add('animated');
-                }
-            });
-        });
+                    <div class="sponsor-box">
+                        <div style="padding: 30px 25px;">
+                            <div class="sponsor-position">WRITING PARTNER</div>
+                            <div class="sponsor-logo">
+                                <img src="Assests/Images/Stylish.webp" alt="Sports Partner Logo">
+                                <div class="placeholder-text">WRITING PARTNER</div>
+                            </div>
+                            <div class="sponsor-name">STYLISH PENS</div>
+                            
+                        </div>
+                    </div>
 
-        // Parallax effect for floating pieces
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.floating-piece');
-            
-            parallaxElements.forEach(element => {
-                const speed = 0.3;
-                const yPos = -(scrolled * speed);
-                element.style.transform = `translateY(${yPos}px)`;
-            });
-        });
-    </script>
-</body>
+                    <div class="sponsor-box">
+                        <div style="padding: 30px 25px;">
+                            <div class="sponsor-position">COUPON PARTNER</div>
+                            <div class="sponsor-logo">
+                                <img src="Assests/Images/Sky breeze white.webp" alt="Fashion Partner Logo">
+                                <div class="placeholder-text">COUPON PARTNER</div>
+                            </div>
+                            <div class="sponsor-name">SKY BREEZE</div>
+                            
+                        </div>
+                    </div>
 
-</html>
+                    <div class="sponsor-box">
+                        <div style="padding: 30px 25px;">
+                            <div class="sponsor-position">CONFECTIONERY PARTNER</div>
+                            <div class="sponsor-logo">
+                                <img src="Assests/Images/Nutrisnacksbox.webp" alt="Automotive Partner Logo">
+                                <div class="placeholder-text">CONFECTIONERY PARTNER</div>
+                            </div>
+                            <div class="sponsor-name">NUTRI SNACKS BOX</div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="sponsor-box">
+                        <div style="padding: 30px 25px;">
+                            <div class="sponsor-position">SPORTS PARTNER</div>
+                            <div class="sponsor-logo">
+                                <img src="Assests/Images/Totalsportsandfitness.webp" alt="Insurance Partner Logo">
+                                <div class="placeholder-text">SPORTS PARTNER</div>
+                            </div>
+                            <div class="sponsor-name">TOTAL SPORTS AND FITNESS</div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="sponsor-box">
+                        <div style="padding: 30px 25px;">
+                            <div class="sponsor-position">ENTERTAINMENT PARTNER</div>
+                            <div class="sponsor-logo">
+                                <img src="Assests/Images/Smaash.webp" alt="Gaming Partner Logo">
+                                <div class="placeholder-text">ENTERTAINMENT PARTNER</div>
+                            </div>
+                            <div class="sponsor-name">SMAASH ENTERTAINMENT</div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="sponsor-box">
+                        <div style="padding: 30px 25px;">
+                            <div class="sponsor-position">FAST FOOD PARTNER</div>
+                            <div class="sponsor-logo">
+                                <img src="Assests/Images/Sizzle and sip.webp" alt="Real Estate Partner Logo">
+                                <div class="placeholder-text">FAST FOOD PARTNER</div>
+                            </div>
+                            <div class="sponsor-name">SIZZLE AND SIP</div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="sponsor-box">
+                        <div style="padding: 30px 25px;">
+                            <div class="sponsor-position">DESSERT PARTNER</div>
+                            <div class="sponsor-logo">
+                                <img src="Assests/Images/MODwhite.webp" alt="Entertainment Partner Logo">
+                                <div class="placeholder-text">ENTERTAINMENT PARTNER</div>
+                            </div>
+                            <div class="sponsor-name">MAD OVER DONUTS</div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="sponsor-box">
+                        <div style="padding: 30px 25px;">
+                            <div class="sponsor-position">KEYCHAIN PARTNER</div>
+                            <div class="sponsor-logo">
+                                <img src="Assests/Images/Ishtikutum crochet.webp" alt="Entertainment Partner Logo">
+                                <div class="placeholder-text">KEYCHAIN PARTNER</div>
+                            </div>
+                            <div class="sponsor-name">ISHTIKUTUM CROCHET</div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="sponsor-box">
+                        <div style="padding: 30px 25px;">
+                            <div class="sponsor-position">GIFTING PARTNER</div>
+                            <div class="sponsor-logo">
+                                <img src="Assests/Images/EVEPAPER.webp" alt="Consulting Partner Logo">
+                                <div class="placeholder-text">GIFTING PARTNER</div>
+                            </div>
+                            <div class="sponsor-name">EVEPAPER</div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="sponsor-box">
+                        <div style="padding: 30px 25px;">
+                            <div class="sponsor-position">COUPON PARTNER</div>
+                            <div class="sponsor-logo">
+                                <img src="Assests/Images/Noescape.webp" alt="Fitness Partner Logo">
+                                <div class="placeholder-text">COUPON PARTNER</div>
+                            </div>
+                            <div class="sponsor-name">NO ESCAPE</div>
+                            
+                        </div>
+                    </div>
+
+
+                    
