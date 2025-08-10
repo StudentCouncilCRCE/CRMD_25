@@ -1,11 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="https://schema.org/Organization">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CRMD - Animated Chess Landing</title>
+
+  <!-- Primary Meta Tags -->
+  <title>CRMD 2025 - The Grand Chessboard Tournament | FR. Conceicao Rodrigues College of Engineering</title>
+  <meta name="title"
+    content="CRMD 2025 - The Grand Chessboard Tournament | FR. Conceicao Rodrigues College of Engineering" />
+  <meta name="description"
+    content="Join CRMD 2025, the premier chess tournament organized by FR. Conceicao Rodrigues College of Engineering. Experience strategic gameplay, competitive tournaments, and networking with chess enthusiasts. Register now!" />
+  <meta name="keywords"
+    content="CRMD 2025, chess tournament, FR Conceicao Rodrigues College, engineering college chess, Mumbai chess, student chess competition, strategic gaming, chess championship, CRCE chess" />
+  <meta name="author" content="FR. Conceicao Rodrigues College of Engineering Student Council" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="English" />
+  <meta name="revisit-after" content="7 days" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="CRMD 2025 - The Grand Chessboard Tournament" />
+  <meta property="og:description"
+    content="Join CRMD 2025, the premier chess tournament organized by FR. Conceicao Rodrigues College of Engineering. Experience strategic gameplay and competitive tournaments." />
+  <meta property="og:image" content="./Assests/crmd_landing_desktop_title.webp" />
+  <meta property="og:url" content="https://yourwebsite.com/index.html" />
+  <meta property="og:site_name" content="CRMD 2025" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="CRMD 2025 - The Grand Chessboard Tournament" />
+  <meta property="twitter:description"
+    content="Join CRMD 2025, the premier chess tournament organized by FR. Conceicao Rodrigues College of Engineering." />
+  <meta property="twitter:image" content="./Assests/crmd_landing_desktop_title.webp" />
+
+  <!-- Structured Data - Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "CRMD 2025",
+    "alternateName": "FR. Conceicao Rodrigues College of Engineering Chess Tournament",
+    "url": "https://yourwebsite.com",
+    "logo": "./Assests/favicon.ico",
+    "description": "Premier chess tournament organized by FR. Conceicao Rodrigues College of Engineering",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "India",
+      "addressRegion": "Maharashtra",
+      "addressLocality": "Mumbai"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Event Information",
+      "url": "./crmd-contactus.html"
+    },
+    "sameAs": [
+      "https://www.instagram.com/crmd2025",
+      "https://www.facebook.com/crmd2025"
+    ]
+  }
+  </script>
+
+  <!-- Structured Data - Event -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    "name": "CRMD 2025 - The Grand Chessboard Tournament",
+    "description": "Premier chess tournament featuring strategic gameplay, competitive matches, and networking opportunities for chess enthusiasts.",
+    "startDate": "2025-03-01",
+    "endDate": "2025-03-03",
+    "eventStatus": "https://schema.org/EventScheduled",
+    "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+    "location": {
+      "@type": "Place",
+      "name": "FR. Conceicao Rodrigues College of Engineering",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "India",
+        "addressRegion": "Maharashtra",
+        "addressLocality": "Mumbai"
+      }
+    },
+    "organizer": {
+      "@type": "Organization",
+      "name": "FR. Conceicao Rodrigues College of Engineering Student Council"
+    },
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock",
+      "price": "0",
+      "priceCurrency": "INR"
+    }
+  }
+  </script>
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://yourwebsite.com/index.html" />
+
+  <!-- Favicon and App Icons -->
   <link rel="icon" type="image/x-icon" href="Assests/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="Assests/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="Assests/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="16x16" href="Assests/favicon.ico" />
+
+  <!-- Preconnect for Performance -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+  <!-- DNS Prefetch for External Resources -->
+  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
+
   <!-- CRMD Shared Cache System -->
   <script src="crmd-cache.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
@@ -13,6 +120,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="crmd-transitions.css" />
+
+  <!-- Accessibility -->
+  <meta name="theme-color" content="#FFD700" />
+  <meta name="msapplication-TileColor" content="#FFD700" />
 </head>
 
 <style>
@@ -663,9 +774,13 @@
 </style>
 
 <body>
+  <!-- Skip to main content for accessibility -->
+  <a href="#main-content" class="sr-only">Skip to main content</a>
+
   <!-- Loading Screen -->
-  <div class="loading-screen" id="loadingScreen">
-    <div class="floating-pieces">
+  <div class="loading-screen" id="loadingScreen" role="dialog" aria-label="Loading CRMD tournament content"
+    aria-live="polite">
+    <div class="floating-pieces" aria-hidden="true">
       <i class="fas fa-chess-king chess-piece-float" style="top: 20%; left: 15%; animation-delay: 0s"></i>
       <i class="fas fa-chess-queen chess-piece-float" style="top: 60%; left: 80%; animation-delay: 1s"></i>
       <i class="fas fa-chess-rook chess-piece-float" style="top: 80%; left: 20%; animation-delay: 2s"></i>
@@ -675,134 +790,188 @@
     </div>
     <div class="loading-container">
       <div class="loading-logo">
-        <img src="Assests/favicon.ico" alt="STUCO Loading" id="loadingLogo" />
+        <img src="Assests/favicon.ico" alt="FR. Conceicao Rodrigues College of Engineering Student Council Logo"
+          id="loadingLogo" width="80" height="80" />
       </div>
-      <div class="loading-text">CRMD</div>
-      <div class="loading-subtitle">The Grand Chessboard</div>
-      <div class="loader" id="loader"></div>
-      <div class="loading-progress">
+      <h1 class="loading-text">CRMD 2025</h1>
+      <p class="loading-subtitle">The Grand Chessboard Tournament</p>
+      <div class="loader" id="loader" role="progressbar" aria-label="Loading progress"></div>
+      <div class="loading-progress" aria-hidden="true">
         <div class="loading-progress-bar" id="loadingProgressBar"></div>
       </div>
-      <div class="loading-percentage" id="loadingPercentage">0%</div>
+      <div class="loading-percentage" id="loadingPercentage" aria-live="polite">0%</div>
     </div>
   </div>
-  <section class="hero">
-    <div class="chessboard-container">
-      <!-- Responsive background image -->
-      <picture>
-        <source media="(max-width: 768px)" srcset="Assests/chess_bg_mobile.webp" />
-        <img src="Assests/chess_bg_desktop.webp" alt="Chessboard" class="chessboard-img" />
-      </picture>
 
-      <!-- King images that scale perfectly with background -->
-      <img src="Assests/king_desktop.webp" class="king-img desktop-only" alt="King" id="kingDesktop" />
-      <img src="Assests/king_mobile.webp" class="king-img mobile-only" alt="King" id="kingMobile" />
+  <!-- Main Content -->
+  <main id="main-content" role="main">
+    <section class="hero" aria-label="CRMD 2025 Tournament Hero Section">
+      <div class="chessboard-container">
+        <!-- Responsive background image -->
+        <picture>
+          <source media="(max-width: 768px)" srcset="Assests/chess_bg_mobile.webp" />
+          <img src="Assests/chess_bg_desktop.webp"
+            alt="Professional chessboard setup for CRMD 2025 tournament at FR. Conceicao Rodrigues College of Engineering"
+            class="chessboard-img" width="1920" height="1080" />
+        </picture>
 
-      <!-- Colored king images (initially hidden) -->
-      <img src="Assests/king_desktop_fade.webp" class="king-img desktop-only" alt="Colored King" id="kingColoredDesktop"
-        style="opacity: 0; transform: translateY(0vh)" />
-      <img src="Assests/king_mobile_fade.webp" class="king-img mobile-only" alt="Colored King" id="kingColoredMobile"
-        style="opacity: 0; transform: translateY(0vh)" />
+        <!-- King images that scale perfectly with background -->
+        <img src="Assests/king_desktop.webp" class="king-img desktop-only"
+          alt="Black chess king piece representing strategy and leadership in CRMD tournament" id="kingDesktop"
+          width="800" height="600" />
+        <img src="Assests/king_mobile.webp" class="king-img mobile-only"
+          alt="Black chess king piece representing strategy and leadership in CRMD tournament" id="kingMobile"
+          width="400" height="600" />
 
-      <!-- Content overlay - replaced with responsive title image -->
-      <picture class="main-title-picture">
-        <source media="(max-width: 768px)" srcset="Assests/crmd_landing_mobile_title.webp" />
-        <!-- For desktop, we can use a different title image or hide it -->
-        <img src="Assests/crmd_landing_mobile_title.webp" class="main-title-img" alt="CRMD - The Grand Chessboard"
-          id="mainTitle" />
-      </picture>
+        <!-- Colored king images (initially hidden) -->
+        <img src="Assests/king_desktop_fade.webp" class="king-img desktop-only"
+          alt="Golden chess king piece symbolizing victory and excellence" id="kingColoredDesktop"
+          style="opacity: 0; transform: translateY(0vh)" width="800" height="600" />
+        <img src="Assests/king_mobile_fade.webp" class="king-img mobile-only"
+          alt="Golden chess king piece symbolizing victory and excellence" id="kingColoredMobile"
+          style="opacity: 0; transform: translateY(0vh)" width="400" height="600" />
 
-      <!-- Desktop elements -->
-      <img src="Assests/crmd_landing_desktop_title.webp" class="desktop-title" alt="CRMD Desktop Title"
-        id="desktopTitle" />
-      <!-- <img src="Assests/crmd_landing_desktop_hand.webp" class="desktop-hand" alt="Desktop Hand" id="desktopHand"> -->
+        <!-- Tournament Title Images -->
+        <picture class="main-title-picture">
+          <source media="(max-width: 768px)" srcset="Assests/crmd_landing_mobile_title.webp" />
+          <img src="Assests/crmd_landing_mobile_title.webp" class="main-title-img"
+            alt="CRMD 2025 - The Grand Chessboard Tournament Title" id="mainTitle" width="500" height="200" />
+        </picture>
 
-      <!-- Navigation Bar with STUCO Logo Centerpiece -->
-      <nav class="navbar desktop desktop-only" id="navbarDesktop">
-        <div class="navbar-logo desktop-only">
-          <img src="Assests/favicon.ico" alt="STUCO Logo" />
-        </div>
-        <div class="navbar-items" id="navbarItemsDesktop">
-          <div class="navbar-items-left">
-            <a href="index.html" class="navbar-item" data-page="home">
-              <i class="fas fa-chess-king chess-icon"></i>
-              <i class="fas fa-home hover-icon"></i>
-              <span class="label">Home</span>
-            </a>
-            <a href="crmd-about.html" class="navbar-item" data-page="about">
-              <i class="fas fa-chess-queen chess-icon"></i>
-              <i class="fas fa-users hover-icon"></i>
-              <span class="label">About</span>
-            </a>
-            <a href="crmd-testimonial.html" class="navbar-item" data-page="testimonials">
-              <i class="fas fa-chess-rook chess-icon"></i>
-              <i class="fas fa-star hover-icon"></i>
-              <span class="label">Reviews</span>
-            </a>
+        <!-- Desktop Title -->
+        <img src="Assests/crmd_landing_desktop_title.webp" class="desktop-title"
+          alt="CRMD 2025 - The Grand Chessboard Tournament Desktop Title" id="desktopTitle" width="800" height="300" />
+
+        <!-- Navigation Bar with STUCO Logo Centerpiece -->
+        <nav class="navbar desktop desktop-only" id="navbarDesktop" role="navigation" aria-label="Main navigation">
+          <div class="navbar-logo desktop-only">
+            <img src="Assests/favicon.ico" alt="FR. Conceicao Rodrigues College of Engineering Student Council Logo"
+              width="40" height="40" />
           </div>
-          <div class="navbar-items-right">
-            <a href="crmd-rules.html" class="navbar-item" data-page="rules">
-              <i class="fas fa-chess-knight chess-icon"></i>
-              <i class="fas fa-scroll hover-icon"></i>
-              <span class="label">Rules</span>
-            </a>
-            <a href="crmd-contactus.html" class="navbar-item" data-page="contact">
-              <i class="fas fa-chess-pawn chess-icon"></i>
-              <i class="fas fa-envelope hover-icon"></i>
-              <span class="label">Contact</span>
-            </a>
-            <a href="crmd-sponsors.html" class="navbar-item" data-page="sponsors">
-              <i class="fas fa-chess-bishop chess-icon"></i>
-              <i class="fas fa-handshake hover-icon"></i>
-              <span class="label">Sponsors</span>
-            </a>
+          <div class="navbar-items" id="navbarItemsDesktop">
+            <div class="navbar-items-left">
+              <a href="index.html" class="navbar-item" data-page="home" aria-current="page">
+                <i class="fas fa-chess-king chess-icon" aria-hidden="true"></i>
+                <i class="fas fa-home hover-icon" aria-hidden="true"></i>
+                <span class="label">Home</span>
+              </a>
+              <a href="crmd-about.html" class="navbar-item" data-page="about">
+                <i class="fas fa-chess-queen chess-icon" aria-hidden="true"></i>
+                <i class="fas fa-users hover-icon" aria-hidden="true"></i>
+                <span class="label">About</span>
+              </a>
+              <a href="crmd-testimonial.html" class="navbar-item" data-page="testimonials">
+                <i class="fas fa-chess-rook chess-icon" aria-hidden="true"></i>
+                <i class="fas fa-star hover-icon" aria-hidden="true"></i>
+                <span class="label">Reviews</span>
+              </a>
+            </div>
+            <div class="navbar-items-right">
+              <a href="crmd-rules.html" class="navbar-item" data-page="rules">
+                <i class="fas fa-chess-knight chess-icon"></i>
+                <i class="fas fa-scroll hover-icon"></i>
+                <span class="label">Rules</span>
+              </a>
+              <a href="crmd-contactus.html" class="navbar-item" data-page="contact">
+                <i class="fas fa-chess-pawn chess-icon"></i>
+                <i class="fas fa-envelope hover-icon"></i>
+                <span class="label">Contact</span>
+              </a>
+              <a href="crmd-sponsors.html" class="navbar-item" data-page="sponsors">
+                <i class="fas fa-chess-bishop chess-icon"></i>
+                <i class="fas fa-handshake hover-icon"></i>
+                <span class="label">Sponsors</span>
+                <i class="fas fa-chess-knight chess-icon" aria-hidden="true"></i>
+                <i class="fas fa-scroll hover-icon" aria-hidden="true"></i>
+                <span class="label">Rules</span>
+              </a>
+              <a href="crmd-contactus.html" class="navbar-item" data-page="contact">
+                <i class="fas fa-chess-pawn chess-icon" aria-hidden="true"></i>
+                <i class="fas fa-envelope hover-icon" aria-hidden="true"></i>
+                <span class="label">Contact</span>
+              </a>
+              <a href="crmd-sponsors.html" class="navbar-item" data-page="sponsors">
+                <i class="fas fa-chess-bishop chess-icon" aria-hidden="true"></i>
+                <i class="fas fa-handshake hover-icon" aria-hidden="true"></i>
+                <span class="label">Sponsors</span>
+              </a>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
 
-      <nav class="navbar mobile mobile-only" id="navbarMobile">
-        <div class="navbar-logo mobile-only">
-          <img src="Assests/favicon.ico" alt="STUCO Logo" />
-        </div>
-        <div class="navbar-items" id="navbarItemsMobile">
-          <div class="navbar-items-left">
-            <a href="index.html" class="navbar-item" data-page="home">
-              <i class="fas fa-chess-king chess-icon"></i>
-              <i class="fas fa-home hover-icon"></i>
-              <span class="label">Home</span>
-            </a>
-            <a href="crmd-about.html" class="navbar-item" data-page="about">
-              <i class="fas fa-chess-queen chess-icon"></i>
-              <i class="fas fa-users hover-icon"></i>
-              <span class="label">About</span>
-            </a>
-            <a href="crmd-testimonial.html" class="navbar-item" data-page="testimonials">
-              <i class="fas fa-chess-rook chess-icon"></i>
-              <i class="fas fa-star hover-icon"></i>
-              <span class="label">Reviews</span>
-            </a>
+        <nav class="navbar mobile mobile-only" id="navbarMobile" role="navigation" aria-label="Main navigation mobile">
+          <div class="navbar-logo mobile-only">
+            <img src="Assests/favicon.ico" alt="FR. Conceicao Rodrigues College of Engineering Student Council Logo"
+              width="30" height="30" />
           </div>
-          <div class="navbar-items-right">
-            <a href="crmd-rules.html" class="navbar-item" data-page="rules">
-              <i class="fas fa-chess-knight chess-icon"></i>
-              <i class="fas fa-scroll hover-icon"></i>
-              <span class="label">Rules</span>
-            </a>
-            <a href="crmd-contactus.html" class="navbar-item" data-page="contact">
-              <i class="fas fa-chess-pawn chess-icon"></i>
-              <i class="fas fa-envelope hover-icon"></i>
-              <span class="label">Contact</span>
-            </a>
-            <a href="crmd-sponsors.html" class="navbar-item" data-page="sponsors">
-              <i class="fas fa-chess-bishop chess-icon"></i>
-              <i class="fas fa-handshake hover-icon"></i>
-              <span class="label">Sponsors</span>
-            </a>
+          <div class="navbar-items" id="navbarItemsMobile">
+            <div class="navbar-items-left">
+              <a href="index.html" class="navbar-item" data-page="home" aria-current="page">
+                <i class="fas fa-chess-king chess-icon" aria-hidden="true"></i>
+                <i class="fas fa-home hover-icon" aria-hidden="true"></i>
+                <span class="label">Home</span>
+              </a>
+              <a href="crmd-about.html" class="navbar-item" data-page="about">
+                <i class="fas fa-chess-queen chess-icon" aria-hidden="true"></i>
+                <i class="fas fa-users hover-icon" aria-hidden="true"></i>
+                <span class="label">About</span>
+              </a>
+              <a href="crmd-testimonial.html" class="navbar-item" data-page="testimonials">
+                <i class="fas fa-chess-rook chess-icon" aria-hidden="true"></i>
+                <i class="fas fa-star hover-icon" aria-hidden="true"></i>
+                <span class="label">Reviews</span>
+              </a>
+            </div>
+            <div class="navbar-items-right">
+              <a href="crmd-rules.html" class="navbar-item" data-page="rules">
+                <i class="fas fa-chess-knight chess-icon" aria-hidden="true"></i>
+                <i class="fas fa-scroll hover-icon" aria-hidden="true"></i>
+                <span class="label">Rules</span>
+              </a>
+              <a href="crmd-contactus.html" class="navbar-item" data-page="contact">
+                <i class="fas fa-chess-pawn chess-icon" aria-hidden="true"></i>
+                <i class="fas fa-envelope hover-icon" aria-hidden="true"></i>
+                <span class="label">Contact</span>
+              </a>
+              <a href="crmd-sponsors.html" class="navbar-item" data-page="sponsors">
+                <i class="fas fa-chess-bishop chess-icon" aria-hidden="true"></i>
+                <i class="fas fa-handshake hover-icon" aria-hidden="true"></i>
+                <span class="label">Sponsors</span>
+              </a>
+            </div>
           </div>
-        </div>
-      </nav>
-    </div>
-  </section>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Hidden content for SEO -->
+    <section class="sr-only" aria-hidden="true">
+      <h1>CRMD 2025 - The Grand Chessboard Tournament</h1>
+      <h2>About CRMD Chess Tournament</h2>
+      <p>CRMD (Conceicao Rodrigues Memorial Department) 2025 is the premier chess tournament organized by FR. Conceicao
+        Rodrigues College of Engineering Student Council. This strategic gaming event brings together chess enthusiasts
+        from across Mumbai for competitive matches, networking, and celebrating the art of chess.</p>
+
+      <h2>Tournament Features</h2>
+      <ul>
+        <li>Competitive chess matches with professional supervision</li>
+        <li>Multiple tournament categories for different skill levels</li>
+        <li>Networking opportunities with fellow chess players</li>
+        <li>Awards and recognition for top performers</li>
+        <li>Educational workshops on chess strategy</li>
+      </ul>
+
+      <h2>Event Details</h2>
+      <p>Join us at FR. Conceicao Rodrigues College of Engineering for an unforgettable chess tournament experience. The
+        event features strategic gameplay, competitive spirit, and community building among chess enthusiasts.</p>
+    </section>
+  </main>
+
+  <!-- Footer for additional SEO content -->
+  <footer class="sr-only" role="contentinfo">
+    <p>&copy; 2025 FR. Conceicao Rodrigues College of Engineering Student Council. All rights reserved.</p>
+    <p>CRMD 2025 - The Grand Chessboard Tournament | Mumbai Chess Championship</p>
+  </footer>
 </body>
 
 <script>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Home Page -->
+  <url>
+    <loc>https://www.crmd2025.com/</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.crmd2025.com/Assests/crmd_landing_desktop_title.webp</image:loc>
+      <image:title>CRMD 2025 - The Grand Chessboard Tournament</image:title>
+      <image:caption>Premier chess tournament at FR. Conceicao Rodrigues College of Engineering</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.crmd2025.com/Assests/king_desktop.webp</image:loc>
+      <image:title>Chess King - CRMD 2025</image:title>
+      <image:caption>Strategic chess gaming at CRMD 2025 tournament</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- About Page -->
+  <url>
+    <loc>https://www.crmd2025.com/crmd-about.html</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://www.crmd2025.com/Assests/Images/</image:loc>
+      <image:title>CRMD 2025 Team and Speakers</image:title>
+      <image:caption>Meet the organizers and featured speakers of CRMD 2025</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Rules Page -->
+  <url>
+    <loc>https://www.crmd2025.com/crmd-rules.html</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Sponsors Page -->
+  <url>
+    <loc>https://www.crmd2025.com/crmd-sponsors.html</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://www.crmd2025.com/Assests/sponsors/</image:loc>
+      <image:title>CRMD 2025 Official Sponsors</image:title>
+      <image:caption>Partners and sponsors supporting CRMD 2025 chess tournament</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Testimonials Page -->
+  <url>
+    <loc>https://www.crmd2025.com/crmd-testimonial.html</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- Contact Page -->
+  <url>
+    <loc>https://www.crmd2025.com/crmd-contactus.html</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+</urlset>
