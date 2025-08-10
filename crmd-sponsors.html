@@ -201,7 +201,6 @@
         left: -5px;
         right: -5px;
         bottom: -5px;
-        background: linear-gradient(45deg, #ffd700, #ff8c00, #ffd700);
         background-size: 200% 200%;
         animation: fireGradient 2s ease-in-out infinite;
         clip-path: polygon(
@@ -268,7 +267,7 @@
         position: relative;
       }
 
-      /* FIXED: Enhanced Logo Container with consistent 4:3 aspect ratio */
+      /* FIXED: Enhanced Logo Container with consistent 4:3 aspect ratio and BLACK background maintained */
       .sponsor-logo {
         margin: 25px 0;
         width: 100%;
@@ -276,38 +275,18 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(
-          135deg,
-          #ffd700 0%,
-          #ff8c00 50%,
-          #ffd700 100%
-        );
-        border: 3px solid #000;
+        background: #000000; /* Changed to solid black background */
+        border: 3px solid #ffd700; /* Changed border to gold */
         border-radius: 15px;
         overflow: hidden;
         position: relative;
         transition: all 0.4s ease;
       }
 
-      /* Consistent background overlay that maintains during hover */
-      .sponsor-logo::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          135deg,
-          #ffd700 0%,
-          #ff8c00 50%,
-          #ffd700 100%
-        );
-        z-index: 1;
-        transition: all 0.4s ease;
-      }
+      /* REMOVED: Background overlay that was changing colors */
+      /* The ::before pseudo-element that was changing colors on hover has been removed */
 
-      /* Shimmer effect */
+      /* Shimmer effect - kept but simplified */
       .sponsor-logo::after {
         content: "";
         position: absolute;
@@ -318,8 +297,8 @@
         background: linear-gradient(
           90deg,
           transparent,
-          rgba(255, 255, 255, 0.4),
-          transparent
+          rgba(255, 255, 255, 0.2),
+          /* Reduced opacity for subtler effect */ transparent
         );
         transition: left 0.8s ease;
         z-index: 3;
@@ -332,15 +311,7 @@
       .sponsor-box:hover .sponsor-logo {
         transform: scale(1.02);
         box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
-      }
-
-      .sponsor-box:hover .sponsor-logo::before {
-        background: linear-gradient(
-          135deg,
-          #ff8c00 0%,
-          #ffd700 50%,
-          #ff8c00 100%
-        );
+        /* Background remains black - no color change */
       }
 
       /* FIXED: Logo Image Styling with proper aspect ratio maintenance */
@@ -384,7 +355,7 @@
 
       /* FIXED: Placeholder Text for when no image is provided */
       .placeholder-text {
-        color: #000;
+        color: #ffd700; /* Changed to gold for better contrast on black */
         font-size: 1.1rem;
         font-weight: 700;
         letter-spacing: 1px;
@@ -392,7 +363,7 @@
         padding: 20px;
         position: relative;
         z-index: 2;
-        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
       }
 
       /* Hide placeholder when image is present */
@@ -702,218 +673,60 @@
                 <div class="sponsor-position">EVENT PARTNER</div>
                 <div class="sponsor-logo">
                   <img
-                    src="Assests/Images/Negative.webp"
+                    src="Assests/sponsors/sizzle-and-sip.png"
                     alt="Associate Sponsor Logo"
                   />
-                  <div class="placeholder-text">EVENT PARTNER</div>
                 </div>
-                <div class="sponsor-name">NEGATIVE</div>
+                <div class="sponsor-name">Negative</div>
               </div>
             </div>
 
             <div class="sponsor-box">
-              <div style="padding: 30px 25px">
+              <div style="padding: 35px 30px">
                 <div class="sponsor-position">GIFTING PARTNER</div>
                 <div class="sponsor-logo">
                   <img
-                    src="Assests/Images/Valencia perfumes.webp"
-                    alt="Food Partner Logo"
+                    src="Assests/sponsors/sizzle-and-sip.png"
+                    alt="Associate Sponsor Logo"
                   />
-                  <div class="placeholder-text">GIFTING PARTNER</div>
                 </div>
-                <div class="sponsor-name">VALENCIA PERFUMES</div>
+                <div class="sponsor-name">Valencia Nutrition</div>
               </div>
             </div>
 
             <div class="sponsor-box">
-              <div style="padding: 30px 25px">
-                <div class="sponsor-position">GIFTING PARTNER</div>
+              <div style="padding: 35px 30px">
+                <div class="sponsor-position">Protein Snacking PARTNER</div>
                 <div class="sponsor-logo">
                   <img
-                    src="Assests/Images/Valencia drinks.webp"
-                    alt="Beverage Partner Logo"
+                    src="Assests/sponsors/sizzle-and-sip.png"
+                    alt="Associate Sponsor Logo"
                   />
-                  <div class="placeholder-text">GIFTING PARTNER</div>
                 </div>
-                <div class="sponsor-name">VALENCIA DRINKS</div>
+                <div class="sponsor-name">Klaw Snacks</div>
               </div>
             </div>
 
             <div class="sponsor-box">
-              <div style="padding: 30px 25px">
-                <div class="sponsor-position">PROTEIN SNACKING PARTNER</div>
+              <div style="padding: 35px 30px">
+                <div class="sponsor-position">Coffee PARTNER</div>
                 <div class="sponsor-logo">
                   <img
-                    src="Assests/Images/KLAW SNACKS.webp"
-                    alt="Education Partner Logo"
+                    src="Assests/sponsors/sizzle-and-sip.png"
+                    alt="Associate Sponsor Logo"
                   />
-                  <div class="placeholder-text">PROTEIN SNACKING PARTNER</div>
                 </div>
-                <div class="sponsor-name">KLAW SNACKS</div>
+                <div class="sponsor-name">Zenforset Coffee</div>
               </div>
             </div>
 
             <div class="sponsor-box">
-              <div style="padding: 30px 25px">
-                <div class="sponsor-position">COFFEE PARTNER</div>
+              <div style="padding: 35px 30px">
+                <div class="sponsor-position">EVENT PARTNER</div>
                 <div class="sponsor-logo">
                   <img
-                    src="Assests/Images/Zenforest.webp"
-                    alt="Media Partner Logo"
-                  />
-                  <div class="placeholder-text">COFFEE PARTNER</div>
-                </div>
-                <div class="sponsor-name">ZENFOREST COFFEE</div>
-              </div>
-            </div>
-
-            <div class="sponsor-box">
-              <div style="padding: 30px 25px">
-                <div class="sponsor-position">BAG PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/Images/Lemonx.webp"
-                    alt="Tech Partner Logo"
-                  />
-                  <div class="placeholder-text">BAG PARTNER</div>
-                </div>
-                <div class="sponsor-name">LEMONX BAGS</div>
-              </div>
-            </div>
-
-            <div class="sponsor-box">
-              <div style="padding: 30px 25px">
-                <div class="sponsor-position">SNACKING PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/Images/Balaji wafers.webp"
-                    alt="Banking Partner Logo"
-                  />
-                  <div class="placeholder-text">SNACKING PARTNER</div>
-                </div>
-                <div class="sponsor-name">BALAJI WAFERS</div>
-              </div>
-            </div>
-
-            <div class="sponsor-box">
-              <div style="padding: 30px 25px">
-                <div class="sponsor-position">JUICE PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/Images/PANAA.webp"
-                    alt="Healthcare Partner Logo"
-                  />
-                  <div class="placeholder-text">JUICE PARTNER</div>
-                </div>
-                <div class="sponsor-name">PANAA</div>
-              </div>
-            </div>
-
-            <div class="sponsor-box">
-              <div style="padding: 30px 25px">
-                <div class="sponsor-position">FRAGRANCE PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/Images/AL QADRI.webp"
-                    alt="Travel Partner Logo"
-                  />
-                  <div class="placeholder-text">FRAGRANCE PARTNER</div>
-                </div>
-                <div class="sponsor-name">AL QADRI</div>
-              </div>
-            </div>
-
-            <div class="sponsor-box">
-              <div style="padding: 30px 25px">
-                <div class="sponsor-position">REFRESHMENT PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/Images/Thepulpco.webp"
-                    alt="Sports Partner Logo"
-                  />
-                  <div class="placeholder-text">REFRESHMENT PARTNER</div>
-                </div>
-                <div class="sponsor-name">THE PULP</div>
-              </div>
-            </div>
-
-            <div class="sponsor-box">
-              <div style="padding: 30px 25px">
-                <div class="sponsor-position">WRITING PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/Images/Stylish.webp"
-                    alt="Sports Partner Logo"
-                  />
-                  <div class="placeholder-text">WRITING PARTNER</div>
-                </div>
-                <div class="sponsor-name">STYLISH PENS</div>
-              </div>
-            </div>
-
-            <div class="sponsor-box">
-              <div style="padding: 30px 25px">
-                <div class="sponsor-position">COUPON PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/Images/Sky breeze white.webp"
-                    alt="Fashion Partner Logo"
-                  />
-                  <div class="placeholder-text">COUPON PARTNER</div>
-                </div>
-                <div class="sponsor-name">SKY BREEZE</div>
-              </div>
-            </div>
-
-            <div class="sponsor-box">
-              <div style="padding: 30px 25px">
-                <div class="sponsor-position">CONFECTIONERY PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/Images/Nutrisnacksbox.webp"
-                    alt="Automotive Partner Logo"
-                  />
-                  <div class="placeholder-text">CONFECTIONERY PARTNER</div>
-                </div>
-                <div class="sponsor-name">NUTRI SNACKS BOX</div>
-              </div>
-            </div>
-
-            <div class="sponsor-box">
-              <div style="padding: 30px 25px">
-                <div class="sponsor-position">SPORTS PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/Images/Totalsportsandfitness.webp"
-                    alt="Insurance Partner Logo"
-                  />
-                  <div class="placeholder-text">SPORTS PARTNER</div>
-                </div>
-                <div class="sponsor-name">TOTAL SPORTS AND FITNESS</div>
-              </div>
-            </div>
-
-            <div class="sponsor-box">
-              <div style="padding: 30px 25px">
-                <div class="sponsor-position">ENTERTAINMENT PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/Images/Smaash.webp"
-                    alt="Gaming Partner Logo"
-                  />
-                  <div class="placeholder-text">ENTERTAINMENT PARTNER</div>
-                </div>
-                <div class="sponsor-name">SMAASH ENTERTAINMENT</div>
-              </div>
-            </div>
-
-            <div class="sponsor-box">
-              <div style="padding: 30px 25px">
-                <div class="sponsor-position">FAST FOOD PARTNER</div>
-                <div class="sponsor-logo">
-                  <img
-                    src="Assests/Images/Sizzle and sip.webp"
-                    alt="Real Estate Partner Logo"
+                    src="Assests/sponsors/sizzle-and-sip.png"
+                    alt="Associate Sponsor Logo"
                   />
                   <div class="placeholder-text">FAST FOOD PARTNER</div>
                 </div>
