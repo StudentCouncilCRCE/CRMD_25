@@ -1,859 +1,984 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sponsors - CRMD Chess</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@400;600;800&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        @font-face {
-            font-family: 'Kodex';
-            src: url('Fonts/kodex/Kodex-Regular.ttf') format('truetype');
-        }
+      @font-face {
+        font-family: "Kodex";
+        src: url("Fonts/kodex/Kodex-Regular.ttf") format("truetype");
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body,
-        html {
-            height: 100%;
-            font-family: 'Arial', sans-serif;
-            background: url('Assests/CRMD_Poster_bg.png') no-repeat center center fixed;
-            background-size: cover;
-            background-attachment: fixed;
-            overflow-x: hidden;
-            position: relative;
-        }
+      body,
+      html {
+        height: 100%;
+        font-family: "Arial", sans-serif;
+        background: url("Assests/CRMD_Poster_bg.png") no-repeat center center
+          fixed;
+        background-size: cover;
+        background-attachment: fixed;
+        overflow-x: hidden;
+        position: relative;
+      }
 
+      .sponsors-section {
+        min-height: 100vh;
+        padding: 60px 20px;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+      }
+
+      /* Hero Section */
+      .hero-content {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .hero-title {
+        font-family: "Kodex", sans-serif;
+        font-size: 12rem;
+        font-weight: 900;
+        color: #000;
+        text-shadow: 3px 3px 0px #ffd700, 6px 6px 10px rgba(0, 0, 0, 0.3);
+        margin-bottom: 20px;
+        letter-spacing: 6px;
+        transform: translateY(-50px);
+        opacity: 0;
+        animation: slideInTitle 1.5s ease-out forwards;
+      }
+
+      .hero-subtitle {
+        font-family: "Kodex", sans-serif;
+        font-size: 2.5rem;
+        color: #ff0000;
+        font-weight: 600;
+        text-shadow: 1px 1px 2px rgba(63, 4, 165, 0.8);
+        transform: translateY(30px);
+        opacity: 0;
+        animation: slideInSubtitle 1.5s ease-out 0.5s forwards;
+        letter-spacing: 2px;
+      }
+
+      /* Sponsor Container */
+      .sponsor-container {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      /* Sponsor Tier */
+      .sponsor-tier {
+        margin-bottom: 80px;
+        transform: translateY(50px);
+        opacity: 0;
+        animation: slideUpTier 1s ease-out 0.8s forwards;
+      }
+
+      .tier-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      /* Enhanced 3D Title with Black Outline - "OUR PARTNERS" FONT CSS */
+      .tier-title {
+        font-family: "Orbitron", sans-serif;
+        font-size: 4.2rem;
+        font-weight: 900;
+        background: linear-gradient(45deg, #ffd700, #ff8c00, #ff4500, #ffd700);
+        background-size: 300% 300%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: fireGradient 3s ease-in-out infinite;
+        text-shadow: 0 1px 0 #ffa500, 0 2px 0 #ff8c00, 0 3px 0 #ff4500,
+          0 4px 0 #000, 0 5px 0 #000, 0 6px 1px rgba(0, 0, 0, 0.3),
+          0 0 5px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.4),
+          0 3px 5px rgba(0, 0, 0, 0.3), 0 5px 10px rgba(0, 0, 0, 0.3),
+          0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
+        margin-bottom: 15px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        position: relative;
+        transform: perspective(500px) rotateX(15deg);
+        -webkit-text-stroke: 2px #000;
+      }
+
+      /* Enhanced Red-Orange Larger Subtitle with Better Readability - "SUPPORTING" LINE FONT CSS */
+      .tier-subtitle {
+        font-family: "Kodex", sans-serif;
+        font-size: 3.4rem;
+        font-weight: 500;
+        background: linear-gradient(45deg, #ffd700, #ff0000, #ff5500);
+        background-size: 200% 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: fireGradient 2s ease-in-out infinite;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), -1px -1px 0 #000,
+          1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        -webkit-text-stroke: 1px #000;
+        position: relative;
+      }
+
+      /* Theme-based Card Design */
+      .sponsor-boxes {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        align-items: center;
+      }
+
+      /* Creative Hexagonal Card Design - CARD SIZE CSS */
+      .sponsor-box {
+        background: linear-gradient(
+          135deg,
+          #000000 0%,
+          #1a1a1a 50%,
+          #000000 100%
+        );
+        padding: 0;
+        border: none;
+        max-width: 500px;
+        width: 100%;
+        text-align: center;
+        transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        position: relative;
+        overflow: visible;
+        transform: translateX(0);
+        opacity: 0;
+        animation: slideInBox 1s ease-out forwards;
+        clip-path: polygon(
+          30px 0%,
+          100% 0%,
+          100% calc(100% - 30px),
+          calc(100% - 30px) 100%,
+          0% 100%,
+          0% 30px
+        );
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 0 4px #ffd700,
+          0 0 0 8px #000000, 0 0 20px rgba(255, 215, 0, 0.3);
+      }
+
+      /* Zig-zag pattern */
+      .sponsor-box:nth-child(odd) {
+        align-self: flex-start;
+        margin-left: 0;
+        animation-name: slideInLeft;
+      }
+
+      .sponsor-box:nth-child(even) {
+        align-self: flex-end;
+        margin-right: 0;
+        animation-name: slideInRight;
+      }
+
+      .sponsor-box::before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        background: linear-gradient(45deg, #ffd700, #ff8c00, #ffd700);
+        background-size: 200% 200%;
+        animation: fireGradient 2s ease-in-out infinite;
+        clip-path: polygon(
+          35px 0%,
+          100% 0%,
+          100% calc(100% - 35px),
+          calc(100% - 35px) 100%,
+          0% 100%,
+          0% 35px
+        );
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .sponsor-box::after {
+        content: "";
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        background: #ffd700;
+        clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        z-index: 2;
+      }
+
+      .sponsor-box > div {
+        position: relative;
+        z-index: 1;
+      }
+
+      .sponsor-box:hover {
+        transform: translateY(-20px) scale(1.05) rotateZ(2deg);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9), 0 0 0 4px #ff8c00,
+          0 0 0 8px #000000, 0 0 30px rgba(255, 140, 0, 0.5);
+      }
+
+      .sponsor-box:hover::before {
+        opacity: 1;
+      }
+
+      /* Creative Position Badge */
+      .sponsor-position {
+        background: linear-gradient(45deg, #ffd700, #ff8c00);
+        color: #000;
+        padding: 12px 26px;
+        font-weight: 800;
+        font-size: 1.1rem;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        box-shadow: 0 6px 16px rgba(255, 140, 0, 0.5);
+        border: 3px solid #000;
+        margin-bottom: 25px;
+        display: inline-block;
+        clip-path: polygon(
+          0% 0%,
+          calc(100% - 15px) 0%,
+          100% 50%,
+          calc(100% - 15px) 100%,
+          0% 100%,
+          15px 50%
+        );
+        position: relative;
+      }
+
+      /* FIXED: Enhanced Logo Container with consistent 4:3 aspect ratio */
+      .sponsor-logo {
+        margin: 25px 0;
+        width: 100%;
+        aspect-ratio: 4/3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          135deg,
+          #ffd700 0%,
+          #ff8c00 50%,
+          #ffd700 100%
+        );
+        border: 3px solid #000;
+        border-radius: 15px;
+        overflow: hidden;
+        position: relative;
+        transition: all 0.4s ease;
+      }
+
+      /* Consistent background overlay that maintains during hover */
+      .sponsor-logo::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          #ffd700 0%,
+          #ff8c00 50%,
+          #ffd700 100%
+        );
+        z-index: 1;
+        transition: all 0.4s ease;
+      }
+
+      /* Shimmer effect */
+      .sponsor-logo::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        transition: left 0.8s ease;
+        z-index: 3;
+      }
+
+      .sponsor-box:hover .sponsor-logo::after {
+        left: 100%;
+      }
+
+      .sponsor-box:hover .sponsor-logo {
+        transform: scale(1.02);
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+      }
+
+      .sponsor-box:hover .sponsor-logo::before {
+        background: linear-gradient(
+          135deg,
+          #ff8c00 0%,
+          #ffd700 50%,
+          #ff8c00 100%
+        );
+      }
+
+      /* FIXED: Logo Image Styling with proper aspect ratio maintenance */
+      .sponsor-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        transition: all 0.5s ease;
+        border-radius: 12px;
+        position: relative;
+        z-index: 2;
+        filter: brightness(1) contrast(1.1);
+        padding: 10px;
+      }
+
+      .sponsor-logo:hover img {
+        transform: scale(1.05);
+        filter: brightness(1.1) contrast(1.2) saturate(1.2);
+      }
+
+      /* Enhanced image animations */
+      .sponsor-box:hover .sponsor-logo img {
+        animation: imageGlow 0.6s ease-in-out;
+      }
+
+      @keyframes imageGlow {
+        0% {
+          transform: scale(1.05);
+          filter: brightness(1.1) contrast(1.2) saturate(1.2);
+        }
+        50% {
+          transform: scale(1.08);
+          filter: brightness(1.2) contrast(1.3) saturate(1.3);
+        }
+        100% {
+          transform: scale(1.05);
+          filter: brightness(1.1) contrast(1.2) saturate(1.2);
+        }
+      }
+
+      /* FIXED: Placeholder Text for when no image is provided */
+      .placeholder-text {
+        color: #000;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-align: center;
+        padding: 20px;
+        position: relative;
+        z-index: 2;
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+      }
+
+      /* Hide placeholder when image is present */
+      .sponsor-logo img + .placeholder-text {
+        display: none;
+      }
+
+      /* Enhanced Text Styling */
+      .sponsor-name {
+        font-size: 1.8rem;
+        color: #fff;
+        font-weight: 700;
+        margin-top: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        letter-spacing: 1px;
+      }
+
+      .sponsor-description {
+        color: #ccc;
+        font-size: 0.9rem;
+        margin-top: 10px;
+        line-height: 1.4;
+        font-style: italic;
+      }
+
+      /* Fire Gradient Animation */
+      @keyframes fireGradient {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      /* Existing Animations */
+      @keyframes slideInTitle {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInSubtitle {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideUpTier {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInBox {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-100px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(100px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* FIXED: Mobile Responsive with maintained aspect ratio */
+      @media (max-width: 768px) {
         .sponsors-section {
-            min-height: 100vh;
-            padding: 60px 20px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-        }
-
-        /* Hero Section */
-        .hero-content {
-            text-align: center;
-            margin-bottom: 80px;
+          padding: 40px 15px;
         }
 
         .hero-title {
-            font-family: 'Kodex', sans-serif;
-            font-size: 12rem;
-            font-weight: 900;
-            color: #000;
-            text-shadow: 3px 3px 0px #FFD700, 6px 6px 10px rgba(0, 0, 0, 0.3);
-            margin-bottom: 20px;
-            letter-spacing: 6px;
-            transform: translateY(-50px);
-            opacity: 0;
-            animation: slideInTitle 1.5s ease-out forwards;
+          font-size: 5rem;
+          padding: 15px 25px;
+          border-radius: 15px;
+          letter-spacing: 4px;
+          margin-bottom: 20px;
         }
 
         .hero-subtitle {
-            font-family: 'Kodex', sans-serif;
-            font-size: 2.5rem;
-            color: #ff0000;
-            font-weight: 600;
-            text-shadow: 1px 1px 2px rgba(63, 4, 165, 0.8);
-            transform: translateY(30px);
-            opacity: 0;
-            animation: slideInSubtitle 1.5s ease-out 0.5s forwards;
-            letter-spacing: 2px;
+          font-size: 1.8rem;
+          margin-bottom: 50px;
         }
 
-        /* Sponsor Container */
         .sponsor-container {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
+          max-width: 100%;
         }
 
-        /* Sponsor Tier */
         .sponsor-tier {
-            margin-bottom: 80px;
-            transform: translateY(50px);
-            opacity: 0;
-            animation: slideUpTier 1s ease-out 0.8s forwards;
+          margin-bottom: 50px;
         }
 
-        .tier-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        /* Enhanced 3D Title with Black Outline - "OUR PARTNERS" FONT CSS */
         .tier-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 4.2rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, #FFD700, #FF8C00, #FF4500, #FFD700);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fireGradient 3s ease-in-out infinite;
-            text-shadow: 
-                0 1px 0 #FFA500,
-                0 2px 0 #FF8C00,
-                0 3px 0 #FF4500,
-                0 4px 0 #000,
-                0 5px 0 #000,
-                0 6px 1px rgba(0,0,0,.3),
-                0 0 5px rgba(0,0,0,.2),
-                0 1px 3px rgba(0,0,0,.4),
-                0 3px 5px rgba(0,0,0,.3),
-                0 5px 10px rgba(0,0,0,.3),
-                0 10px 10px rgba(0,0,0,.2),
-                0 20px 20px rgba(0,0,0,.15);
-            margin-bottom: 15px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            position: relative;
-            transform: perspective(500px) rotateX(15deg);
-            -webkit-text-stroke: 2px #000;
+          font-size: 2.8rem;
+          margin-bottom: 10px;
+          transform: none;
         }
 
-        /* Enhanced Red-Orange Larger Subtitle with Better Readability - "SUPPORTING" LINE FONT CSS */
         .tier-subtitle {
-            font-family: 'Kodex', sans-serif;
-            font-size: 3.4rem;
-            font-weight: 500;
-            background: linear-gradient(45deg, #FFD700, #ff0000, #ff5500);
-            background-size: 200% 200%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fireGradient 2s ease-in-out infinite;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            text-shadow: 
-                2px 2px 4px rgba(0,0,0,0.8),
-                -1px -1px 0 #000,
-                1px -1px 0 #000,
-                -1px 1px 0 #000,
-                1px 1px 0 #000;
-            -webkit-text-stroke: 1px #000;
-            position: relative;
+          font-size: 1.8rem;
+          letter-spacing: 2px;
         }
 
-        /* Theme-based Card Design */
         .sponsor-boxes {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-            align-items: center;
+          flex-direction: column;
+          gap: 25px;
         }
 
-        /* Creative Hexagonal Card Design - CARD SIZE CSS */
+        /* All sponsor boxes same size on mobile with maintained aspect ratio */
         .sponsor-box {
-            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
-            padding: 0;
-            border: none;
-            max-width: 500px;
-            width: 210%;
-            text-align: center;
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-            overflow: visible;
-            transform: translateX(0);
-            opacity: 0;
-            animation: slideInBox 1s ease-out forwards;
-            clip-path: polygon(30px 0%, 100% 0%, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0% 100%, 0% 30px);
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.8),
-                0 0 0 4px #FFD700,
-                0 0 0 8px #000000,
-                0 0 20px rgba(255, 215, 0, 0.3);
-        }
-
-        /* Zig-zag pattern */
-        .sponsor-box:nth-child(odd) {
-            align-self: flex-start;
-            margin-left: 0;
-            animation-name: slideInLeft;
-        }
-
-        .sponsor-box:nth-child(even) {
-            align-self: flex-end;
-            margin-right: 0;
-            animation-name: slideInRight;
-        }
-
-        .sponsor-box::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            background: linear-gradient(45deg, #FFD700, #FF8C00, #FFD700);
-            background-size: 200% 200%;
-            animation: fireGradient 2s ease-in-out infinite;
-            clip-path: polygon(35px 0%, 100% 0%, 100% calc(100% - 35px), calc(100% - 35px) 100%, 0% 100%, 0% 35px);
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .sponsor-box::after {
-            content: '';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 20px;
-            height: 20px;
-            background: #FFD700;
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-            z-index: 2;
+          max-width: 350px;
+          margin: 0 auto;
+          align-self: center !important;
+          width: 100%;
         }
 
         .sponsor-box > div {
-            position: relative;
-            z-index: 1;
+          padding: 25px 20px;
         }
 
-        .sponsor-box:hover {
-            transform: translateY(-20px) scale(1.05) rotateZ(2deg);
-            box-shadow:
-                0 30px 60px rgba(0, 0, 0, 0.9),
-                0 0 0 4px #FF8C00,
-                0 0 0 8px #000000,
-                0 0 30px rgba(255, 140, 0, 0.5);
+        /* Remove zig-zag on mobile */
+        .sponsor-box:nth-child(odd),
+        .sponsor-box:nth-child(even) {
+          animation-name: slideInBox;
         }
 
-        .sponsor-box:hover::before {
-            opacity: 1;
-        }
-
-        /* Creative Position Badge */
-        .sponsor-position {
-            background: linear-gradient(45deg, #FFD700, #FF8C00);
-            color: #000;
-            padding: 12px 26px;
-            font-weight: 800;
-            font-size: 1.1rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            box-shadow: 0 6px 16px rgba(255, 140, 0, 0.5);
-            border: 3px solid #000;
-            margin-bottom: 25px;
-            display: inline-block;
-            clip-path: polygon(0% 0%, calc(100% - 15px) 0%, 100% 50%, calc(100% - 15px) 100%, 0% 100%, 15px 50%);
-            position: relative;
-        }
-
-        /* Enhanced Logo Container with Image Support */
+        /* Maintained 4:3 aspect ratio on mobile */
         .sponsor-logo {
-            margin: 25px 0;
-            height: 450px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-            border: none;
-            transition: all 0.4s ease;
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
+          margin: 15px 0;
+          aspect-ratio: 4/3;
         }
 
-        .sponsor-logo::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.3), transparent);
-            transition: left 0.8s ease;
-            z-index: 2;
-        }
-
-        .sponsor-box:hover .sponsor-logo::before {
-            left: 100%;
-        }
-
-        .sponsor-logo:hover {
-            transform: scale(1.02);
-        }
-
-        /* Logo Image Styling */
-        .sponsor-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.5s ease;
-            border-radius: 15px;
-            filter: brightness(1) contrast(1.1);
-        }
-
-        .sponsor-logo:hover img {
-            transform: scale(1.1) rotateZ(2deg);
-            filter: brightness(1.2) contrast(1.2) saturate(1.3);
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
-        }
-
-        /* Enhanced image animations */
-        .sponsor-box:hover .sponsor-logo img {
-            animation: imageGlow 0.6s ease-in-out;
-        }
-
-        @keyframes imageGlow {
-            0% { 
-                box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-            }
-            50% { 
-                box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
-                transform: scale(1.15) rotateZ(3deg);
-            }
-            100% { 
-                box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
-                transform: scale(1.1) rotateZ(2deg);
-            }
-        }
-
-        /* Placeholder Text for when no image is provided */
-        .placeholder-text {
-            color: #000;
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-align: center;
-            padding: 10px;
-        }
-
-        /* Hide placeholder when image is present */
-        .sponsor-logo img + .placeholder-text {
-            display: none;
-        }
-
-        /* Enhanced Text Styling */
         .sponsor-name {
-            font-size: 1.8rem;
-            color: #fff;
-            font-weight: 700;
-            margin-top: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-            letter-spacing: 1px;  
+          font-size: 1.5rem;
+          margin-top: 15px;
         }
 
         .sponsor-description {
-            color: #ccc;
-            font-size: 0.9rem;
-            margin-top: 10px;
-            line-height: 1.4;
-            font-style: italic;
+          font-size: 0.9rem;
+          margin-top: 10px;
         }
 
-        /* Fire Gradient Animation */
-        @keyframes fireGradient {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
+        .sponsor-position {
+          font-size: 0.9rem;
+          padding: 10px 18px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-title {
+          font-size: 3rem;
+          letter-spacing: 2px;
+          padding: 10px 20px;
         }
 
-        /* Existing Animations */
-        @keyframes slideInTitle {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .hero-subtitle {
+          font-size: 1.4rem;
         }
 
-        @keyframes slideInSubtitle {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .sponsors-section {
+          padding: 30px 10px;
         }
 
-        @keyframes slideUpTier {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .tier-title {
+          font-size: 2.2rem;
         }
 
-        @keyframes slideInBox {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .tier-subtitle {
+          font-size: 1.4rem;
+          letter-spacing: 1px;
         }
 
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-100px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        .sponsor-box {
+          max-width: 300px;
         }
 
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(100px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+        .sponsor-box > div {
+          padding: 20px 15px;
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .sponsors-section {
-                padding: 40px 15px;
-            }
-
-            .hero-title {
-                font-size: 5rem;
-                padding: 15px 25px;
-                border-radius: 15px;
-                letter-spacing: 4px;
-                margin-bottom: 20px;
-            }
-
-            .hero-subtitle {
-                font-size: 1.8rem;
-                margin-bottom: 50px;
-            }
-
-            .sponsor-container {
-                max-width: 100%;
-            }
-
-            .sponsor-tier {
-                margin-bottom: 50px;
-            }
-
-            .tier-title {
-                font-size: 2.8rem;
-                margin-bottom: 10px;
-                transform: none;
-            }
-
-            .tier-subtitle {
-                font-size: 1.8rem;
-                letter-spacing: 2px;
-            }
-
-            .sponsor-boxes {
-                flex-direction: column;
-                gap: 25px;
-            }
-
-            /* All sponsor boxes same size on mobile */
-            .sponsor-box {
-                max-width: 350px;
-                margin: 0 auto;
-                align-self: center !important;
-                border-radius: 15px;
-            }
-
-            .sponsor-box > div {
-                padding: 25px 20px;
-            }
-
-            /* Remove zig-zag on mobile */
-            .sponsor-box:nth-child(odd),
-            .sponsor-box:nth-child(even) {
-                animation-name: slideInBox;
-            }
-
-            .sponsor-logo {
-                height: 350px;
-                margin: 15px 0;
-            }
-
-            .sponsor-name {
-                font-size: 1.5rem;
-                margin-top: 15px;
-            }
-
-            .sponsor-description {
-                font-size: 0.9rem;
-                margin-top: 10px;
-            }
-
-            .sponsor-position {
-                font-size: 0.9rem;
-                padding: 10px 18px;
-                top: -10px;
-                right: 15px;
-            }
+        /* Maintained 4:3 aspect ratio on small screens */
+        .sponsor-logo {
+          aspect-ratio: 4/3;
+          margin: 15px 0;
         }
 
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 3rem;
-                letter-spacing: 2px;
-                padding: 10px 20px;
-            }
-
-            .hero-subtitle {
-                font-size: 1.4rem;
-            }
-
-            .sponsors-section {
-                padding: 30px 10px;
-            }
-
-            .tier-title {
-                font-size: 2.2rem;
-            }
-
-            .tier-subtitle {
-                font-size: 1.4rem;
-                letter-spacing: 1px;
-            }
-
-            .sponsor-box {
-                padding: 20px 15px;
-            }
-
-            .sponsor-logo {
-                height: 15x0px;
-            }
+        .placeholder-text {
+          font-size: 0.9rem;
+          padding: 15px;
         }
+      }
 
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
 
-        /* Floating chess pieces */
-        .floating-pieces {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 0;
-        }
+      /* Floating chess pieces */
+      .floating-pieces {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 0;
+      }
 
-        .floating-piece {
-            position: absolute;
-            color: rgba(255, 215, 0, 0.1);
-            font-size: 2.5rem;
-            animation: float 8s ease-in-out infinite;
-        }
+      .floating-piece {
+        position: absolute;
+        color: rgba(255, 215, 0, 0.1);
+        font-size: 2.5rem;
+        animation: float 8s ease-in-out infinite;
+      }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg);
-                opacity: 0.1;
-            }
-            50% {
-                transform: translateY(-20px) rotate(180deg);
-                opacity: 0.3;
-            }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+          opacity: 0.1;
         }
+        50% {
+          transform: translateY(-20px) rotate(180deg);
+          opacity: 0.3;
+        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <section class="sponsors-section" id="sponsors-section">
-        
-        <div class="floating-pieces">
-            <i class="fas fa-chess-pawn floating-piece" style="top: 15%; left: 5%; animation-delay: 0s;"></i>
-            <i class="fas fa-chess-knight floating-piece" style="top: 70%; left: 90%; animation-delay: 2s;"></i>
-            <i class="fas fa-chess-bishop floating-piece" style="top: 40%; left: 3%; animation-delay: 4s;"></i>
-            <i class="fas fa-chess-rook floating-piece" style="top: 85%; left: 85%; animation-delay: 1s;"></i>
-        </div>
+      <div class="floating-pieces">
+        <i
+          class="fas fa-chess-pawn floating-piece"
+          style="top: 15%; left: 5%; animation-delay: 0s"
+        ></i>
+        <i
+          class="fas fa-chess-knight floating-piece"
+          style="top: 70%; left: 90%; animation-delay: 2s"
+        ></i>
+        <i
+          class="fas fa-chess-bishop floating-piece"
+          style="top: 40%; left: 3%; animation-delay: 4s"
+        ></i>
+        <i
+          class="fas fa-chess-rook floating-piece"
+          style="top: 85%; left: 85%; animation-delay: 1s"
+        ></i>
+      </div>
 
-        
-        <div class="hero-content">
-            <h1 class="hero-title">SPONSORS</h1>
-            <p class="hero-subtitle">Powered by you, driven by the Grand Chessboard</p>
-        </div>
+      <div class="hero-content">
+        <h1 class="hero-title">SPONSORS</h1>
+        <p class="hero-subtitle">
+          Powered by you, driven by the Grand Chessboard
+        </p>
+      </div>
 
-        <div class="sponsor-container">
-            
-            <div class="sponsor-tier other-sponsors">
-                <div class="tier-header">
-                    <h2 class="tier-title">Our Partners</h2>
-                    <p class="tier-subtitle">Supporting The Grand Chessboard</p>
+      <div class="sponsor-container">
+        <div class="sponsor-tier other-sponsors">
+          <div class="tier-header">
+            <h2 class="tier-title">Our Partners</h2>
+            <p class="tier-subtitle">Supporting The Grand Chessboard</p>
+          </div>
+
+          <div class="sponsor-boxes">
+            <div class="sponsor-box">
+              <div style="padding: 35px 30px">
+                <div class="sponsor-position">EVENT PARTNER</div>
+                <div class="sponsor-logo">
+                  <img
+                    src="Assests/Images/Negative.webp"
+                    alt="Associate Sponsor Logo"
+                  />
+                  <div class="placeholder-text">EVENT PARTNER</div>
                 </div>
-                
-                <div class="sponsor-boxes">
-                    
-                    <div class="sponsor-box">
-                        <div style="padding: 35px 30px;">
-                            <div class="sponsor-position">EVENT PARTNER</div>
-                            <div class="sponsor-logo">
-                                <img src="Assests/Images/Negative.webp" alt="Associate Sponsor Logo">
-                                <div class="placeholder-text">EVENT PARTNER</div>
-                            </div>
-                            <div class="sponsor-name">NEGATIVE</div>
-                            
-                        </div>
-                    </div>
+                <div class="sponsor-name">NEGATIVE</div>
+              </div>
+            </div>
 
-                    <div class="sponsor-box">
-                        <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">GIFTING PARTNER</div>
-                            <div class="sponsor-logo">
-                                <img src="Assests/Images/Valencia perfumes.webp" alt="Food Partner Logo">
-                                <div class="placeholder-text">GIFTING PARTNER</div>
-                            </div>
-                            <div class="sponsor-name">VALENCIA PERFUMES</div>
-                            
-                        </div>
-                    </div>
+            <div class="sponsor-box">
+              <div style="padding: 30px 25px">
+                <div class="sponsor-position">GIFTING PARTNER</div>
+                <div class="sponsor-logo">
+                  <img
+                    src="Assests/Images/Valencia perfumes.webp"
+                    alt="Food Partner Logo"
+                  />
+                  <div class="placeholder-text">GIFTING PARTNER</div>
+                </div>
+                <div class="sponsor-name">VALENCIA PERFUMES</div>
+              </div>
+            </div>
 
-                    <div class="sponsor-box">
-                        <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">GIFTING PARTNER</div>
-                            <div class="sponsor-logo">
-                                <img src="Assests/Images/Valencia drinks.webp" alt="Beverage Partner Logo">
-                                <div class="placeholder-text">GIFTING PARTNER</div>
-                            </div>
-                            <div class="sponsor-name">VALENCIA DRINKS</div>
-                            
-                        </div>
-                    </div>
+            <div class="sponsor-box">
+              <div style="padding: 30px 25px">
+                <div class="sponsor-position">GIFTING PARTNER</div>
+                <div class="sponsor-logo">
+                  <img
+                    src="Assests/Images/Valencia drinks.webp"
+                    alt="Beverage Partner Logo"
+                  />
+                  <div class="placeholder-text">GIFTING PARTNER</div>
+                </div>
+                <div class="sponsor-name">VALENCIA DRINKS</div>
+              </div>
+            </div>
 
-                    <div class="sponsor-box">
-                        <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">PROTEIN SNACKING PARTNER</div>
-                            <div class="sponsor-logo">
-                                <img src="Assests/Images/KLAW SNACKS.webp" alt="Education Partner Logo">
-                                <div class="placeholder-text">PROTEIN SNACKING PARTNER</div>
-                            </div>
-                            <div class="sponsor-name">KLAW SNACKS</div>
-                            
-                        </div>
-                    </div>
+            <div class="sponsor-box">
+              <div style="padding: 30px 25px">
+                <div class="sponsor-position">PROTEIN SNACKING PARTNER</div>
+                <div class="sponsor-logo">
+                  <img
+                    src="Assests/Images/KLAW SNACKS.webp"
+                    alt="Education Partner Logo"
+                  />
+                  <div class="placeholder-text">PROTEIN SNACKING PARTNER</div>
+                </div>
+                <div class="sponsor-name">KLAW SNACKS</div>
+              </div>
+            </div>
 
-                    <div class="sponsor-box">
-                        <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">COFFEE PARTNER</div>
-                            <div class="sponsor-logo">
-                                <img src="Assests/Images/Zenforest.webp" alt="Media Partner Logo">
-                                <div class="placeholder-text">COFFEE PARTNER</div>
-                            </div>
-                            <div class="sponsor-name">ZENFOREST COFFEE</div>
-                            
-                        </div>
-                    </div>
+            <div class="sponsor-box">
+              <div style="padding: 30px 25px">
+                <div class="sponsor-position">COFFEE PARTNER</div>
+                <div class="sponsor-logo">
+                  <img
+                    src="Assests/Images/Zenforest.webp"
+                    alt="Media Partner Logo"
+                  />
+                  <div class="placeholder-text">COFFEE PARTNER</div>
+                </div>
+                <div class="sponsor-name">ZENFOREST COFFEE</div>
+              </div>
+            </div>
 
-                    <div class="sponsor-box">
-                        <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">BAG PARTNER</div>
-                            <div class="sponsor-logo">
-                                <img src="Assests/Images/Lemonx.webp" alt="Tech Partner Logo">
-                                <div class="placeholder-text">BAG PARTNER</div>
-                            </div>
-                            <div class="sponsor-name">LEMONX BAGS</div>
-                            
-                        </div>
-                    </div>
+            <div class="sponsor-box">
+              <div style="padding: 30px 25px">
+                <div class="sponsor-position">BAG PARTNER</div>
+                <div class="sponsor-logo">
+                  <img
+                    src="Assests/Images/Lemonx.webp"
+                    alt="Tech Partner Logo"
+                  />
+                  <div class="placeholder-text">BAG PARTNER</div>
+                </div>
+                <div class="sponsor-name">LEMONX BAGS</div>
+              </div>
+            </div>
 
-                    <div class="sponsor-box">
-                        <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">SNACKING PARTNER</div>
-                            <div class="sponsor-logo">
-                                <img src="Assests/Images/Balaji wafers.webp" alt="Banking Partner Logo">
-                                <div class="placeholder-text">SNACKING PARTNER</div>
-                            </div>
-                            <div class="sponsor-name">BALAJI WAFERS</div>
-                            
-                        </div>
-                    </div>
+            <div class="sponsor-box">
+              <div style="padding: 30px 25px">
+                <div class="sponsor-position">SNACKING PARTNER</div>
+                <div class="sponsor-logo">
+                  <img
+                    src="Assests/Images/Balaji wafers.webp"
+                    alt="Banking Partner Logo"
+                  />
+                  <div class="placeholder-text">SNACKING PARTNER</div>
+                </div>
+                <div class="sponsor-name">BALAJI WAFERS</div>
+              </div>
+            </div>
 
-                    <div class="sponsor-box">
-                        <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">JUICE PARTNER</div>
-                            <div class="sponsor-logo">
-                                <img src="Assests/Images/PANAA.webp" alt="Healthcare Partner Logo">
-                                <div class="placeholder-text">JUICE PARTNER</div>
-                            </div>
-                            <div class="sponsor-name">PANAA</div>
-                            
-                        </div>
-                    </div>
+            <div class="sponsor-box">
+              <div style="padding: 30px 25px">
+                <div class="sponsor-position">JUICE PARTNER</div>
+                <div class="sponsor-logo">
+                  <img
+                    src="Assests/Images/PANAA.webp"
+                    alt="Healthcare Partner Logo"
+                  />
+                  <div class="placeholder-text">JUICE PARTNER</div>
+                </div>
+                <div class="sponsor-name">PANAA</div>
+              </div>
+            </div>
 
-                    <div class="sponsor-box">
-                        <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">FRAGRANCE PARTNER</div>
-                            <div class="sponsor-logo">
-                                <img src="Assests/Images/AL QADRI.webp" alt="Travel Partner Logo">
-                                <div class="placeholder-text">FRAGRANCE PARTNER</div>
-                            </div>
-                            <div class="sponsor-name">AL QADRI</div>
-                            
-                        </div>
-                    </div>
+            <div class="sponsor-box">
+              <div style="padding: 30px 25px">
+                <div class="sponsor-position">FRAGRANCE PARTNER</div>
+                <div class="sponsor-logo">
+                  <img
+                    src="Assests/Images/AL QADRI.webp"
+                    alt="Travel Partner Logo"
+                  />
+                  <div class="placeholder-text">FRAGRANCE PARTNER</div>
+                </div>
+                <div class="sponsor-name">AL QADRI</div>
+              </div>
+            </div>
 
-                    <div class="sponsor-box">
-                        <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">REFRESHMENT PARTNER</div>
-                            <div class="sponsor-logo">
-                                <img src="Assests/Images/Thepulpco.webp" alt="Sports Partner Logo">
-                                <div class="placeholder-text">REFRESHMENT PARTNER</div>
-                            </div>
-                            <div class="sponsor-name">THE PULP</div>
-                            
-                        </div>
-                    </div>
+            <div class="sponsor-box">
+              <div style="padding: 30px 25px">
+                <div class="sponsor-position">REFRESHMENT PARTNER</div>
+                <div class="sponsor-logo">
+                  <img
+                    src="Assests/Images/Thepulpco.webp"
+                    alt="Sports Partner Logo"
+                  />
+                  <div class="placeholder-text">REFRESHMENT PARTNER</div>
+                </div>
+                <div class="sponsor-name">THE PULP</div>
+              </div>
+            </div>
 
-                    <div class="sponsor-box">
-                        <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">WRITING PARTNER</div>
-                            <div class="sponsor-logo">
-                                <img src="Assests/Images/Stylish.webp" alt="Sports Partner Logo">
-                                <div class="placeholder-text">WRITING PARTNER</div>
-                            </div>
-                            <div class="sponsor-name">STYLISH PENS</div>
-                            
-                        </div>
-                    </div>
+            <div class="sponsor-box">
+              <div style="padding: 30px 25px">
+                <div class="sponsor-position">WRITING PARTNER</div>
+                <div class="sponsor-logo">
+                  <img
+                    src="Assests/Images/Stylish.webp"
+                    alt="Sports Partner Logo"
+                  />
+                  <div class="placeholder-text">WRITING PARTNER</div>
+                </div>
+                <div class="sponsor-name">STYLISH PENS</div>
+              </div>
+            </div>
 
-                    <div class="sponsor-box">
-                        <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">COUPON PARTNER</div>
-                            <div class="sponsor-logo">
-                                <img src="Assests/Images/Sky breeze white.webp" alt="Fashion Partner Logo">
-                                <div class="placeholder-text">COUPON PARTNER</div>
-                            </div>
-                            <div class="sponsor-name">SKY BREEZE</div>
-                            
-                        </div>
-                    </div>
+            <div class="sponsor-box">
+              <div style="padding: 30px 25px">
+                <div class="sponsor-position">COUPON PARTNER</div>
+                <div class="sponsor-logo">
+                  <img
+                    src="Assests/Images/Sky breeze white.webp"
+                    alt="Fashion Partner Logo"
+                  />
+                  <div class="placeholder-text">COUPON PARTNER</div>
+                </div>
+                <div class="sponsor-name">SKY BREEZE</div>
+              </div>
+            </div>
 
-                    <div class="sponsor-box">
-                        <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">CONFECTIONERY PARTNER</div>
-                            <div class="sponsor-logo">
-                                <img src="Assests/Images/Nutrisnacksbox.webp" alt="Automotive Partner Logo">
-                                <div class="placeholder-text">CONFECTIONERY PARTNER</div>
-                            </div>
-                            <div class="sponsor-name">NUTRI SNACKS BOX</div>
-                            
-                        </div>
-                    </div>
+            <div class="sponsor-box">
+              <div style="padding: 30px 25px">
+                <div class="sponsor-position">CONFECTIONERY PARTNER</div>
+                <div class="sponsor-logo">
+                  <img
+                    src="Assests/Images/Nutrisnacksbox.webp"
+                    alt="Automotive Partner Logo"
+                  />
+                  <div class="placeholder-text">CONFECTIONERY PARTNER</div>
+                </div>
+                <div class="sponsor-name">NUTRI SNACKS BOX</div>
+              </div>
+            </div>
 
-                    <div class="sponsor-box">
-                        <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">SPORTS PARTNER</div>
-                            <div class="sponsor-logo">
-                                <img src="Assests/Images/Totalsportsandfitness.webp" alt="Insurance Partner Logo">
-                                <div class="placeholder-text">SPORTS PARTNER</div>
-                            </div>
-                            <div class="sponsor-name">TOTAL SPORTS AND FITNESS</div>
-                            
-                        </div>
-                    </div>
+            <div class="sponsor-box">
+              <div style="padding: 30px 25px">
+                <div class="sponsor-position">SPORTS PARTNER</div>
+                <div class="sponsor-logo">
+                  <img
+                    src="Assests/Images/Totalsportsandfitness.webp"
+                    alt="Insurance Partner Logo"
+                  />
+                  <div class="placeholder-text">SPORTS PARTNER</div>
+                </div>
+                <div class="sponsor-name">TOTAL SPORTS AND FITNESS</div>
+              </div>
+            </div>
 
-                    <div class="sponsor-box">
-                        <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">ENTERTAINMENT PARTNER</div>
-                            <div class="sponsor-logo">
-                                <img src="Assests/Images/Smaash.webp" alt="Gaming Partner Logo">
-                                <div class="placeholder-text">ENTERTAINMENT PARTNER</div>
-                            </div>
-                            <div class="sponsor-name">SMAASH ENTERTAINMENT</div>
-                            
-                        </div>
-                    </div>
+            <div class="sponsor-box">
+              <div style="padding: 30px 25px">
+                <div class="sponsor-position">ENTERTAINMENT PARTNER</div>
+                <div class="sponsor-logo">
+                  <img
+                    src="Assests/Images/Smaash.webp"
+                    alt="Gaming Partner Logo"
+                  />
+                  <div class="placeholder-text">ENTERTAINMENT PARTNER</div>
+                </div>
+                <div class="sponsor-name">SMAASH ENTERTAINMENT</div>
+              </div>
+            </div>
 
-                    <div class="sponsor-box">
-                        <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">FAST FOOD PARTNER</div>
-                            <div class="sponsor-logo">
-                                <img src="Assests/Images/Sizzle and sip.webp" alt="Real Estate Partner Logo">
-                                <div class="placeholder-text">FAST FOOD PARTNER</div>
-                            </div>
-                            <div class="sponsor-name">SIZZLE AND SIP</div>
-                            
-                        </div>
-                    </div>
+            <div class="sponsor-box">
+              <div style="padding: 30px 25px">
+                <div class="sponsor-position">FAST FOOD PARTNER</div>
+                <div class="sponsor-logo">
+                  <img
+                    src="Assests/Images/Sizzle and sip.webp"
+                    alt="Real Estate Partner Logo"
+                  />
+                  <div class="placeholder-text">FAST FOOD PARTNER</div>
+                </div>
+                <div class="sponsor-name">SIZZLE AND SIP</div>
+              </div>
+            </div>
 
-                    <div class="sponsor-box">
-                        <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">DESSERT PARTNER</div>
-                            <div class="sponsor-logo">
-                                <img src="Assests/Images/MOD.webp" alt="Entertainment Partner Logo">
-                                <div class="placeholder-text">ENTERTAINMENT PARTNER</div>
-                            </div>
-                            <div class="sponsor-name">MAD OVER DONUTS</div>
-                            
-                        </div>
-                    </div>
+            <div class="sponsor-box">
+              <div style="padding: 30px 25px">
+                <div class="sponsor-position">DESSERT PARTNER</div>
+                <div class="sponsor-logo">
+                  <img
+                    src="Assests/Images/MOD.webp"
+                    alt="Entertainment Partner Logo"
+                  />
+                  <div class="placeholder-text">DESSERT PARTNER</div>
+                </div>
+                <div class="sponsor-name">MAD OVER DONUTS</div>
+              </div>
+            </div>
 
-                    <div class="sponsor-box">
-                        <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">KEYCHAIN PARTNER</div>
-                            <div class="sponsor-logo">
-                                <img src="Assests/Images/ISHTIKUTUM.webp" alt="Entertainment Partner Logo">
-                                <div class="placeholder-text">KEYCHAIN PARTNER</div>
-                            </div>
-                            <div class="sponsor-name">ISHTIKUTUM CROCHET</div>
-                            
-                        </div>
-                    </div>
+            <div class="sponsor-box">
+              <div style="padding: 30px 25px">
+                <div class="sponsor-position">KEYCHAIN PARTNER</div>
+                <div class="sponsor-logo">
+                  <img
+                    src="Assests/Images/ISHTIKUTUM.webp"
+                    alt="Entertainment Partner Logo"
+                  />
+                  <div class="placeholder-text">KEYCHAIN PARTNER</div>
+                </div>
+                <div class="sponsor-name">ISHTIKUTUM CROCHET</div>
+              </div>
+            </div>
 
-                    <div class="sponsor-box">
-                        <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">GIFTING PARTNER</div>
-                            <div class="sponsor-logo">
-                                <img src="Assests/Images/EVEPAPER.webp" alt="Consulting Partner Logo">
-                                <div class="placeholder-text">GIFTING PARTNER</div>
-                            </div>
-                            <div class="sponsor-name">EVEPAPER</div>
-                            
-                        </div>
-                    </div>
+            <div class="sponsor-box">
+              <div style="padding: 30px 25px">
+                <div class="sponsor-position">GIFTING PARTNER</div>
+                <div class="sponsor-logo">
+                  <img
+                    src="Assests/Images/EVEPAPER.webp"
+                    alt="Consulting Partner Logo"
+                  />
+                  <div class="placeholder-text">GIFTING PARTNER</div>
+                </div>
+                <div class="sponsor-name">EVEPAPER</div>
+              </div>
+            </div>
 
-                    <div class="sponsor-box">
-                        <div style="padding: 30px 25px;">
-                            <div class="sponsor-position">COUPON PARTNER</div>
-                            <div class="sponsor-logo">
-                                <img src="Assests/Images/NOESCAPE.webp" alt="Fitness Partner Logo">
-                                <div class="placeholder-text">COUPON PARTNER</div>
-                            </div>
-                            <div class="sponsor-name">NO ESCAPE</div>
-                            
-                        </div>
-                    </div>
-
-
-                    
+            <div class="sponsor-box">
+              <div style="padding: 30px 25px">
+                <div class="sponsor-position">COUPON PARTNER</div>
+                <div class="sponsor-logo">
+                  <img
+                    src="Assests/Images/NOESCAPE.webp"
+                    alt="Fitness Partner Logo"
+                  />
+                  <div class="placeholder-text">COUPON PARTNER</div>
+                </div>
+                <div class="sponsor-name">NO ESCAPE</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
