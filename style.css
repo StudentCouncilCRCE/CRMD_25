@@ -11,6 +11,25 @@
     border: 0 !important;
 }
 
+/* Page Visibility Fix for Navigation */
+body {
+    opacity: 1 !important;
+    transition: opacity 0.3s ease;
+}
+
+/* Ensure page is visible during load - prevents blank page on back navigation */
+html {
+    opacity: 1;
+}
+
+/* Mobile back button fix */
+@media (max-width: 768px) {
+    body {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+}
+
 /* Skip to content link for accessibility */
 .skip-link {
     position: absolute;

@@ -306,8 +306,8 @@
       const href = event.target.closest('a').href;
       const isGoingToHome = href.includes('index.html') || href.endsWith('/');
       
-      // Add smooth transition effect
-      if (document.body.style.opacity !== '0') {
+      // Only add transition if page is currently visible
+      if (document.body.style.opacity !== '0' && window.getComputedStyle(document.body).opacity !== '0') {
         event.preventDefault();
         
         // Quick fade out
@@ -336,7 +336,7 @@
   // ========== PAGE LOAD OPTIMIZATION ==========
   // Optimize page load based on cache status
   document.addEventListener('DOMContentLoaded', function() {
-    // Enable smooth transitions
+    // Always ensure page is visible first (fixes back button issue)
     document.body.style.opacity = '1';
     document.body.style.transition = 'opacity 0.3s ease';
 
@@ -355,6 +355,36 @@
     if (window.location.search.includes('debug')) {
       console.log('CRMD Cache Status:', window.CRMDCache.getStatus());
       window.clearCRMDCache = window.CRMDCache.clear;
+    }
+  });
+
+  // ========== BROWSER NAVIGATION FIX ==========
+  // Handle browser back/forward button navigation
+  window.addEventListener('pageshow', function(event) {
+    // This fires when page is shown (including back/forward navigation)
+    // Ensure page is always visible
+    document.body.style.opacity = '1';
+    
+    // If page was restored from cache (back/forward button)
+    if (event.persisted) {
+      console.log('✓ Page restored from browser cache - ensuring visibility');
+      // Force reflow to ensure styles are applied
+      document.body.offsetHeight;
+    }
+  });
+
+  // Additional safety net for mobile browsers
+  window.addEventListener('focus', function() {
+    // When window regains focus, ensure page is visible
+    if (document.body.style.opacity !== '1') {
+      document.body.style.opacity = '1';
+    }
+  });
+
+  // Handle page visibility changes (mobile switching apps)
+  document.addEventListener('visibilitychange', function() {
+    if (!document.hidden && document.body.style.opacity !== '1') {
+      document.body.style.opacity = '1';
     }
   });
 
