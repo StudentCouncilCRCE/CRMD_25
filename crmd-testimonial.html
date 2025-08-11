@@ -1027,7 +1027,7 @@
                 width: '6vw',
                 height: '62vh',
                 borderRadius: '3vw',
-                duration: 700,
+                duration: 400,
                 easing: 'easeOutQuart',
                 complete: function () {
                   // Reset any transform properties that might interfere with positioning
@@ -1050,7 +1050,7 @@
                 width: mobileWidth + 'px',
                 height: mobileHeight,
                 borderRadius: borderRadius,
-                duration: 700,
+                duration: 400,
                 easing: 'easeOutQuart',
                 complete: function () {
                   // Reset any transform properties that might interfere with positioning
@@ -1059,7 +1059,7 @@
                 }
               });
             }
-          }, 300);
+          }, 150);
 
           // Phase 2: Reveal navigation items from both sides
           function revealNavItems() {
@@ -1073,8 +1073,8 @@
               scale: [0.8, 1],
               translateX: isDesktop ? [0, 0] : [-30, 0],
               translateY: isDesktop ? [-30, 0] : [0, 0],
-              duration: 400,
-              delay: anime.stagger(100),
+              duration: 150,
+              delay: anime.stagger(50),
               easing: 'easeOutQuad'
             });
 
@@ -1086,20 +1086,20 @@
                 scale: [0.8, 1],
                 translateX: isDesktop ? [0, 0] : [30, 0],
                 translateY: isDesktop ? [30, 0] : [0, 0],
-                duration: 400,
-                delay: anime.stagger(100),
+                duration: 150,
+                delay: anime.stagger(50),
                 easing: 'easeOutQuad',
                 complete: function () {
                   console.log('Navbar expansion animation completed!');
                   navbar.classList.add('show');
                 }
               });
-            }, 200);
+            }, 100);
           }
         }
 
         // Show navbar after a short delay
-        setTimeout(showNavbar, 1000);
+        setTimeout(showNavbar, 600);
       </script>
 
 </body>

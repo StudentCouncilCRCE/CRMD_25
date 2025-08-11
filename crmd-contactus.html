@@ -1120,7 +1120,7 @@
           const maxWidth = screenWidth <= 360 ? 340 : 420;
           const mobileWidth = Math.min(screenWidth - margin, maxWidth);
         }
-      }, 300);
+      }, 150);
 
       // Phase 2: Reveal navigation items from both sides
       function revealNavItems() {
@@ -1135,7 +1135,7 @@
           setTimeout(() => {
             item.style.opacity = "1";
             item.style.transform = "scale(1)";
-          }, index * 100);
+          }, index * 50);
         });
 
         // Animate right side items (Rules, Contact, Sponsors) with slight delay
@@ -1147,18 +1147,18 @@
             setTimeout(() => {
               item.style.opacity = "1";
               item.style.transform = "scale(1)";
-            }, index * 100);
+            }, index * 50);
           });
-        }, 200);
+        }, 100);
       }
 
       // Start revealing items after expansion
-      setTimeout(revealNavItems, 400);
+      setTimeout(revealNavItems, 250);
     }
 
     // Initialize navbar animation on page load
     window.addEventListener("load", () => {
-      setTimeout(showNavbar, 1000);
+      setTimeout(showNavbar, 600);
     });
   </script>
 </body>
