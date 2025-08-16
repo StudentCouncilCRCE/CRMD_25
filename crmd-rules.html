@@ -352,6 +352,121 @@
         animation-delay: 2s;
       }
 
+      /* Download Button Styles */
+      .download-button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 80px;
+        margin-bottom: 40px;
+        z-index: 20;
+        position: relative;
+      }
+
+      .download-btn {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        background: linear-gradient(145deg, #000000, #1a1a1a);
+        border: 3px solid #ffd700;
+        border-radius: 25px;
+        padding: 20px 30px;
+        text-decoration: none;
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        position: relative;
+        overflow: hidden;
+        min-width: 350px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4),
+          inset 0 2px 0px rgba(255, 215, 0, 0.3);
+      }
+
+      .download-btn::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 215, 0, 0.1),
+          transparent
+        );
+        transform: rotate(45deg);
+        transition: all 0.6s;
+        opacity: 0;
+      }
+
+      .download-btn:hover::before {
+        opacity: 1;
+        animation: shine 0.8s ease-in-out;
+      }
+
+      .download-btn:hover {
+        transform: translateY(-8px) scale(1.05);
+        border-color: #ffa500;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+          0 0 40px rgba(255, 215, 0, 0.4),
+          inset 0 2px 0px rgba(255, 215, 0, 0.5);
+      }
+
+      .download-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(45deg, #ffd700, #ffa500);
+        border-radius: 50%;
+        color: #000;
+        font-size: 1.8rem;
+        font-weight: bold;
+        box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .download-btn:hover .download-icon {
+        transform: scale(1.1);
+        background: linear-gradient(45deg, #ffa500, #ffd700);
+      }
+
+      .download-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .download-title {
+        font-family: "Kodex", sans-serif;
+        font-size: 1.4rem;
+        color: #ffd700;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+      }
+
+      .download-subtitle {
+        font-size: 1rem;
+        color: #fff;
+        font-weight: 500;
+        opacity: 0.9;
+      }
+
+      .chess-decoration {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffd700;
+        font-size: 2rem;
+        transition: all 0.3s ease;
+      }
+
+      .download-btn:hover .chess-decoration {
+        color: #fff;
+        transform: scale(1.2);
+      }
+
       /* Animations */
       @keyframes slideInTitle {
         from {
@@ -407,6 +522,15 @@
         }
       }
 
+      @keyframes shine {
+        0% {
+          transform: translateX(-100%) rotate(45deg);
+        }
+        100% {
+          transform: translateX(100%) rotate(45deg);
+        }
+      }
+
       /* Responsive design */
       @media (max-width: 768px) {
         .hero-title {
@@ -450,6 +574,22 @@
         .rule-text {
           font-size: 0.9rem;
         }
+
+        .download-btn {
+          flex-direction: column;
+          text-align: center;
+          min-width: 300px;
+          padding: 25px 20px;
+          gap: 15px;
+        }
+
+        .download-title {
+          font-size: 1.2rem;
+        }
+
+        .download-subtitle {
+          font-size: 0.9rem;
+        }
       }
 
       @media (max-width: 480px) {
@@ -465,6 +605,25 @@
         .rule-box {
           padding: 20px 15px;
           min-width: 260px;
+        }
+
+        .download-btn {
+          min-width: 280px;
+          padding: 20px 15px;
+        }
+
+        .download-icon {
+          width: 50px;
+          height: 50px;
+          font-size: 1.5rem;
+        }
+
+        .download-title {
+          font-size: 1.1rem;
+        }
+
+        .download-subtitle {
+          font-size: 0.85rem;
         }
       }
 
@@ -919,7 +1078,7 @@
             <div class="rule-title">Debate Flow</div>
             <div class="rule-text">
               The proposition begins the debate with their opening speech which
-              is followed by the opposition’s opening speech. The debate is
+              is followed by the opposition's opening speech. The debate is
               concluded by the closing speech, first from the opposition and
               then the proposition.
             </div>
@@ -931,7 +1090,7 @@
             <div class="rule-text">
               The opposition raises the first point in the refutation round. The
               final 30 seconds of the refutation round are reserved for the
-              concluding statement — a clear concise summary of the team’s
+              concluding statement — a clear concise summary of the team's
               arguments.
             </div>
           </div>
@@ -953,7 +1112,7 @@
             <div class="rule-text">
               Personal comments of any kind directed against the opposite team
               are strictly prohibited. Participants cannot comment on the
-              opposite team’s stance or statements made in previous competition
+              opposite team's stance or statements made in previous competition
               debates.
             </div>
           </div>
@@ -991,7 +1150,7 @@
             <div class="rule-title">Moderator Authority</div>
             <div class="rule-text">
               Discrepancies of any sort during the debate will be resolved at
-              the moderator’s discretion. The decision will be final and
+              the moderator's discretion. The decision will be final and
               binding.
             </div>
           </div>
@@ -1008,10 +1167,54 @@
             </div>
           </div>
         </div>
+
+        <!-- Brochure Download Button -->
+        <div class="download-button-container">
+          <a
+            href="/Assests/crmd_brochure.pdf"
+            download="CRMD_2025_Official_Brochure.pdf"
+            class="download-btn"
+            target="_blank"
+          >
+            <div class="download-icon">
+              <i class="fas fa-download"></i>
+            </div>
+            <div class="download-content">
+              <span class="download-title">Download Official Brochure</span>
+              <span class="download-subtitle"
+                >CRMD 2025 - Complete Tournament Guide</span
+              >
+            </div>
+            <div class="chess-decoration">
+              <i class="fas fa-chess-king"></i>
+            </div>
+          </a>
+        </div>
       </section>
     </div>
 
     <script>
+      // === Handle PDF Download ===
+      document.addEventListener("DOMContentLoaded", async () => {
+        const downloadBtn = document.querySelector(".download-btn");
+
+        // Set up the PDF download functionality
+        if (window.fs) {
+          try {
+            const pdfData = await window.fs.readFile(
+              "CRMD PR Brochure 2025.pdf"
+            );
+            const blob = new Blob([pdfData], { type: "application/pdf" });
+            const url = URL.createObjectURL(blob);
+            downloadBtn.href = url;
+          } catch (error) {
+            console.log("PDF file not found, using fallback");
+            // Fallback - you can replace this URL with your actual PDF URL
+            downloadBtn.href = "CRMD PR Brochure 2025.pdf";
+          }
+        }
+      });
+
       // === Animate rule boxes on scroll ===
       document.addEventListener("DOMContentLoaded", () => {
         const boxes = document.querySelectorAll(".rule-box");
@@ -1227,7 +1430,7 @@
                 <span class="developer-name">Elish Mark</span>
                 <div class="social-links">
                   <a
-                    href="https://www.linkedin.com/in/elish-mark4444"
+                    href="https://linkedin.com/in/elish-mark4444"
                     target="_blank"
                     class="linkedin-link"
                   >
